@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  ShowDictionary
 //
-//  Created by Curtis Wilcox on 12/21/19.
+//  Created by Curtis Wilcox on 12/19/19.
 //  Copyright © 2019 wilcoxcurtis. All rights reserved.
 //
 
@@ -11,10 +11,9 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
         return true
     }
 

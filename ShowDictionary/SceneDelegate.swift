@@ -2,12 +2,16 @@
 //  SceneDelegate.swift
 //  ShowDictionary
 //
-//  Created by Curtis Wilcox on 12/21/19.
+//  Created by Curtis Wilcox on 12/19/19.
 //  Copyright © 2019 wilcoxcurtis. All rights reserved.
 //
 
-import UIKit
+
+import CloudKit
 import SwiftUI
+import UIKit
+
+var signedIn: Bool = false
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -18,16 +22,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-
+        
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
+            
+            NotificationCenter.default.addObserver(forName: .NSUbiquityIdentityDidChange, object: nil, queue: nil) { _ in
+                self.getiCloudLoginStatus() {
+                    signedIn = $0
+                }
+            }
+            
+            self.getiCloudLoginStatus() {
+                signedIn = $0
+            }
+            
+            
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window
             window.makeKeyAndVisible()
+        }
+    }
+    
+    private func getiCloudLoginStatus(completion: @escaping (Bool) -> ()) {
+        CKContainer.default().accountStatus() { (status, error) in
+            if status == .available {
+                completion(true)
+            } else {
+                completion(false)
+            }
         }
     }
 
