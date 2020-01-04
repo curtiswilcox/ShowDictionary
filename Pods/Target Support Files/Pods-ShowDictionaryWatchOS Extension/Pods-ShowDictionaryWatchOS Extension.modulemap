@@ -1,0 +1,6 @@
+framework module Pods_ShowDictionaryWatchOS_Extension {
+  umbrella header "Pods-ShowDictionaryWatchOS Extension-umbrella.h"
+
+  export *
+  module * { export * }
+}

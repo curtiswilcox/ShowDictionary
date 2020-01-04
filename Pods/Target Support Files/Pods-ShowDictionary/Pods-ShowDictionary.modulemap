@@ -1,0 +1,6 @@
+framework module Pods_ShowDictionary {
+  umbrella header "Pods-ShowDictionary-umbrella.h"
+
+  export *
+  module * { export * }
+}
