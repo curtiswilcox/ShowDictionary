@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D326A720263BEFA194795263 /* Pods_ShowDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */; };
+		D5E9989EF2F9B4FB8619E98D /* Pods_ShowDictionaryTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1745D98D4130EBE111279095 /* Pods_ShowDictionaryTVOS.framework */; };
 		E9089C9A23B707B100EE8C95 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E9089C9C23B707B100EE8C95 /* Localizable.stringsdict */; };
 		E92F823423B3244700AB98BE /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F823323B3244700AB98BE /* CharacterView.swift */; };
 		E943896B23BFD684001CC170 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E943896923BFD684001CC170 /* Interface.storyboard */; };
@@ -52,6 +54,7 @@
 		E9A0E79523BFDB1400CCB256 /* Date+new+written+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9AF23AED7ED004DF3A3 /* Date+new+written+toString.swift */; };
 		E9A0E79623BFDB1600CCB256 /* GlobalImportantThings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E997C38423B41C23003A88B2 /* GlobalImportantThings.swift */; };
 		E9A0E79723BFDB1900CCB256 /* String+isAlphanumeric+localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9A923AED7ED004DF3A3 /* String+isAlphanumeric+localize.swift */; };
+		E9A0E79923C129CB00CCB256 /* ShowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A0E79823C129CB00CCB256 /* ShowData.swift */; };
 		E9BDDDEB23AEDA0E002729B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9BDDDED23AEDA0E002729B2 /* Localizable.strings */; };
 		E9BDDDF023AF356F002729B2 /* SeasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BDDDEF23AF356F002729B2 /* SeasonView.swift */; };
 		E9BDDDF223AF3D8F002729B2 /* EpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BDDDF123AF3D8F002729B2 /* EpisodeDetailView.swift */; };
@@ -79,7 +82,11 @@
 		E9DBC9CA23AED7EE004DF3A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9B323AED7ED004DF3A3 /* ContentView.swift */; };
 		E9DBC9CB23AED7EE004DF3A3 /* SearchMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9B423AED7EE004DF3A3 /* SearchMethod.swift */; };
 		E9DBC9CF23AED80F004DF3A3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9DBC9CE23AED80F004DF3A3 /* CloudKit.framework */; };
-		E9DBC9D323AED8C1004DF3A3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E9DBC9D223AED8C1004DF3A3 /* Alamofire */; };
+		E9F66C4B23C1347F0067C789 /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9AA23AED7ED004DF3A3 /* Observers.swift */; };
+		E9F66C4C23C134970067C789 /* ShowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A0E79823C129CB00CCB256 /* ShowData.swift */; };
+		E9F66C4E23C136340067C789 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E968E33823BC5668009AF7B3 /* CloudKit.framework */; };
+		E9F66C5123C136410067C789 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F66C5023C136410067C789 /* CloudKit.framework */; };
+		F31CA15CDCCFA55A706D8F2B /* Pods_ShowDictionaryWatchOS_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DDA16307AFE81AFCCE0901E /* Pods_ShowDictionaryWatchOS_Extension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +132,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1745D98D4130EBE111279095 /* Pods_ShowDictionaryTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShowDictionaryTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DDA16307AFE81AFCCE0901E /* Pods_ShowDictionaryWatchOS_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShowDictionaryWatchOS_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2356EB58232E54DCF5FA149C /* Pods-ShowDictionary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionary.debug.xcconfig"; path = "Target Support Files/Pods-ShowDictionary/Pods-ShowDictionary.debug.xcconfig"; sourceTree = "<group>"; };
+		39512CBBFF7EA1CD2A56B90F /* Pods-ShowDictionary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionary.release.xcconfig"; path = "Target Support Files/Pods-ShowDictionary/Pods-ShowDictionary.release.xcconfig"; sourceTree = "<group>"; };
+		5761BC6F4E0B197CE84F2EDC /* Pods-ShowDictionaryTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryTVOS.release.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryTVOS/Pods-ShowDictionaryTVOS.release.xcconfig"; sourceTree = "<group>"; };
+		906FE543A3FFF313A6280D3B /* Pods-ShowDictionaryWatchOS Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryWatchOS Extension.debug.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryWatchOS Extension/Pods-ShowDictionaryWatchOS Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShowDictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98DCA23D1AAEF3B274A4681C /* Pods-ShowDictionaryTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryTVOS.debug.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryTVOS/Pods-ShowDictionaryTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		E9089C9B23B707B100EE8C95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E9089C9D23B707B400EE8C95 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E92F823323B3244700AB98BE /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
@@ -157,6 +172,7 @@
 		E9A0E78523BFDA9700CCB256 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E9A0E78823BFDA9700CCB256 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9A0E78A23BFDA9700CCB256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9A0E79823C129CB00CCB256 /* ShowData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowData.swift; sourceTree = "<group>"; };
 		E9BDDDEC23AEDA0E002729B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9BDDDEE23AEDA18002729B2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E9BDDDEF23AF356F002729B2 /* SeasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonView.swift; sourceTree = "<group>"; };
@@ -188,13 +204,26 @@
 		E9DBC9CE23AED80F004DF3A3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		E9DBC9D023AED885004DF3A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = /Users/Curtis/Documents/ShowDictionary/ShowDictionary/Info.plist; sourceTree = "<absolute>"; };
 		E9EDB96023AED763003BD387 /* Show Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Show Dictionary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9F66C4D23C136300067C789 /* ShowDictionaryWatchOS Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ShowDictionaryWatchOS Extension.entitlements"; sourceTree = "<group>"; };
+		E9F66C4F23C1363F0067C789 /* ShowDictionaryTVOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShowDictionaryTVOS.entitlements; sourceTree = "<group>"; };
+		E9F66C5023C136410067C789 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.2.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		EC895DDFA44E4F3DF6620383 /* Pods-ShowDictionaryWatchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryWatchOS Extension.release.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryWatchOS Extension/Pods-ShowDictionaryWatchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		28BB60DA0206EADE0B30F445 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E943897023BFD689001CC170 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F31CA15CDCCFA55A706D8F2B /* Pods_ShowDictionaryWatchOS_Extension.framework in Frameworks */,
+				E9F66C4E23C136340067C789 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +231,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5E9989EF2F9B4FB8619E98D /* Pods_ShowDictionaryTVOS.framework in Frameworks */,
+				E9F66C5123C136410067C789 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,13 +241,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9DBC9CF23AED80F004DF3A3 /* CloudKit.framework in Frameworks */,
-				E9DBC9D323AED8C1004DF3A3 /* Alamofire in Frameworks */,
+				D326A720263BEFA194795263 /* Pods_ShowDictionary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		696AE09AB8CB861FA58C012F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2356EB58232E54DCF5FA149C /* Pods-ShowDictionary.debug.xcconfig */,
+				39512CBBFF7EA1CD2A56B90F /* Pods-ShowDictionary.release.xcconfig */,
+				98DCA23D1AAEF3B274A4681C /* Pods-ShowDictionaryTVOS.debug.xcconfig */,
+				5761BC6F4E0B197CE84F2EDC /* Pods-ShowDictionaryTVOS.release.xcconfig */,
+				906FE543A3FFF313A6280D3B /* Pods-ShowDictionaryWatchOS Extension.debug.xcconfig */,
+				EC895DDFA44E4F3DF6620383 /* Pods-ShowDictionaryWatchOS Extension.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E943896823BFD684001CC170 /* ShowDictionaryWatchOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +274,7 @@
 		E943897723BFD68A001CC170 /* ShowDictionaryWatchOS Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E9F66C4D23C136300067C789 /* ShowDictionaryWatchOS Extension.entitlements */,
 				E943897823BFD68A001CC170 /* ContentView.swift */,
 				E9A0E77023BFD74100CCB256 /* SearchMethodView.swift */,
 				E943897A23BFD68A001CC170 /* HostingController.swift */,
@@ -255,6 +300,7 @@
 		E9A0E77D23BFDA9500CCB256 /* ShowDictionaryTVOS */ = {
 			isa = PBXGroup;
 			children = (
+				E9F66C4F23C1363F0067C789 /* ShowDictionaryTVOS.entitlements */,
 				E9A0E77E23BFDA9500CCB256 /* AppDelegate.swift */,
 				E9A0E78023BFDA9500CCB256 /* ContentView.swift */,
 				E9A0E78223BFDA9700CCB256 /* Assets.xcassets */,
@@ -284,8 +330,12 @@
 		E9DBC9CD23AED80F004DF3A3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9F66C5023C136410067C789 /* CloudKit.framework */,
 				E968E33823BC5668009AF7B3 /* CloudKit.framework */,
 				E9DBC9CE23AED80F004DF3A3 /* CloudKit.framework */,
+				9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */,
+				1745D98D4130EBE111279095 /* Pods_ShowDictionaryTVOS.framework */,
+				1DDA16307AFE81AFCCE0901E /* Pods_ShowDictionaryWatchOS_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -299,6 +349,7 @@
 				E9A0E77D23BFDA9500CCB256 /* ShowDictionaryTVOS */,
 				E9EDB96123AED763003BD387 /* Products */,
 				E9DBC9CD23AED80F004DF3A3 /* Frameworks */,
+				696AE09AB8CB861FA58C012F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -348,6 +399,7 @@
 				E9DBC9A323AED7EC004DF3A3 /* Episode.swift */,
 				E9BDDDF323AFC88D002729B2 /* GridStack.swift */,
 				E9DBC9AA23AED7ED004DF3A3 /* Observers.swift */,
+				E9A0E79823C129CB00CCB256 /* ShowData.swift */,
 				E9DBC9B223AED7ED004DF3A3 /* SearchBar.swift */,
 				E9DBC9B423AED7EE004DF3A3 /* SearchMethod.swift */,
 				E9DBC9A723AED7ED004DF3A3 /* SeasonType.swift */,
@@ -365,6 +417,7 @@
 			buildPhases = (
 				E943896523BFD684001CC170 /* Resources */,
 				E943898F23BFD68B001CC170 /* Embed App Extensions */,
+				28BB60DA0206EADE0B30F445 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -380,9 +433,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E943898C23BFD68B001CC170 /* Build configuration list for PBXNativeTarget "ShowDictionaryWatchOS Extension" */;
 			buildPhases = (
+				1E0217144C11F41118AF270A /* [CP] Check Pods Manifest.lock */,
 				E943896F23BFD689001CC170 /* Sources */,
 				E943897023BFD689001CC170 /* Frameworks */,
 				E943897123BFD689001CC170 /* Resources */,
+				35885E517966F311721FDA4B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -397,9 +452,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9A0E78B23BFDA9700CCB256 /* Build configuration list for PBXNativeTarget "ShowDictionaryTVOS" */;
 			buildPhases = (
+				DBF1D14C2A36814A18BE274D /* [CP] Check Pods Manifest.lock */,
 				E9A0E77823BFDA9500CCB256 /* Sources */,
 				E9A0E77923BFDA9500CCB256 /* Frameworks */,
 				E9A0E77A23BFDA9500CCB256 /* Resources */,
+				8FF38817651AC5453AFEEB25 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -414,10 +471,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9EDB97423AED765003BD387 /* Build configuration list for PBXNativeTarget "ShowDictionary" */;
 			buildPhases = (
+				F093363B36E2EF05CED283A6 /* [CP] Check Pods Manifest.lock */,
 				E9EDB95C23AED763003BD387 /* Sources */,
 				E9EDB95D23AED763003BD387 /* Frameworks */,
 				E9EDB95E23AED763003BD387 /* Resources */,
 				E9E1400523BC4DBB007959E1 /* Embed Watch Content */,
+				C485AB629EF495ADCABA0C08 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -425,9 +484,6 @@
 				E943898A23BFD68B001CC170 /* PBXTargetDependency */,
 			);
 			name = ShowDictionary;
-			packageProductDependencies = (
-				E9DBC9D223AED8C1004DF3A3 /* Alamofire */,
-			);
 			productName = ShowDictionary;
 			productReference = E9EDB96023AED763003BD387 /* Show Dictionary.app */;
 			productType = "com.apple.product-type.application";
@@ -467,9 +523,6 @@
 				es,
 			);
 			mainGroup = E9EDB95723AED763003BD387;
-			packageReferences = (
-				E9DBC9D123AED8C1004DF3A3 /* XCRemoteSwiftPackageReference "Alamofire" */,
-			);
 			productRefGroup = E9EDB96123AED763003BD387 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -524,6 +577,126 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1E0217144C11F41118AF270A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShowDictionaryWatchOS Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		35885E517966F311721FDA4B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShowDictionaryWatchOS Extension/Pods-ShowDictionaryWatchOS Extension-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShowDictionaryWatchOS Extension/Pods-ShowDictionaryWatchOS Extension-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShowDictionaryWatchOS Extension/Pods-ShowDictionaryWatchOS Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8FF38817651AC5453AFEEB25 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShowDictionaryTVOS/Pods-ShowDictionaryTVOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShowDictionaryTVOS/Pods-ShowDictionaryTVOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShowDictionaryTVOS/Pods-ShowDictionaryTVOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C485AB629EF495ADCABA0C08 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShowDictionary/Pods-ShowDictionary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShowDictionary/Pods-ShowDictionary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShowDictionary/Pods-ShowDictionary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBF1D14C2A36814A18BE274D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShowDictionaryTVOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F093363B36E2EF05CED283A6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShowDictionary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E943896F23BFD689001CC170 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -558,11 +731,13 @@
 				E9A0E78E23BFDB0100CCB256 /* Show.swift in Sources */,
 				E9A0E78123BFDA9500CCB256 /* ContentView.swift in Sources */,
 				E9A0E79423BFDB1100CCB256 /* CollectionType+toJSONString.swift in Sources */,
+				E9F66C4C23C134970067C789 /* ShowData.swift in Sources */,
 				E9A0E78F23BFDB0400CCB256 /* SeasonType.swift in Sources */,
 				E9A0E77F23BFDA9500CCB256 /* AppDelegate.swift in Sources */,
 				E9A0E79623BFDB1600CCB256 /* GlobalImportantThings.swift in Sources */,
 				E9A0E79323BFDB0F00CCB256 /* Collection+safeSubscript.swift in Sources */,
 				E9A0E79523BFDB1400CCB256 /* Date+new+written+toString.swift in Sources */,
+				E9F66C4B23C1347F0067C789 /* Observers.swift in Sources */,
 				E9A0E79223BFDB0D00CCB256 /* Array+before+after.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,6 +749,7 @@
 				E9DBC9CB23AED7EE004DF3A3 /* SearchMethod.swift in Sources */,
 				E9DBC9C723AED7EE004DF3A3 /* EpisodeView.swift in Sources */,
 				E9DBC9C423AED7EE004DF3A3 /* CollectionType+toJSONString.swift in Sources */,
+				E9A0E79923C129CB00CCB256 /* ShowData.swift in Sources */,
 				E960FBB523BA67A80071D9EB /* SubText.swift in Sources */,
 				E9DBC9B823AED7EE004DF3A3 /* DescriptionView.swift in Sources */,
 				E9BDDDF423AFC88D002729B2 /* GridStack.swift in Sources */,
@@ -659,8 +835,10 @@
 /* Begin XCBuildConfiguration section */
 		E943898D23BFD68B001CC170 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 906FE543A3FFF313A6280D3B /* Pods-ShowDictionaryWatchOS Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "ShowDictionaryWatchOS Extension/ShowDictionaryWatchOS Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ShowDictionaryWatchOS Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = RN9D88P79F;
@@ -683,8 +861,10 @@
 		};
 		E943898E23BFD68B001CC170 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC895DDFA44E4F3DF6620383 /* Pods-ShowDictionaryWatchOS Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "ShowDictionaryWatchOS Extension/ShowDictionaryWatchOS Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ShowDictionaryWatchOS Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = RN9D88P79F;
@@ -745,8 +925,10 @@
 		};
 		E9A0E78C23BFDA9700CCB256 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98DCA23D1AAEF3B274A4681C /* Pods-ShowDictionaryTVOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_ENTITLEMENTS = ShowDictionaryTVOS/ShowDictionaryTVOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ShowDictionaryTVOS/Preview Content\"";
 				DEVELOPMENT_TEAM = RN9D88P79F;
@@ -767,8 +949,10 @@
 		};
 		E9A0E78D23BFDA9700CCB256 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5761BC6F4E0B197CE84F2EDC /* Pods-ShowDictionaryTVOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_ENTITLEMENTS = ShowDictionaryTVOS/ShowDictionaryTVOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ShowDictionaryTVOS/Preview Content\"";
 				DEVELOPMENT_TEAM = RN9D88P79F;
@@ -903,6 +1087,7 @@
 		};
 		E9EDB97523AED765003BD387 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2356EB58232E54DCF5FA149C /* Pods-ShowDictionary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -928,6 +1113,7 @@
 		};
 		E9EDB97623AED765003BD387 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39512CBBFF7EA1CD2A56B90F /* Pods-ShowDictionary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -999,25 +1185,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		E9DBC9D123AED8C1004DF3A3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.9.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E9DBC9D223AED8C1004DF3A3 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9DBC9D123AED8C1004DF3A3 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E9EDB95823AED763003BD387 /* Project object */;
 }

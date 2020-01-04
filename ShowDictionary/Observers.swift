@@ -9,32 +9,7 @@
 import Alamofire
 import CloudKit
 import Foundation
-import SwiftUI
 import UIKit.UIImage
-
-class ShowData : Comparable, Identifiable {
-    let show: Show
-    let titleCard: UIImage?
-    
-    init(_ show: Show) {
-        self.show = show
-        self.titleCard = nil
-    }
-    
-    init(_ show: Show, _ titleCard: UIImage) {
-        self.show = show
-        self.titleCard = titleCard
-    }
-    
-    static func < (lhs: ShowData, rhs: ShowData) -> Bool {
-        return lhs.show < rhs.show
-    }
-    
-    static func == (lhs: ShowData, rhs: ShowData) -> Bool {
-        return lhs.show == rhs.show
-    }
-}
-
 
 class ShowObserver : ObservableObject {
     @Published var loaded: Bool = false

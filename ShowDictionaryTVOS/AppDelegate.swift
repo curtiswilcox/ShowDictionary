@@ -6,8 +6,11 @@
 //  Copyright © 2020 wilcoxcurtis. All rights reserved.
 //
 
+import CloudKit
 import UIKit
 import SwiftUI
+
+var signedIn: Bool = false
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,7 +28,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = UIHostingController(rootView: contentView)
         self.window = window
         window.makeKeyAndVisible()
+        
+        NotificationCenter.default.addObserver(forName: .NSUbiquityIdentityDidChange, object: nil, queue: nil) { _ in
+            self.getiCloudLoginStatus() {
+                signedIn = $0
+            }
+        }
+        
+        self.getiCloudLoginStatus() {
+            signedIn = $0
+        }
+        
         return true
+    }
+    
+    private func getiCloudLoginStatus(completion: @escaping (Bool) -> ()) {
+        CKContainer.default().accountStatus() { (status, error) in
+            if status == .available {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
