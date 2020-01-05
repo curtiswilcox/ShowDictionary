@@ -86,6 +86,15 @@
 		E9F66C4C23C134970067C789 /* ShowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A0E79823C129CB00CCB256 /* ShowData.swift */; };
 		E9F66C4E23C136340067C789 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E968E33823BC5668009AF7B3 /* CloudKit.framework */; };
 		E9F66C5123C136410067C789 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F66C5023C136410067C789 /* CloudKit.framework */; };
+		E9F66C5323C1380F0067C789 /* Observers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66C5223C1380F0067C789 /* Observers.swift */; };
+		E9F66C5523C148B80067C789 /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66C5423C148B80067C789 /* DescriptionView.swift */; };
+		E9F66C5723C148C00067C789 /* EpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66C5623C148C00067C789 /* EpisodeView.swift */; };
+		E9F66C5923C148C70067C789 /* EpisodeChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66C5823C148C70067C789 /* EpisodeChooserView.swift */; };
+		E9F66C5B23C1495E0067C789 /* SeasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66C5A23C1495E0067C789 /* SeasonView.swift */; };
+		E9F66C5D23C149D00067C789 /* TesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F66C5C23C149D00067C789 /* TesterView.swift */; };
+		E9F66C5F23C14D320067C789 /* SubText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960FBB423BA67A80071D9EB /* SubText.swift */; };
+		E9F66C7623C1913A0067C789 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9F66C6E23C1905E0067C789 /* Localizable.strings */; };
+		E9F66C7723C191400067C789 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E9F66C7423C190750067C789 /* Localizable.stringsdict */; };
 		F31CA15CDCCFA55A706D8F2B /* Pods_ShowDictionaryWatchOS_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DDA16307AFE81AFCCE0901E /* Pods_ShowDictionaryWatchOS_Extension.framework */; };
 /* End PBXBuildFile section */
 
@@ -207,6 +216,16 @@
 		E9F66C4D23C136300067C789 /* ShowDictionaryWatchOS Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ShowDictionaryWatchOS Extension.entitlements"; sourceTree = "<group>"; };
 		E9F66C4F23C1363F0067C789 /* ShowDictionaryTVOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShowDictionaryTVOS.entitlements; sourceTree = "<group>"; };
 		E9F66C5023C136410067C789 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.2.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		E9F66C5223C1380F0067C789 /* Observers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observers.swift; sourceTree = "<group>"; };
+		E9F66C5423C148B80067C789 /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
+		E9F66C5623C148C00067C789 /* EpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeView.swift; sourceTree = "<group>"; };
+		E9F66C5823C148C70067C789 /* EpisodeChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeChooserView.swift; sourceTree = "<group>"; };
+		E9F66C5A23C1495E0067C789 /* SeasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonView.swift; sourceTree = "<group>"; };
+		E9F66C5C23C149D00067C789 /* TesterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterView.swift; sourceTree = "<group>"; };
+		E9F66C6D23C1905E0067C789 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9F66C6F23C1905F0067C789 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9F66C7323C190750067C789 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		E9F66C7523C190760067C789 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		EC895DDFA44E4F3DF6620383 /* Pods-ShowDictionaryWatchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryWatchOS Extension.release.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryWatchOS Extension/Pods-ShowDictionaryWatchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -265,6 +284,8 @@
 			isa = PBXGroup;
 			children = (
 				E943896923BFD684001CC170 /* Interface.storyboard */,
+				E9F66C6E23C1905E0067C789 /* Localizable.strings */,
+				E9F66C7423C190750067C789 /* Localizable.stringsdict */,
 				E943896C23BFD689001CC170 /* Assets.xcassets */,
 				E943896E23BFD689001CC170 /* Info.plist */,
 			);
@@ -274,9 +295,15 @@
 		E943897723BFD68A001CC170 /* ShowDictionaryWatchOS Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E9F66C5C23C149D00067C789 /* TesterView.swift */,
 				E9F66C4D23C136300067C789 /* ShowDictionaryWatchOS Extension.entitlements */,
 				E943897823BFD68A001CC170 /* ContentView.swift */,
 				E9A0E77023BFD74100CCB256 /* SearchMethodView.swift */,
+				E9F66C5423C148B80067C789 /* DescriptionView.swift */,
+				E9F66C5A23C1495E0067C789 /* SeasonView.swift */,
+				E9F66C5823C148C70067C789 /* EpisodeChooserView.swift */,
+				E9F66C5623C148C00067C789 /* EpisodeView.swift */,
+				E9F66C5223C1380F0067C789 /* Observers.swift */,
 				E943897A23BFD68A001CC170 /* HostingController.swift */,
 				E943897C23BFD68A001CC170 /* ExtensionDelegate.swift */,
 				E943897E23BFD68A001CC170 /* NotificationController.swift */,
@@ -550,6 +577,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E943898623BFD68B001CC170 /* Preview Assets.xcassets in Resources */,
+				E9F66C7723C191400067C789 /* Localizable.stringsdict in Resources */,
+				E9F66C7623C1913A0067C789 /* Localizable.strings in Resources */,
 				E943898323BFD68B001CC170 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -703,13 +732,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9A0E77623BFD75B00CCB256 /* GlobalImportantThings.swift in Sources */,
+				E9F66C5D23C149D00067C789 /* TesterView.swift in Sources */,
 				E9A0E77423BFD75500CCB256 /* CollectionType+toJSONString.swift in Sources */,
 				E9A0E76C23BFD71A00CCB256 /* Show.swift in Sources */,
+				E9F66C5523C148B80067C789 /* DescriptionView.swift in Sources */,
 				E943897B23BFD68A001CC170 /* HostingController.swift in Sources */,
 				E9A0E77723BFD75E00CCB256 /* String+isAlphanumeric+localize.swift in Sources */,
+				E9F66C5B23C1495E0067C789 /* SeasonView.swift in Sources */,
 				E9A0E77323BFD75300CCB256 /* Collection+safeSubscript.swift in Sources */,
 				E9A0E76D23BFD72000CCB256 /* Episode.swift in Sources */,
 				E9A0E76F23BFD72800CCB256 /* SearchMethod.swift in Sources */,
+				E9F66C5F23C14D320067C789 /* SubText.swift in Sources */,
+				E9F66C5723C148C00067C789 /* EpisodeView.swift in Sources */,
 				E943897923BFD68A001CC170 /* ContentView.swift in Sources */,
 				E9A0E77123BFD74100CCB256 /* SearchMethodView.swift in Sources */,
 				E943897F23BFD68A001CC170 /* NotificationController.swift in Sources */,
@@ -718,6 +752,8 @@
 				E9A0E77223BFD75100CCB256 /* Array+before+after.swift in Sources */,
 				E9A0E77523BFD75900CCB256 /* Date+new+written+toString.swift in Sources */,
 				E943898123BFD68A001CC170 /* NotificationView.swift in Sources */,
+				E9F66C5923C148C70067C789 /* EpisodeChooserView.swift in Sources */,
+				E9F66C5323C1380F0067C789 /* Observers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,6 +864,24 @@
 				E9BDDDEE23AEDA18002729B2 /* es */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		E9F66C6E23C1905E0067C789 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9F66C6D23C1905E0067C789 /* en */,
+				E9F66C6F23C1905F0067C789 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		E9F66C7423C190750067C789 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9F66C7323C190750067C789 /* en */,
+				E9F66C7523C190760067C789 /* es */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -975,6 +1029,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1035,6 +1090,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

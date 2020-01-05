@@ -9,49 +9,51 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var shows: [Show] = [Show(name: "Castle"), Show(name: "Doctor Who"), Show(name: "A Series of Unfortunate Events")].sorted()
+    @ObservedObject var observer = ShowObserver()
     
     var body: some View {
-        List(shows) { show in
-            NavigationLink(destination: SearchMethodView()) {
+        List(observer.data) { show in
+            NavigationLink(destination: SearchMethodView(show: show)) {
                 HStack {
                     Divider()
-                        .foregroundColor(self.getColor(show.firstLetter()))
+                        .background(self.getColor(show.firstLetter()))
                     Text(show.name)
                 }
             }
+            .padding([.top, .bottom], 5)
         }
+        .navigationBarTitle(NSLocalizedString("Home", comment: ""))
     }
     
     private func getColor(_ firstLetter: String) -> Color {
-        switch firstLetter {
-        case "a": return .blue
-        case "b": return .blue
-        case "c": return .blue
-        case "d": return .blue
-        case "e": return .blue
-        case "f": return .blue
-        case "g": return .blue
-        case "h": return .blue
-        case "i": return .blue
-        case "j": return .blue
-        case "k": return .blue
-        case "l": return .blue
-        case "m": return .blue
-        case "n": return .blue
-        case "o": return .blue
-        case "p": return .blue
-        case "q": return .blue
-        case "r": return .blue
-        case "s": return .blue
-        case "t": return .blue
-        case "u": return .blue
-        case "v": return .blue
-        case "w": return .blue
-        case "x": return .blue
-        case "y": return .blue
-        case "z": return .blue
-        default: return .blue
+        switch firstLetter.lowercased() {
+        case "a": return Color(UIColor(red: 240/255, green: 163/255, blue: 255/255, alpha: 1)) // amethyst
+        case "b": return Color(UIColor(red: 0/255, green: 117/255, blue: 220/255, alpha: 1)) // blue
+        case "c": return Color(UIColor(red: 153/255, green: 63/255, blue: 0/255, alpha: 1)) // caramel
+        case "d": return Color(UIColor(red: 76/255, green: 0/255, blue: 92/255, alpha: 1)) // damson
+        case "e": return Color(UIColor(red: 25/255, green: 25/255, blue: 25/255, alpha: 1)) //ebony
+        case "f": return Color(UIColor(red: 0/255, green: 92/255, blue: 49/255, alpha: 1)) // forest
+        case "g": return Color(UIColor(red: 43/255, green: 206/255, blue: 72/255, alpha: 1)) // green
+        case "h": return Color(UIColor(red: 255/255, green: 204/255, blue: 153/255, alpha: 1)) // honeydew
+        case "i": return Color(UIColor(red: 128/255, green: 128/255, blue: 128/255, alpha: 1)) // iron
+        case "j": return Color(UIColor(red: 148/255, green: 255/255, blue: 181/255, alpha: 1)) // jade
+        case "k": return Color(UIColor(red: 143/255, green: 124/255, blue: 0/255, alpha: 1)) // khaki
+        case "l": return Color(UIColor(red: 157/255, green: 204/255, blue: 0/255, alpha: 1)) // lime
+        case "m": return Color(UIColor(red: 194/255, green: 0/255, blue: 136/255, alpha: 1)) // mallow
+        case "n": return Color(UIColor(red: 0/255, green: 51/255, blue: 128/255, alpha: 1)) // navy
+        case "o": return Color(UIColor(red: 255/255, green: 164/255, blue: 5/255, alpha: 1)) // orpiment
+        case "p": return Color(UIColor(red: 255/255, green: 168/255, blue: 187/255, alpha: 1)) // pink
+        case "q": return Color(UIColor(red: 66/255, green: 102/255, blue: 0/255, alpha: 1)) // quagmire
+        case "r": return Color(UIColor(red: 255/255, green: 0/255, blue: 16/255, alpha: 1)) // red
+        case "s": return Color(UIColor(red: 94/255, green: 241/255, blue: 242/255, alpha: 1)) // sky
+        case "t": return Color(UIColor(red: 0/255, green: 153/255, blue: 143/255, alpha: 1)) // turquoise
+        case "u": return Color(UIColor(red: 224/255, green: 255/255, blue: 102/255, alpha: 1)) // uranium
+        case "v": return Color(UIColor(red: 116/255, green: 10/255, blue: 255/255, alpha: 1)) // violet
+        case "w": return Color(UIColor(red: 153/255, green: 0/255, blue: 0/255, alpha: 1)) // wine
+        case "x": return Color(UIColor(red: 255/255, green: 255/255, blue: 128/255, alpha: 1)) // xanthin
+        case "y": return Color(UIColor(red: 255/255, green: 255/255, blue: 0/255, alpha: 1)) // yellow
+        case "z": return Color(UIColor(red: 255/255, green: 80/255, blue: 5/255, alpha: 1)) // zinnia
+        default: return .clear
         }
     }
 }

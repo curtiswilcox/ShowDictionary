@@ -20,6 +20,7 @@ class HostingController: WKHostingController<ContentView> {
     
     override init() {
         super.init()
+        
         NotificationCenter.default.addObserver(forName: .NSUbiquityIdentityDidChange, object: nil, queue: nil) { _ in
             self.getiCloudLoginStatus() {
                 signedIn = $0

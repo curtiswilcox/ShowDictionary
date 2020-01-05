@@ -1,37 +1,21 @@
 //
 //  Observers.swift
-//  ShowDictionary
+//  ShowDictionaryWatchOS Extension
 //
-//  Created by Curtis Wilcox on 12/19/19.
-//  Copyright © 2019 wilcoxcurtis. All rights reserved.
+//  Created by Curtis Wilcox on 1/4/20.
+//  Copyright © 2020 wilcoxcurtis. All rights reserved.
 //
 
 import Alamofire
 import CloudKit
 import Foundation
-import UIKit.UIImage
 
 class ShowObserver : ObservableObject {
-    @Published var loaded: Bool = false
-    var data: [ShowData] = []
+    @Published private(set) var data: [Show] = []
 
     init() {
         getShows() { shows in
-            for show in shows {
-                URLSession(configuration: .default).dataTask(with: show.titleCardURL, completionHandler: { (data, response, error) in
-                    DispatchQueue.main.async {
-                        if let imageData = data, let img = UIImage(data: imageData) {
-                            self.data.append(ShowData(show, img))
-                        } else {
-                            self.data.append(ShowData(show)) // img is nil
-                        }
-                        self.data.sort(by: <)
-                        if shows.count == self.data.count {
-                            self.loaded = true
-                        }
-                    }
-                }).resume()
-            }
+            self.data = shows
         }
     }
 
@@ -48,16 +32,6 @@ class ShowObserver : ObservableObject {
                     shows = try decoder.decode([Show].self, from: Data(jsonString.utf8)).sorted(by: <)
                     shows = shows.sorted(by: <)
                     completion(shows)
-//                    self.findFavoritedShows() { favs in
-//                        print(shows)
-//                        guard !shows.isEmpty else { return }
-//                        shows = shows.sorted(by: <)
-//                        for show in shows where favs?.contains(show.filename) ?? false {
-//                            show.hasFavoritedEpisodes = true
-//                        }
-//                        print(shows)
-//                        completion(shows)
-//                    }
                 } catch {
                     completion([])
                 }
@@ -66,46 +40,6 @@ class ShowObserver : ObservableObject {
             }
         }
     }
-    
-    /*
-    func findFavoritedShows(completion: @escaping (Set<String>?) -> Void) {
-        guard signedIn else {
-//            print("iCloud account not available!")
-            completion(nil)
-            return
-        }
-                
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: "episodes", predicate: predicate)
-        let operation = CKQueryOperation(query: query)
-        operation.desiredKeys = ["filename"]
-        
-        var records = Set<String>()
-        operation.recordFetchedBlock = { record in
-            let filename = String(record["filename"]!)
-            records.insert(filename)
-        }
-        operation.queryCompletionBlock = { (cursor, error) in
-            if let cursor = cursor {
-                let newOperation = CKQueryOperation(cursor: cursor)
-                newOperation.recordFetchedBlock = operation.recordFetchedBlock
-                newOperation.queryCompletionBlock = operation.queryCompletionBlock
-                CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase.add(newOperation)
-            } else {
-                DispatchQueue.main.async {
-                    print(records)
-                    guard error == nil else {
-                        print(error!)
-                        completion(nil)
-                        return
-                    }
-                    completion(records)
-                }
-            }
-        }
-        CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase.add(operation)
-    }
- */
 }
 
 
@@ -120,7 +54,7 @@ class EpisodeObserver : ObservableObject {
     func getEpisodes(completion: @escaping ([Episode], Bool) -> ()) {
         var episodes: [Episode] = []
         Alamofire.request("https://wilcoxcurtis.com/show-dictionary/files/\(self.showname)_\(Locale.current.languageCode ?? "en").json", method: .get, encoding: JSONEncoding.prettyPrinted).responseJSON() { response in
-
+            
             switch response.result {
             case .success(let text):
                 let jsonString = (text as! [[String: Any]]).toJSONString()
@@ -142,7 +76,7 @@ class EpisodeObserver : ObservableObject {
     
     private func queryFavoritism(_ episodes: [Episode], completion: @escaping ([Episode], Bool) -> Void) {
         guard signedIn else { completion(episodes, false); return }
-        
+                        
         let database = CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase
         let query = CKQuery(recordType: "episodes", predicate: NSPredicate(value: true))
         let operation = CKQueryOperation(query: query)
@@ -150,6 +84,7 @@ class EpisodeObserver : ObservableObject {
         operation.desiredKeys = ["filename", "code"]
         operation.recordFetchedBlock = getFavorites
         operation.queryCompletionBlock = { cursor, error in
+            if let error = error { print(error) }
             if let cursor = cursor {
                 self.fetchRecords(cursor) {
                     DispatchQueue.main.async {
@@ -167,12 +102,15 @@ class EpisodeObserver : ObservableObject {
                         completion(episodes, hasFaves)
                     }
                 }
+            } else {
+                print("The cursor is nil and shouldn't be")
+                completion(episodes, false)
             }
         }
         database.add(operation)
     }
     
-    private func fetchRecords(_ cursor: CKQueryOperation.Cursor?, completion: @escaping () ->Void) {
+    private func fetchRecords(_ cursor: CKQueryOperation.Cursor?, completion: @escaping () -> Void) {
         let database = CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase
         let operation = CKQueryOperation(cursor: cursor!)
         operation.qualityOfService = .userInitiated

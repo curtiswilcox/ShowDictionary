@@ -1,0 +1,11 @@
+/* Description of the show */
+"%@ Description" = "Descripción de %@";
+
+/* Start screen of program */
+"Home" = "Inicio";
+
+/* No comment provided by the engineer */
+"Loading%@" = "Cargando%@";
+
+/* Search Method screen of program */
+"Options" = "Opciones";

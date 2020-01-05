@@ -55,7 +55,7 @@ extension EpisodeChooserView {
                 Spacer()
                 Image(systemName: "star.fill")
                     .resizable()
-                    .foregroundColor(episode.isFavorite ? Color(UIColor.systemBlue) : .clear)
+                    .foregroundColor(episode.isFavorite ? .secondary : .clear)
                     .frame(width: 25, height: 25)
             }
             .contextMenu {

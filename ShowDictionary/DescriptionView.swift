@@ -19,8 +19,7 @@ struct DescriptionView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
-//        .navigationBarTitle("\(self.show.name) \(NSLocalizedString("description", comment: "").capitalized)")
-            .navigationBarTitle(String(format: NSLocalizedString("%@ Description", comment: "description of the show"), self.show.name))
+        .navigationBarTitle(String(format: NSLocalizedString("%@ Description", comment: "description of the show"), self.show.name))
     }
 }
 
