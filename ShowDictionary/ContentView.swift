@@ -11,18 +11,63 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject private var observer = ShowObserver()
-    @State private var searchTerm: String = "" // this is presently non-functional because not using search bar
-    @State private var showingDetail: Bool = false
     @State private var shouldSpin: Bool = true
+    @State private var showMenu: Bool = false
     
     var body: some View {
-        ZStack {
-            NavigationView {
-    //            SearchBar(text: self.$searchTerm)
+        /*let drag = DragGesture()
+            .onEnded {
+                if $0.translation.width < -100 {
+                    withAnimation { self.showMenu = false }
+                } else if $0.translation.width > 100 {
+                    withAnimation { self.showMenu = true }
+                }
+            }*/
+        
+        return NavigationView {
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    ShowListView(observer: self.observer, shouldSpin: self.$shouldSpin, showMenu: self.$showMenu)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
+                        .disabled(self.showMenu)
+                    ActivityIndicator(shouldAnimate: self.$shouldSpin)
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
+                    /*if self.showMenu {
+                        HamburgerMenuView()
+                            .frame(width: geometry.size.width / 2)
+                            .transition(.move(edge: .leading))
+                    }*/
+                }
+//                .gesture(drag)
+            } // weird bug below, string interpoloation fixes it
+            .navigationBarTitle("\(NSLocalizedString("home", comment: "").capitalized)", displayMode: .large) // make .inline for hamburger menu time
+            /*.navigationBarItems(leading: (
+                Button(action: {
+                    withAnimation { self.showMenu.toggle() }
+                }) {
+                    Image(systemName: "line.horizontal.3")
+                        .imageScale(.large)
+                }
+            ))*/
+        }
+    }
+}
+
+
+extension ContentView {
+    struct ShowListView: View {
+        @ObservedObject var observer: ShowObserver
+        @State var displayDescription: Bool = false
+        @Binding var shouldSpin: Bool
+        @Binding var showMenu: Bool
+        
+        var body: some View {
+//            NavigationView {
                 List {
                     ForEach(self.getSectionHeaders(), id: \.self) { header in
                         Section(header: Text(header)) {
-//                            ForEach(self.observer.data.filter {self.searchTerm.isEmpty ? true : $0.show.name.lowercased().contains(self.searchTerm.lowercased())} ) { datum in
                             ForEach(self.observer.data.filter { $0.show.firstLetter() == header }) { datum in
                                 NavigationLink(destination: SearchMethodView(show: datum.show)) {
                                     HStack {
@@ -31,14 +76,14 @@ struct ContentView: View {
                                     }
                                     .contextMenu {
                                         Button(action: {
-                                            self.showingDetail.toggle()
+                                            self.displayDescription.toggle()
                                         }) {
                                             HStack {
                                                 Text(SearchMethod.description.toString(seasonType: datum.show.typeOfSeasons))
                                                 Image(systemName: "magnifyingglass")
                                             }
                                         }
-                                        .sheet(isPresented: self.$showingDetail) { DescriptionView(show: datum.show) }
+                                        .sheet(isPresented: self.$displayDescription) { DescriptionView(show: datum.show) }
                                     }
                                 }
                             }
@@ -47,26 +92,21 @@ struct ContentView: View {
                     }
                 }
                 .listStyle(GroupedListStyle())
-                .navigationBarTitle(NSLocalizedString("home", comment: "").capitalized)
+//            }
+//            .navigationViewStyle(StackNavigationViewStyle())
+        }
+        
+        private func getSectionHeaders() -> [String] {
+            guard !observer.data.isEmpty else { return [] }
+            var headers = Set<String>()
+            for datum in observer.data {
+                let firstLetter = datum.show.firstLetter()
+                headers.insert(firstLetter.uppercased())
             }
-            .navigationViewStyle(StackNavigationViewStyle())
-            ActivityIndicator(shouldAnimate: self.$shouldSpin)
+            return headers.sorted()
         }
     }
     
-    private func getSectionHeaders() -> [String] {
-        guard !observer.data.isEmpty else { return [] }
-        var headers = Set<String>()
-        for datum in observer.data {
-            let firstLetter = datum.show.firstLetter()
-            headers.insert(firstLetter.uppercased())
-        }
-        return headers.sorted()
-    }
-}
-
-
-extension ContentView {
     struct TitleCardView: View {
         var datum: ShowData
         

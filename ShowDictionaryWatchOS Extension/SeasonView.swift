@@ -14,7 +14,7 @@ struct SeasonView: View {
     
     var body: some View {
         List(1...show.numberOfSeasons, id: \.self) { season in
-            NavigationLink(destination: EpisodeChooserView(show: self.show, episodes: self.show.episodes.filter { $0.seasonNumber == season } )) {
+            NavigationLink(destination: EpisodeChooserView(show: self.show, episodes: self.show.episodes.filter { $0.seasonNumber == season }, navTitle:  "\(self.show.typeOfSeasons.localizeCapSing) \(season)")) {
                 VStack(alignment: .leading) {
                     Text("\(self.show.typeOfSeasons.localizeCapSing) \(season)")
                     SubText("episode".localizeWithFormat(quantity: self.show.episodes.filter { $0.seasonNumber == season }.count))

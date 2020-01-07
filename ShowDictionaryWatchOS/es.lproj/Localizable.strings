@@ -1,6 +1,12 @@
 /* Description of the show */
 "%@ Description" = "Descripción de %@";
 
+/* Navigation bar title */
+"Episodes" = "Episodios";
+
+/* Nav bar title for favorite episodes */
+"Favorites" = "Favoritos";
+
 /* Start screen of program */
 "Home" = "Inicio";
 

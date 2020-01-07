@@ -14,7 +14,7 @@ struct SearchMethodView: View {
     private let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @State private var timerTracker = 0
     
-    @State private(set) var navTitle = String(format: NSLocalizedString("Loading%@", comment: ""), ".")
+    @State private(set) var navTitle = String(format: NSLocalizedString("Loading%@", comment: ""), "")
     @State private(set) var methods: [SearchMethod] = []
     @State private(set) var shouldSpin: Bool = true
     
@@ -74,9 +74,9 @@ struct SearchMethodView: View {
     private func getDestination(_ method: SearchMethod) -> some View {
         switch method {
         case .description: return AnyView(DescriptionView(show: self.show))
-        case .favorite: return AnyView(EpisodeChooserView(show: self.show, episodes: self.show.episodes.filter { $0.isFavorite } ))
+        case .favorite: return AnyView(EpisodeChooserView(show: self.show, episodes: self.show.episodes.filter({ $0.isFavorite }), navTitle: NSLocalizedString("Favorites", comment: "Nav bar title for favorite episodes")))
         case .season: return AnyView(SeasonView(show: self.show))
-        case .showAll: return AnyView(EpisodeChooserView(show: self.show, episodes: self.show.episodes))
+        case .showAll: return AnyView(EpisodeChooserView(show: self.show, episodes: self.show.episodes, navTitle: NSLocalizedString("Episodes", comment: "Navigation bar title")))
         case .random: return AnyView(EpisodeView(show: self.show, episode: self.show.episodes.randomElement()!))
         default: return AnyView(DescriptionView(show: self.show))
         }

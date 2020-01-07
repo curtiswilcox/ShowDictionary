@@ -50,50 +50,43 @@ struct EpisodeDetailView: View {
         
         var attributes = [Attribute]()
         attributes.append(Attribute(key: show.typeOfSeasons.localizeCapSing, value: "\(seasonTitle != nil ? "\(seasonTitle!): " : "")\(episode.seasonNumber)"))
-        attributes.append(Attribute(key: NSLocalizedString("Episode", comment: ""), value: "\(episode.numberInSeason)"))
-        attributes.append(Attribute(key: NSLocalizedString("Overall", comment: ""), value: "\(episode.numberInSeries)"))
-        attributes.append(Attribute(key: NSLocalizedString("Airdate", comment: ""), value: episode.airdate.written()))
+        attributes.append(Attribute(key: NSLocalizedString("Episode", comment: "").capitalized, value: "\(episode.numberInSeason)"))
+        attributes.append(Attribute(key: NSLocalizedString("overall", comment: "").capitalizeFirstLetter(), value: "\(episode.numberInSeries)"))
+        attributes.append(Attribute(key: NSLocalizedString("airdate", comment: "").capitalized, value: episode.airdate.written()))
         
         if let runtime = episode.runtimeDescription() {
-            attributes.append(Attribute(key: NSLocalizedString("Runtime", comment: ""), value: runtime))
+            attributes.append(Attribute(key: NSLocalizedString("runtime", comment: "").capitalized, value: runtime))
         }
         
         if let director = episode.director {
-            let key: String
-            if director.contains(" \(NSLocalizedString("and", comment: "")) ") || director.contains("&") {
-                key = NSLocalizedString("Directors", comment: "")
-            } else {
-                key = NSLocalizedString("Director", comment: "")
-            }
+            let quantity = director.components(separatedBy: " & ").count + director.lowercased().components(separatedBy: NSLocalizedString(" and ", comment: "").lowercased()).count
+            let key: String = "director".localizeWithFormat(quantity: quantity == 2 ? 1 : quantity).capitalized
             attributes.append(Attribute(key: key, value: director))
         }
         
         if let writer = episode.writer {
-            let key: String
-            if writer.contains(" \(NSLocalizedString("and", comment: "")) ") || writer.contains("&") {
-                key = NSLocalizedString("Writers", comment: "")
-            } else {
-                key = NSLocalizedString("Writer", comment: "")
-            }
+            let quantity = writer.components(separatedBy: " & ").count + writer.lowercased().components(separatedBy: NSLocalizedString(" and ", comment: "").lowercased()).count
+            let key: String = "writer".localizeWithFormat(quantity: quantity == 2 ? 1 : quantity).capitalized
+
             attributes.append(Attribute(key: key, value: writer))
         }
         
         if let discInfo = episode.discInfo {
-            let discLocation = "\(NSLocalizedString("Season", comment: "")) \(discInfo.season), \(NSLocalizedString("Disc", comment: "")) \(discInfo.disc), \(NSLocalizedString("Episode", comment: "")) \(discInfo.episode)"
+            let discLocation = "\(self.show.typeOfSeasons.localizeCapSing) \(discInfo.season), \(NSLocalizedString("disc", comment: "")) \(discInfo.disc), \(NSLocalizedString("Episode", comment: "subtitle (doesn't get a number preceding)")) \(discInfo.episode)"
             
-            attributes.append(Attribute(key: NSLocalizedString("Disc Location", comment: ""), value: "\(discLocation.uppercased().first!)\(String(discLocation.lowercased().dropFirst()))"))
+            attributes.append(Attribute(key: NSLocalizedString("disc location", comment: "").capitalizeFirstLetter(), value: "\(discLocation.uppercased().first!)\(String(discLocation.lowercased().dropFirst()))"))
         }
         
         if let prevEp = show.episodes.before(episode) {
-            attributes.append(Attribute(key: NSLocalizedString("Previous", comment: ""), value: prevEp.title))
+            attributes.append(Attribute(key: NSLocalizedString("previous", comment: "").capitalized, value: prevEp.title))
         }
         
         if let nextEp = show.episodes.after(episode) {
-            attributes.append(Attribute(key: NSLocalizedString("Next", comment: ""), value: nextEp.title))
+            attributes.append(Attribute(key: NSLocalizedString("next", comment: "").capitalized, value: nextEp.title))
         }
         
         if let characters = episode.characters {
-            let key = NSLocalizedString("Characters", comment: "")
+            let key = "character".localizeWithFormat(quantity: characters.count).capitalized
             var value: String = ""
             
 //            for (character, actor) in characters.sorted(by: { // sort by actor's last name
@@ -104,7 +97,8 @@ struct EpisodeDetailView: View {
             for character in characters.sorted(by: {
                 ($0.actor.split(separator: " ").last ?? "").lowercased() < ($1.actor.split(separator: " ").last ?? "").lowercased()
             }) {
-                value += "\(character.actor) \(NSLocalizedString("as", comment: "")) \(character.character)\n"
+//                value += "\(character.actor) \(NSLocalizedString(" as ", comment: "")) \(character.character)\n"
+                value += "\(String(format: NSLocalizedString("%@ as %@", comment: ""), character.actor, character.character))\n"
             }
             attributes.append(Attribute(key: key, value: value))
         }

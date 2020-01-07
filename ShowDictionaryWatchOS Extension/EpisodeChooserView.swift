@@ -12,18 +12,19 @@ import SwiftUI
 struct EpisodeChooserView: View {
     let show: Show
     let episodes: [Episode]
+    let navTitle: String
     
     var body: some View {
         List {
             ForEach(self.getSeasons(), id: \.self) { season in
                 Section(header: Text(getSeasonText(self.show, season))) {
-                    ForEach(self.show.episodes.filter { $0.seasonNumber == season } ) { episode in
+                    ForEach(self.episodes.filter { $0.seasonNumber == season } ) { episode in
                         EpisodeRow(episode: episode)
                     }
                 }
             }
         }
-        .navigationBarTitle(NSLocalizedString("episodes", comment: "").capitalized)
+        .navigationBarTitle(navTitle)
     }
     
     private func getSeasons() -> [Int] {
