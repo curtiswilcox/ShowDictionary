@@ -10,14 +10,16 @@ struct GridStack<Content: View>: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            ForEach(0..<rows, id: \.self) { row in
+            ForEach(0..<self.rows, id: \.self) { row in
                 VStack(alignment: .leading) {
                     HStack {
                         ForEach(0..<self.columns) { column in
                             self.content(row, column)
                         }
                     }
-                    Divider()
+                    if row != self.rows - 1 {
+                        Divider()
+                    }
                 }
             }
         }

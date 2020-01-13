@@ -15,25 +15,21 @@ struct EpisodeDetailView: View {
     @State private var attributes = [Attribute]()
     
     var body: some View {
-        HStack {
-            ScrollView {
-                Divider()
-                GridStack(rows: self.attributes.count, columns: 2) { (row, col) in
-                    if col == 0 {
-                        Text(self.attributes[row].key)
-                            .padding(.leading, 20)
-                        Spacer()
-                    } else {
-                        Text(self.attributes[row].value)
-                            .padding(.trailing, 20)
-                        .lineSpacing(1)
-                    }
-                }
-                .padding()
-                .onAppear {
-                    self.attributes = self.determineAttributes()
+        ScrollView {
+            Divider()
+            GridStack(rows: self.attributes.count, columns: 2) { row, col in
+                if col == 0 {
+                    Text(self.attributes[row].key)
+                        .padding(.leading, 20)
+                    Spacer()
+                } else {
+                    Text(self.attributes[row].value)
+                        .padding(.trailing, 20)
                 }
             }
+            .onAppear { self.attributes = self.determineAttributes() }
+            .padding()
+            Divider()
         }
         .navigationBarTitle(episode.title)
     }
@@ -52,7 +48,7 @@ struct EpisodeDetailView: View {
         attributes.append(Attribute(key: show.typeOfSeasons.localizeCapSing, value: "\(seasonTitle != nil ? "\(seasonTitle!): " : "")\(episode.seasonNumber)"))
         attributes.append(Attribute(key: NSLocalizedString("Episode", comment: "").capitalized, value: "\(episode.numberInSeason)"))
         attributes.append(Attribute(key: NSLocalizedString("overall", comment: "").capitalizeFirstLetter(), value: "\(episode.numberInSeries)"))
-        attributes.append(Attribute(key: NSLocalizedString("airdate", comment: "").capitalized, value: episode.airdate.written()))
+        attributes.append(Attribute(key: NSLocalizedString("airdate", comment: "").capitalizeFirstLetter(), value: episode.airdate.written()))
         
         if let runtime = episode.runtimeDescription() {
             attributes.append(Attribute(key: NSLocalizedString("runtime", comment: "").capitalized, value: runtime))
@@ -86,27 +82,14 @@ struct EpisodeDetailView: View {
             let key = "character".localizeWithFormat(quantity: characters.count).capitalized
             var value: String = ""
             
-//            for (character, actor) in characters.sorted(by: { // sort by actor's last name
-//                ($0.value.split(separator: " ").last ?? "") < ($1.value.split(separator: " ").last ?? "")
-//            }) {
-//                value += "\(actor) \(NSLocalizedString("as", comment: "")) \(character)\n"
-//            }
-            for character in characters.sorted(by: {
-//                ($0.actor.getName().split(separator: " ").last ?? "").lowercased() < ($1.actor.split(separator: " ").last ?? "").lowercased()
-                $0.actor < $1.actor
-            }) {
-//                value += "\(character.actor) \(NSLocalizedString(" as ", comment: "")) \(character.character)\n"
-                value += "\(String(format: NSLocalizedString("%@ as %@", comment: ""), character.actor.fullName, character.character.fullName))\n"
+            for character in characters.sorted(by: { $0.actor < $1.actor }) {
+                value += String(format: NSLocalizedString("%@ as %@", comment: ""), character.actor.fullName, character.character.fullName)
+                value += "\n"
             }
+            value = String(value.dropLast())
             attributes.append(Attribute(key: key, value: value))
         }
         
         return attributes
     }
 }
-
-//struct EpisodeDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EpisodeDetailView()
-//    }
-//}
