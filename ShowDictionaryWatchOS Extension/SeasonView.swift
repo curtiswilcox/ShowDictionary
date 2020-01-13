@@ -20,6 +20,7 @@ struct SeasonView: View {
                     SubText("episode".localizeWithFormat(quantity: self.show.episodes.filter { $0.seasonNumber == season }.count))
                 }
             }
+            .padding([.top, .bottom], 5)
         }
         .navigationBarTitle(self.show.typeOfSeasons.localizeLowPlur.capitalized)
     }

@@ -62,23 +62,14 @@ final class Show : Identifiable { // the Swift fields
             self.characters = initialCharacters?.reduce(into: []) { result, entry in
                 let key = Array(entry.keys)[0]
                 let value = entry[Array(entry.keys)[0]]!
-                let character = key.trimmingCharacters(in: .whitespacesAndNewlines)
-                let actor = value.trimmingCharacters(in: .whitespacesAndNewlines)
+                let character = Person(name: key.trimmingCharacters(in: .whitespacesAndNewlines))
+                let actor = Person(name: value.trimmingCharacters(in: .whitespacesAndNewlines))
                 result?.append(Character(actor: actor, character: character))
             }
 		} else {
 			self.characters = nil
 		}
 	}
-    
-    func firstLetter() -> String {
-        let articles = ["the", "el", "los", "la", "las"] // TODO: this is bad
-        let name = self.name.lowercased().filter { String($0).isAlphanumeric || $0.isWhitespace }
-        for article in articles where name.hasPrefix("\(article) ") {
-            return String(name.dropFirst(article.count + 1)).first!.uppercased()
-        }
-        return name.first!.uppercased()
-    }
 
 	func getAvailableSearchMethods() -> [SearchMethod] {
         var methodArray: [SearchMethod] = [.description, /*.name, */.showAll, .season, .keyword]
@@ -88,12 +79,12 @@ final class Show : Identifiable { // the Swift fields
             methodArray.append(.favorite)
         }
 
-		for episode in episodes ?? [] where episode.director != nil {
+		for episode in episodes ?? [] where episode.directors != nil {
 			methodArray.append(.director)
 			break
 		}
 
-		for episode in episodes ?? [] where episode.writer != nil {
+		for episode in episodes ?? [] where episode.writers != nil {
 			methodArray.append(.writer)
 			break
 		}
@@ -175,9 +166,13 @@ extension Show: Comparable {
 extension Show: ObservableObject {}
 
 extension Show {
-    struct Character: Codable, Equatable, Identifiable {
-        var id: String { return character }
-        let actor: String
-        let character: String        
+    struct Character: Codable, Equatable, Hashable, Identifiable {
+        var id: String { return character.lastName }
+        let actor: Person
+        let character: Person
+        
+        static func == (lhs: Character, rhs: Character) -> Bool {
+            return lhs.actor == rhs.actor && lhs.character == rhs.character
+        }
     }
 }

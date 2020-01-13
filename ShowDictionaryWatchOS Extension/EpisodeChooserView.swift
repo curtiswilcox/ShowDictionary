@@ -11,7 +11,7 @@ import SwiftUI
 
 struct EpisodeChooserView: View {
     let show: Show
-    let episodes: [Episode]
+    @State private(set) var episodes: [Episode] = []
     let navTitle: String
     
     var body: some View {
@@ -19,7 +19,9 @@ struct EpisodeChooserView: View {
             ForEach(self.getSeasons(), id: \.self) { season in
                 Section(header: Text(getSeasonText(self.show, season))) {
                     ForEach(self.episodes.filter { $0.seasonNumber == season } ) { episode in
-                        EpisodeRow(episode: episode)
+                        NavigationLink(destination: EpisodeView(show: self.show, episode: episode)) {
+                            EpisodeRow(episode: episode)
+                        }
                     }
                 }
             }
@@ -39,8 +41,8 @@ struct EpisodeChooserView: View {
 
 extension EpisodeChooserView {
     struct EpisodeRow: View {
-        let episode: Episode
-        
+        @ObservedObject private(set) var episode: Episode
+
         var body: some View {
             VStack {
                 HStack {

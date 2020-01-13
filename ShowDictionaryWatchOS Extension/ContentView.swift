@@ -12,17 +12,33 @@ struct ContentView: View {
     @ObservedObject var observer = ShowObserver()
     
     var body: some View {
-        List(observer.data) { show in
-            NavigationLink(destination: SearchMethodView(show: show)) {
-                HStack {
-                    Divider()
-                        .background(self.getColor(show.firstLetter()))
-                    Text(show.name)
+        List {
+            ForEach(self.getSectionHeaders(), id: \.self) { header in
+                Section(header: Text(header)) {
+                    ForEach(self.observer.data.filter { $0.name.firstLetter() == header }) { show in
+                        NavigationLink(destination: SearchMethodView(show: show)) {
+                            HStack {
+                                Divider()
+                                    .background(self.getColor(show.name.firstLetter()))
+                                Text(show.name)
+                            }
+                        }
+                        .padding([.top, .bottom], 5)
+                    }
                 }
             }
-            .padding([.top, .bottom], 5)
         }
         .navigationBarTitle(NSLocalizedString("Home", comment: ""))
+    }
+    
+    private func getSectionHeaders() -> [String] {
+        guard !observer.data.isEmpty else { return [] }
+        var headers = Set<String>()
+        for show in observer.data {
+            let firstLetter = show.name.firstLetter()
+            headers.insert(firstLetter.uppercased())
+        }
+        return headers.sorted()
     }
     
     private func getColor(_ firstLetter: String) -> Color {

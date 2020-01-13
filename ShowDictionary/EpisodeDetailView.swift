@@ -58,17 +58,14 @@ struct EpisodeDetailView: View {
             attributes.append(Attribute(key: NSLocalizedString("runtime", comment: "").capitalized, value: runtime))
         }
         
-        if let director = episode.director {
-            let quantity = director.components(separatedBy: " & ").count + director.lowercased().components(separatedBy: NSLocalizedString(" and ", comment: "").lowercased()).count
-            let key: String = "director".localizeWithFormat(quantity: quantity == 2 ? 1 : quantity).capitalized
-            attributes.append(Attribute(key: key, value: director))
+        if let directors = episode.directors {
+            let key: String = "director".localizeWithFormat(quantity: directors.count).capitalized
+            attributes.append(Attribute(key: key, value: directors.map { $0.fullName }.joined(separator: NSLocalizedString(" and ", comment: ""))))
         }
         
-        if let writer = episode.writer {
-            let quantity = writer.components(separatedBy: " & ").count + writer.lowercased().components(separatedBy: NSLocalizedString(" and ", comment: "").lowercased()).count
-            let key: String = "writer".localizeWithFormat(quantity: quantity == 2 ? 1 : quantity).capitalized
-
-            attributes.append(Attribute(key: key, value: writer))
+        if let writers = episode.writers {
+            let key: String = "writer".localizeWithFormat(quantity: writers.count).capitalized
+            attributes.append(Attribute(key: key, value: writers.map { $0.fullName }.joined(separator: NSLocalizedString(" and ", comment: ""))))
         }
         
         if let discInfo = episode.discInfo {
@@ -95,10 +92,11 @@ struct EpisodeDetailView: View {
 //                value += "\(actor) \(NSLocalizedString("as", comment: "")) \(character)\n"
 //            }
             for character in characters.sorted(by: {
-                ($0.actor.split(separator: " ").last ?? "").lowercased() < ($1.actor.split(separator: " ").last ?? "").lowercased()
+//                ($0.actor.getName().split(separator: " ").last ?? "").lowercased() < ($1.actor.split(separator: " ").last ?? "").lowercased()
+                $0.actor < $1.actor
             }) {
 //                value += "\(character.actor) \(NSLocalizedString(" as ", comment: "")) \(character.character)\n"
-                value += "\(String(format: NSLocalizedString("%@ as %@", comment: ""), character.actor, character.character))\n"
+                value += "\(String(format: NSLocalizedString("%@ as %@", comment: ""), character.actor.fullName, character.character.fullName))\n"
             }
             attributes.append(Attribute(key: key, value: value))
         }

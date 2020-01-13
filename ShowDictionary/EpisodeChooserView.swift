@@ -54,16 +54,15 @@ extension EpisodeChooserView {
                 }
                 Spacer()
                 Image(systemName: "star.fill")
-                    .resizable()
                     .foregroundColor(episode.isFavorite ? .secondary : .clear)
-                    .frame(width: 25, height: 25)
+                    .imageScale(.large)
             }
             .contextMenu {
                 Button(action: self.toggleFavoritism) {
                     HStack {
                         Text(self.episode.isFavorite ? NSLocalizedString("Unfavorite", comment: "") : NSLocalizedString("Favorite", comment: ""))
                         Image(systemName: "star\(self.episode.isFavorite ? "" : ".fill")")
-                            .foregroundColor(Color(UIColor.systemBlue))
+                            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -80,14 +79,17 @@ extension EpisodeChooserView {
         private func toggleFavoritism() {
             self.episode.isFavorite.toggle()
             if self.episode.isFavorite {
-                updateServerEpisodeIsFavorite(filename: self.show.filename, code: self.episode.code)
-                self.show.hasFavoritedEpisodes = true
-                
-            } else {
-                updateServerEpisodeIsNotFavorite(filename: self.show.filename, code: self.episode.code)
-                for episode in self.show.episodes where !episode.isFavorite {
-                    self.show.hasFavoritedEpisodes = false
+                updateServerEpisodeIsFavorite(filename: self.show.filename, code: self.episode.code) {
+                    self.episode.favoritedID = $0
                 }
+                self.show.hasFavoritedEpisodes = true
+            } else {
+                updateServerEpisodeIsNotFavorite(filename: self.show.filename, code: self.episode.code, id: self.episode.favoritedID!)
+                self.episode.favoritedID = nil
+//                for episode in self.show.episodes where !episode.isFavorite {
+//                    self.show.hasFavoritedEpisodes = false
+//                }
+                self.show.hasFavoritedEpisodes = (self.show.episodes.filter { $0.isFavorite }.count != 0)
             }
         }
     }

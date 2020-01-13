@@ -4,6 +4,9 @@
 /* Navigation bar title */
 "Episodes" = "Episodios";
 
+/* No comment provided by the engineer */
+"Favorite" = "Favorito";
+
 /* Nav bar title for favorite episodes */
 "Favorites" = "Favoritos";
 
@@ -15,3 +18,6 @@
 
 /* Search Method screen of program */
 "Options" = "Opciones";
+
+/* No comment provided by the engineer */
+"Unfavorite" = "No favorito";

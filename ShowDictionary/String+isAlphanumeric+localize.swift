@@ -16,6 +16,15 @@ extension String {
     func capitalizeFirstLetter() -> String {
         return "\(self.prefix(1).capitalized)\(self.dropFirst())"
     }
+    
+    func firstLetter() -> String {
+        let articles = ["the", "el", "los", "la", "las"] // TODO: this is bad
+        let string = self.lowercased().filter { String($0).isAlphanumeric || $0.isWhitespace }
+        for article in articles where string.hasPrefix("\(article) ") {
+            return String(string.dropFirst(article.count + 1)).first!.uppercased()
+        }
+        return string.first!.uppercased()
+    }
 
     /**
 	Use this function to localize a string with a format

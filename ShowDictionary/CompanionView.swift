@@ -12,32 +12,33 @@ struct CompanionView: View {
     let show: Show
     
     var body: some View {
-        List(getCompanions(), id: \.self) { companion in
-            NavigationLink(destination: EpisodeChooserView(navTitle: "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), companion))", show: self.show, episodes: self.show.episodes.filter { $0.companions!.contains(companion) })) {
-                VStack(alignment: .leading) {
-                    Text(companion)
-                    SubText("episode".localizeWithFormat(quantity: self.getNumEps(companion)))
+        List {
+            ForEach(self.getSectionHeaders(), id: \.self) { header in
+                Section(header: Text(header)) {
+                    ForEach(self.getCompanions().filter { $0.lastName.firstLetter() == header }, id: \.self) { companion in
+                        NavigationLink(destination: EpisodeChooserView(navTitle: "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), companion.fullName))", show: self.show, episodes: self.show.episodes.filter { $0.companions!.contains(companion) })) {
+                            VStack(alignment: .leading) {
+                                Text(companion.fullName)
+                                SubText("episode".localizeWithFormat(quantity: self.getNumEps(companion)))
+                            }
+                        }
+                    }
                 }
             }
         }
         .navigationBarTitle("companion".localizeWithFormat(quantity: 2).capitalized)
     }
     
-    private func getCompanions() -> [String] {
+    private func getSectionHeaders() -> [String] {
+        return Set(getCompanions().map { $0.lastName.firstLetter().uppercased() }).sorted()
+    }
+    
+    private func getCompanions() -> [Person] {
         let companions = show.episodes!.map { $0.companions! }.reduce([], +)
-        return Set<String>(companions).sorted()
+        return Set<Person>(companions).sorted()
     }
-    
-    private func getActor(_ companion: String) -> String {
-        for character in show.characters ?? [] {
-            if character.character == companion {
-                return character.actor
-            }
-        }
-        return ""
-    }
-    
-    private func getNumEps(_ companion: String) -> Int {
+        
+    private func getNumEps(_ companion: Person) -> Int {
         return show.episodes.filter { $0.companions!.contains(companion) }.count
     }
 }

@@ -29,14 +29,17 @@ struct EpisodeView: View {
                     Button(action: {
                         self.episode.isFavorite.toggle()
                         if self.episode.isFavorite {
-                            updateServerEpisodeIsFavorite(filename: self.show.filename, code: self.episode.code)
-                            self.show.hasFavoritedEpisodes = true
-                            
-                        } else {
-                            updateServerEpisodeIsNotFavorite(filename: self.show.filename, code: self.episode.code)
-                            for episode in self.show.episodes where !episode.isFavorite {
-                                self.show.hasFavoritedEpisodes = false
+                            updateServerEpisodeIsFavorite(filename: self.show.filename, code: self.episode.code) {
+                                self.episode.favoritedID = $0
                             }
+                            self.show.hasFavoritedEpisodes = true
+                        } else {
+                            updateServerEpisodeIsNotFavorite(filename: self.show.filename, code: self.episode.code, id: self.episode.favoritedID!)
+                            self.episode.favoritedID = nil
+                            self.show.hasFavoritedEpisodes = (self.show.episodes.filter { $0.isFavorite }.count != 0)
+//                            for episode in self.show.episodes where !episode.isFavorite {
+//                                self.show.hasFavoritedEpisodes = false
+//                            }
                         }
                     }) {
                         Image(systemName: "star\(episode.isFavorite ? ".fill" : "")")

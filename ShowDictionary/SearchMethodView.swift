@@ -61,7 +61,7 @@ struct SearchMethodView: View {
         /*case .name:
             return AnyView(DescriptionView(show: self.show))*/
         case .random:
-            return AnyView(EpisodeView(show: self.show))
+            return AnyView(EpisodeView(show: self.show))//, episode: self.show.episodes.randomElement()!))
         case .rangeAirdates:
             return AnyView(DescriptionView(show: self.show))
         case .season:

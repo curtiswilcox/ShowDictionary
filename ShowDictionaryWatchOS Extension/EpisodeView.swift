@@ -11,12 +11,40 @@ import SwiftUI
 
 struct EpisodeView: View {
     let show: Show
-    let episode: Episode
+    @ObservedObject private(set) var episode: Episode
     
     var body: some View {
         ScrollView {
             Text(episode.summary)
         }
         .navigationBarTitle(episode.title)
+        .contextMenu {
+            Button(action: self.toggleFavoritism) {
+                HStack {
+                    Text(self.episode.isFavorite ? NSLocalizedString("Unfavorite", comment: "") : NSLocalizedString("Favorite", comment: ""))
+                    Image(systemName: "star\(self.episode.isFavorite ? "" : ".fill")")
+                        .foregroundColor(.secondary)
+                }
+            }
+        }
+    }
+    
+    private func toggleFavoritism() {
+        self.episode.isFavorite.toggle()
+        if self.episode.isFavorite {
+            updateServerEpisodeIsFavorite(filename: self.show.filename, code: self.episode.code) {
+                self.episode.favoritedID = $0
+            }
+            self.show.hasFavoritedEpisodes = true
+            
+        } else {
+            updateServerEpisodeIsNotFavorite(filename: self.show.filename, code: self.episode.code, id: self.episode.favoritedID!)
+            self.episode.favoritedID = nil
+//            for episode in self.show.episodes where !episode.isFavorite {
+//                self.show.hasFavoritedEpisodes = false
+//            }
+            self.show.hasFavoritedEpisodes = (self.show.episodes.filter { $0.isFavorite }.count != 0)
+            
+        }
     }
 }
