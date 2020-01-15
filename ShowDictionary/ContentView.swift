@@ -62,40 +62,42 @@ extension ContentView {
         @ObservedObject var observer: ShowObserver
         @State var displayDescription: Bool = false
         @Binding var shouldSpin: Bool
-//        @Binding var showMenu: Bool
+//        @State var searchText: String = ""
         
         var body: some View {
-//            NavigationView {
-            List {
-                ForEach(self.getSectionHeaders(), id: \.self) { header in
-                    Section(header: Text(header)) {
-                        ForEach(self.observer.data.filter { $0.show.name.firstLetter() == header }) { datum in
-                            NavigationLink(destination: SearchMethodView(show: datum.show)) {
-                                HStack {
-                                    TitleCardView(datum: datum)
-                                    RowInfoView(datum: datum)
-                                }
-                                .contextMenu {
-                                    Button(action: {
-                                        self.displayDescription.toggle()
-                                    }) {
-                                        HStack {
-                                            Text(SearchMethod.description.toString(seasonType: datum.show.typeOfSeasons))
-                                            Image(systemName: "magnifyingglass")
-                                        }
+//            ScrollView {
+//                SearchBar(text: self.$searchText)
+                List {
+                    ForEach(self.getSectionHeaders(), id: \.self) { header in
+                        Section(header: Text(header)) {
+                            ForEach(self.observer.data.filter {
+                                $0.show.name.firstLetter() == header
+                            }) { datum in
+                                NavigationLink(destination: SearchMethodView(show: datum.show)) {
+                                    HStack {
+                                        TitleCardView(datum: datum)
+                                        RowInfoView(datum: datum)
                                     }
-                                    .sheet(isPresented: self.$displayDescription) { DescriptionView(show: datum.show) }
+                                    .contextMenu {
+                                        Button(action: {
+                                            self.displayDescription.toggle()
+                                        }) {
+                                            HStack {
+                                                Text(SearchMethod.description.toString(seasonType: datum.show.typeOfSeasons))
+                                                Image(systemName: "magnifyingglass")
+                                            }
+                                        }
+                                        .sheet(isPresented: self.$displayDescription) { DescriptionView(show: datum.show) }
+                                    }
                                 }
                             }
+                            .onAppear { self.shouldSpin = false }
                         }
-                        .onAppear { self.shouldSpin = false }
                     }
+//                    .onAppear { print("Now here!") }
                 }
-            }
-            .listStyle(GroupedListStyle())
-        
+                .listStyle(GroupedListStyle())
 //            }
-//            .navigationViewStyle(StackNavigationViewStyle())
         }
         
         private func getSectionHeaders() -> [String] {

@@ -41,7 +41,8 @@ class ShowObserver : ObservableObject {
         Alamofire.request("https://wilcoxcurtis.com/show-dictionary/files/shows_\(Locale.current.languageCode ?? "en").json", method: .get).responseString() { response in
             switch response.result {
             case .success(var text):
-                text = text.replacingOccurrences(of: "<pre>", with: "").replacingOccurrences(of: "</pre>", with: "").trimmingCharacters(in: .whitespacesAndNewlines) // remove the pretty-print tags from HTML // remove the pretty-print tags from HTML
+                text = text.replacingOccurrences(of: "<pre>", with: "").replacingOccurrences(of: "</pre>", with: "").trimmingCharacters(in: .whitespacesAndNewlines) // remove the pretty-print tags from HTML
+                
                 do {
                     let decoder = JSONDecoder()
                     shows = try decoder.decode([Show].self, from: Data(text.utf8)).sorted(by: <)

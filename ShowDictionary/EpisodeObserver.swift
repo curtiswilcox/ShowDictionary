@@ -58,8 +58,6 @@ class EpisodeObserver : ObservableObject {
                         if let error = error { print(error) } else {
                             for rec in self.records {
                                 for episode in episodes where
-//                                    self.showname == String(rec.split(separator: "+")[0]) &&
-//                                    episode.code == Int(rec.split(separator: "+")[1]) {
                                     self.showname == rec.filename && episode.code == Int(rec.code) {
                                         episode.isFavorite = true
                                         episode.favoritedID = rec.id
@@ -70,6 +68,8 @@ class EpisodeObserver : ObservableObject {
                         completion(episodes, hasFaves)
                     }
                 }
+            } else {
+                completion(episodes, false)
             }
         }
         database.add(operation)

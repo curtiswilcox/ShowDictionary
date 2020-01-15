@@ -11,6 +11,7 @@
 		D5E9989EF2F9B4FB8619E98D /* Pods_ShowDictionaryTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1745D98D4130EBE111279095 /* Pods_ShowDictionaryTVOS.framework */; };
 		E9089C9A23B707B100EE8C95 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E9089C9C23B707B100EE8C95 /* Localizable.stringsdict */; };
 		E92F823423B3244700AB98BE /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F823323B3244700AB98BE /* CharacterView.swift */; };
+		E930C14123CE16E000AA78F6 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E930C14023CE16E000AA78F6 /* Toolbar.swift */; };
 		E943896B23BFD684001CC170 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E943896923BFD684001CC170 /* Interface.storyboard */; };
 		E943896D23BFD689001CC170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E943896C23BFD689001CC170 /* Assets.xcassets */; };
 		E943897423BFD68A001CC170 /* ShowDictionaryWatchOS Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E943897323BFD689001CC170 /* ShowDictionaryWatchOS Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -25,6 +26,7 @@
 		E95AF34623CA648F00905181 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AF34523CA648F00905181 /* Person.swift */; };
 		E95AF34723CA649A00905181 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AF34523CA648F00905181 /* Person.swift */; };
 		E95AF34823CA649A00905181 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AF34523CA648F00905181 /* Person.swift */; };
+		E95AF34C23CD1D0A00905181 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AF34B23CD1D0A00905181 /* TestView.swift */; };
 		E960FBB523BA67A80071D9EB /* SubText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960FBB423BA67A80071D9EB /* SubText.swift */; };
 		E9645E6B23B18E75001B6CBF /* WriterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9645E6A23B18E75001B6CBF /* WriterView.swift */; };
 		E9645E6D23B195E9001B6CBF /* DirectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9645E6C23B195E9001B6CBF /* DirectorView.swift */; };
@@ -158,6 +160,7 @@
 		E9089C9B23B707B100EE8C95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E9089C9D23B707B400EE8C95 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E92F823323B3244700AB98BE /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		E930C14023CE16E000AA78F6 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		E943896723BFD684001CC170 /* ShowDictionaryWatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowDictionaryWatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E943896A23BFD684001CC170 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		E943896C23BFD689001CC170 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -173,6 +176,7 @@
 		E943898723BFD68B001CC170 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E943898823BFD68B001CC170 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		E95AF34523CA648F00905181 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		E95AF34B23CD1D0A00905181 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		E960FBB423BA67A80071D9EB /* SubText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubText.swift; sourceTree = "<group>"; };
 		E9645E6A23B18E75001B6CBF /* WriterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriterView.swift; sourceTree = "<group>"; };
 		E9645E6C23B195E9001B6CBF /* DirectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectorView.swift; sourceTree = "<group>"; };
@@ -403,6 +407,7 @@
 			children = (
 				E9DBC9CC23AED80C004DF3A3 /* ShowDictionary.entitlements */,
 				E9DBC9AC23AED7ED004DF3A3 /* _AvailableLanguage.swift */,
+				E95AF34B23CD1D0A00905181 /* TestView.swift */,
 				E9DBC9A223AED7EC004DF3A3 /* Assets.xcassets */,
 				E9DBC9D023AED885004DF3A3 /* Info.plist */,
 				E9DBC9AE23AED7ED004DF3A3 /* AppDelegate.swift */,
@@ -441,6 +446,7 @@
 				E9DBC9A723AED7ED004DF3A3 /* SeasonType.swift */,
 				E9DBC99D23AED7EB004DF3A3 /* Show.swift */,
 				E9DBC9AA23AED7ED004DF3A3 /* ShowObserver.swift */,
+				E930C14023CE16E000AA78F6 /* Toolbar.swift */,
 			);
 			path = ShowDictionary;
 			sourceTree = "<group>";
@@ -816,11 +822,13 @@
 				E9DBC9C323AED7EE004DF3A3 /* _AvailableLanguage.swift in Sources */,
 				E9DBC9C223AED7EE004DF3A3 /* EpisodeChooserView.swift in Sources */,
 				E9DBC9B923AED7EE004DF3A3 /* Array+before+after.swift in Sources */,
+				E95AF34C23CD1D0A00905181 /* TestView.swift in Sources */,
 				E9763A0323C581FA00B03AA5 /* EpisodeObserver.swift in Sources */,
 				E9DBC9BF23AED7EE004DF3A3 /* ActivityIndicator.swift in Sources */,
 				E9DBC9B723AED7EE004DF3A3 /* Collection+safeSubscript.swift in Sources */,
 				E9645E7123B1D0D7001B6CBF /* CompanionView.swift in Sources */,
 				E9DBC9C023AED7EE004DF3A3 /* String+isAlphanumeric+localize.swift in Sources */,
+				E930C14123CE16E000AA78F6 /* Toolbar.swift in Sources */,
 				E9DBC9C123AED7EE004DF3A3 /* ShowObserver.swift in Sources */,
 				E9645E6D23B195E9001B6CBF /* DirectorView.swift in Sources */,
 				E997C38523B41C23003A88B2 /* GlobalImportantThings.swift in Sources */,

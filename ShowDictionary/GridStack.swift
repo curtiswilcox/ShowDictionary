@@ -12,7 +12,7 @@ struct GridStack<Content: View>: View {
         VStack(alignment: .leading) {
             ForEach(0..<self.rows, id: \.self) { row in
                 VStack(alignment: .leading) {
-                    HStack {
+                    HStack(alignment: .top) {
                         ForEach(0..<self.columns) { column in
                             self.content(row, column)
                         }

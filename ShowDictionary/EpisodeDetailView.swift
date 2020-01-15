@@ -29,7 +29,6 @@ struct EpisodeDetailView: View {
             }
             .onAppear { self.attributes = self.determineAttributes() }
             .padding()
-            Divider()
         }
         .navigationBarTitle(episode.title)
     }
@@ -84,9 +83,9 @@ struct EpisodeDetailView: View {
             
             for character in characters.sorted(by: { $0.actor < $1.actor }) {
                 value += String(format: NSLocalizedString("%@ as %@", comment: ""), character.actor.fullName, character.character.fullName)
-                value += "\n"
+                value += "\n\n"
             }
-            value = String(value.dropLast())
+            value = String(value.dropLast(2))
             attributes.append(Attribute(key: key, value: value))
         }
         
