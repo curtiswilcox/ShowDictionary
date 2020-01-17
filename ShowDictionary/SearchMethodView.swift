@@ -10,7 +10,8 @@ import SwiftUI
 
 struct SearchMethodView: View {
     @ObservedObject private(set) var show: Show
-    @State private var shouldSpin: Bool = true
+    @ObservedObject private(set) var observer: EpisodeObserver
+    @State private var progress: CGFloat = 0
             
     var body: some View {
         ZStack {
@@ -26,14 +27,26 @@ struct SearchMethodView: View {
             .navigationBarTitle(self.show.name)
             .lineLimit(nil)
             .onAppear {
-                EpisodeObserver(self.show.filename).getEpisodes() { (episodes, hasFaves) in
+                self.observer.getEpisodes() { (episodes, hasFaves) in
                     self.show.episodes = episodes
                     self.show.hasFavoritedEpisodes = hasFaves
-                    self.shouldSpin = false
+                }
+                
+                let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                    self.progress = CGFloat(self.observer.percentCompleted)
+                    if self.progress == 100 { timer.invalidate() }
                 }
             }
-            ActivityIndicator(shouldAnimate: self.$shouldSpin)
+//            ActivityIndicator(shouldAnimate: self.$shouldSpin)
+            if self.progress != 100 && (self.show.episodes?.isEmpty ?? true) {
+                ProgressBar(progress: self.$progress)
+            }
         }
+    }
+    
+    init(show: Show) {
+        self.show = show
+        self.observer = EpisodeObserver(show.filename)
     }
     
     func getDestination(_ method: SearchMethod) -> some View {

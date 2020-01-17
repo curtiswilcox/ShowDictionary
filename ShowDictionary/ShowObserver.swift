@@ -12,23 +12,26 @@ import Foundation
 import UIKit.UIImage
 
 class ShowObserver : ObservableObject {
-    @Published var loaded: Bool = false
     var data: [ShowData] = []
+    private var numberCompleted: CGFloat = 0
+    @Published private(set) var percentCompleted: CGFloat = 0
 
     init() {
         getShows() { shows in
             for show in shows {
-                URLSession(configuration: .default).dataTask(with: show.titleCardURL, completionHandler: { (data, response, error) in
+                let config = URLSessionConfiguration.default
+                config.timeoutIntervalForRequest = 30
+                config.timeoutIntervalForResource = 60
+                URLSession(configuration: config).dataTask(with: show.titleCardURL, completionHandler: { (data, response, error) in
                     DispatchQueue.main.async {
                         if let imageData = data, let img = UIImage(data: imageData) {
                             self.data.append(ShowData(show, img))
                         } else {
                             self.data.append(ShowData(show)) // img is nil
                         }
+                        self.numberCompleted += 1
+                        self.percentCompleted = self.numberCompleted / CGFloat(shows.count) * 100
                         self.data.sort(by: <)
-                        if shows.count == self.data.count {
-                            self.loaded = true
-                        }
                     }
                 }).resume()
             }

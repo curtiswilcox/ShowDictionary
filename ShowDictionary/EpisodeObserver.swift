@@ -13,6 +13,7 @@ import Foundation
 class EpisodeObserver : ObservableObject {
     private var showname: String
     private var records: [Record] = []
+    @Published var percentCompleted: Double = 0
 
     init(_ showname: String) {
         self.showname = showname // really the filename
@@ -24,12 +25,14 @@ class EpisodeObserver : ObservableObject {
 
             switch response.result {
             case .success(var text):
+                self.percentCompleted = 90
                 text = text.replacingOccurrences(of: "<pre>", with: "").replacingOccurrences(of: "</pre>", with: "").trimmingCharacters(in: .whitespacesAndNewlines) // remove the pretty-print tags from HTML
                 do {
                     let decoder = JSONDecoder()
                     episodes = try decoder.decode([Episode].self, from: Data(text.utf8)).sorted(by: <)
                     self.queryFavoritism(episodes) { (episodes, hasFaves) in
 //                        for episode in episodes where episode.isFavorite { print(episode) }
+                        self.percentCompleted = 100
                         completion(episodes, hasFaves)
                     }
                 } catch {

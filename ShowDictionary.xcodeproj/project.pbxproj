@@ -23,6 +23,7 @@
 		E943898323BFD68B001CC170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E943898223BFD68B001CC170 /* Assets.xcassets */; };
 		E943898623BFD68B001CC170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E943898523BFD68B001CC170 /* Preview Assets.xcassets */; };
 		E943898B23BFD68B001CC170 /* ShowDictionaryWatchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E943896723BFD684001CC170 /* ShowDictionaryWatchOS.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E94E6D5523D1562900BD8764 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94E6D5423D1562900BD8764 /* ProgressBar.swift */; };
 		E95AF34623CA648F00905181 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AF34523CA648F00905181 /* Person.swift */; };
 		E95AF34723CA649A00905181 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AF34523CA648F00905181 /* Person.swift */; };
 		E95AF34823CA649A00905181 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AF34523CA648F00905181 /* Person.swift */; };
@@ -35,6 +36,7 @@
 		E9763A0323C581FA00B03AA5 /* EpisodeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9763A0223C581FA00B03AA5 /* EpisodeObserver.swift */; };
 		E9763A0423C5820300B03AA5 /* EpisodeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9763A0223C581FA00B03AA5 /* EpisodeObserver.swift */; };
 		E9763A0523C5820400B03AA5 /* EpisodeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9763A0223C581FA00B03AA5 /* EpisodeObserver.swift */; };
+		E9918CE823D219B300BF8271 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = E9918CE723D219B300BF8271 /* SwiftUIRefresh */; };
 		E997C38523B41C23003A88B2 /* GlobalImportantThings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E997C38423B41C23003A88B2 /* GlobalImportantThings.swift */; };
 		E9A0E76C23BFD71A00CCB256 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC99D23AED7EB004DF3A3 /* Show.swift */; };
 		E9A0E76D23BFD72000CCB256 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9A323AED7EC004DF3A3 /* Episode.swift */; };
@@ -175,6 +177,7 @@
 		E943898523BFD68B001CC170 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E943898723BFD68B001CC170 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E943898823BFD68B001CC170 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		E94E6D5423D1562900BD8764 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		E95AF34523CA648F00905181 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		E95AF34B23CD1D0A00905181 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		E960FBB423BA67A80071D9EB /* SubText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubText.swift; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9918CE823D219B300BF8271 /* SwiftUIRefresh in Frameworks */,
 				E9DBC9CF23AED80F004DF3A3 /* CloudKit.framework in Frameworks */,
 				D326A720263BEFA194795263 /* Pods_ShowDictionary.framework in Frameworks */,
 			);
@@ -440,6 +444,7 @@
 				E9BDDDF323AFC88D002729B2 /* GridStack.swift */,
 				E9C430AF23C3E86200157BDE /* HamburgerMenuView.swift */,
 				E95AF34523CA648F00905181 /* Person.swift */,
+				E94E6D5423D1562900BD8764 /* ProgressBar.swift */,
 				E9A0E79823C129CB00CCB256 /* ShowData.swift */,
 				E9DBC9B223AED7ED004DF3A3 /* SearchBar.swift */,
 				E9DBC9B423AED7EE004DF3A3 /* SearchMethod.swift */,
@@ -527,6 +532,9 @@
 				E943898A23BFD68B001CC170 /* PBXTargetDependency */,
 			);
 			name = ShowDictionary;
+			packageProductDependencies = (
+				E9918CE723D219B300BF8271 /* SwiftUIRefresh */,
+			);
 			productName = ShowDictionary;
 			productReference = E9EDB96023AED763003BD387 /* Show Dictionary.app */;
 			productType = "com.apple.product-type.application";
@@ -566,6 +574,9 @@
 				es,
 			);
 			mainGroup = E9EDB95723AED763003BD387;
+			packageReferences = (
+				E9918CE623D219B300BF8271 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
+			);
 			productRefGroup = E9EDB96123AED763003BD387 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -809,6 +820,7 @@
 				E9DBC9B823AED7EE004DF3A3 /* DescriptionView.swift in Sources */,
 				E9BDDDF423AFC88D002729B2 /* GridStack.swift in Sources */,
 				E9DBC9BE23AED7EE004DF3A3 /* SeasonType.swift in Sources */,
+				E94E6D5523D1562900BD8764 /* ProgressBar.swift in Sources */,
 				E92F823423B3244700AB98BE /* CharacterView.swift in Sources */,
 				E9DBC9C623AED7EE004DF3A3 /* Date+new+written+toString.swift in Sources */,
 				E9BDDDF023AF356F002729B2 /* SeasonView.swift in Sources */,
@@ -1266,6 +1278,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E9918CE623D219B300BF8271 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timbersoftware/SwiftUIRefresh.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E9918CE723D219B300BF8271 /* SwiftUIRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9918CE623D219B300BF8271 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
+			productName = SwiftUIRefresh;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E9EDB95823AED763003BD387 /* Project object */;
 }

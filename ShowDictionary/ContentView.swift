@@ -11,47 +11,25 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject private var observer = ShowObserver()
-    @State private var shouldSpin: Bool = true
-//    @State private var showMenu: Bool = false
-    
-    var body: some View {
-        /*let drag = DragGesture()
-            .onEnded {
-                if $0.translation.width < -100 {
-                    withAnimation { self.showMenu = false }
-                } else if $0.translation.width > 100 {
-                    withAnimation { self.showMenu = true }
-                }
-            }*/
+    @State private var progress: CGFloat = 0
         
-        /*return */
+    var body: some View {
         NavigationView {
-//            GeometryReader { geometry in
-            ZStack {//(alignment: .leading) {
-                ShowListView(observer: self.observer, shouldSpin: self.$shouldSpin)//, showMenu: self.$showMenu)
-//                        .frame(width: geometry.size.width, height: geometry.size.height)
-//                        .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
-//                        .disabled(self.showMenu)
-                ActivityIndicator(shouldAnimate: self.$shouldSpin)
-//                        .frame(width: geometry.size.width, height: geometry.size.height)
-//                        .offset(x: self.showMenu ? geometry.size.width / 2 : 0)
-                /*if self.showMenu {
-                    HamburgerMenuView()
-                        .frame(width: geometry.size.width / 2)
-                        .transition(.move(edge: .leading))
-                }*/
-            }
-//                .gesture(drag)
-            //} // weird bug below, string interpoloation fixes it
-            .navigationBarTitle("\(NSLocalizedString("home", comment: "").capitalized)", displayMode: .large) // make .inline for hamburger menu time
-            /*.navigationBarItems(leading: (
-                Button(action: {
-                    withAnimation { self.showMenu.toggle() }
-                }) {
-                    Image(systemName: "line.horizontal.3")
-                        .imageScale(.large)
+            ZStack {
+                ShowListView(observer: self.observer, progress: self.$progress)
+                if self.progress < 100 {
+                    ProgressBar(progress: self.$progress)
                 }
-            ))*/
+            }
+            .navigationBarTitle("\(NSLocalizedString("home", comment: "").capitalized)", displayMode: .large)
+            .onAppear {
+                guard self.progress <= 100 else { return }
+                let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                    guard !self.observer.data.isEmpty else { return }
+                    self.progress = self.observer.percentCompleted
+                    if self.progress == 100 { timer.invalidate() }
+                }
+            }
         }
     }
 }
@@ -61,12 +39,14 @@ extension ContentView {
     struct ShowListView: View {
         @ObservedObject var observer: ShowObserver
         @State var displayDescription: Bool = false
-        @Binding var shouldSpin: Bool
+        @Binding var progress: CGFloat
 //        @State var searchText: String = ""
         
         var body: some View {
 //            ScrollView {
 //                SearchBar(text: self.$searchText)
+            guard self.progress == 100 else { return AnyView(EmptyView()) }
+            return AnyView(
                 List {
                     ForEach(self.getSectionHeaders(), id: \.self) { header in
                         Section(header: Text(header)) {
@@ -91,12 +71,12 @@ extension ContentView {
                                     }
                                 }
                             }
-                            .onAppear { self.shouldSpin = false }
                         }
                     }
-//                    .onAppear { print("Now here!") }
                 }
                 .listStyle(GroupedListStyle())
+            
+            )
 //            }
         }
         
