@@ -50,18 +50,14 @@ extension ContentView {
                 List {
                     ForEach(self.getSectionHeaders(), id: \.self) { header in
                         Section(header: Text(header)) {
-                            ForEach(self.observer.data.filter {
-                                $0.show.name.firstLetter() == header
-                            }) { datum in
+                            ForEach(self.observer.data.filter { $0.show.name.firstLetter() == header }) { datum in
                                 NavigationLink(destination: SearchMethodView(show: datum.show)) {
                                     HStack {
                                         TitleCardView(datum: datum)
                                         RowInfoView(datum: datum)
                                     }
                                     .contextMenu {
-                                        Button(action: {
-                                            self.displayDescription.toggle()
-                                        }) {
+                                        Button(action: { self.displayDescription.toggle() }) {
                                             HStack {
                                                 Text(SearchMethod.description.toString(seasonType: datum.show.typeOfSeasons))
                                                 Image(systemName: "magnifyingglass")
@@ -75,7 +71,6 @@ extension ContentView {
                     }
                 }
                 .listStyle(GroupedListStyle())
-            
             )
 //            }
         }
