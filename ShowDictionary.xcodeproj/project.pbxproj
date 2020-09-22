@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D326A720263BEFA194795263 /* Pods_ShowDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */; };
+		D48D506A25152FA400BBB94F /* ShowDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D506925152FA400BBB94F /* ShowDictionaryApp.swift */; };
 		D5E9989EF2F9B4FB8619E98D /* Pods_ShowDictionaryTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1745D98D4130EBE111279095 /* Pods_ShowDictionaryTVOS.framework */; };
 		E9089C9A23B707B100EE8C95 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E9089C9C23B707B100EE8C95 /* Localizable.stringsdict */; };
 		E92F823423B3244700AB98BE /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92F823323B3244700AB98BE /* CharacterView.swift */; };
@@ -23,7 +24,6 @@
 		E943898323BFD68B001CC170 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E943898223BFD68B001CC170 /* Assets.xcassets */; };
 		E943898623BFD68B001CC170 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E943898523BFD68B001CC170 /* Preview Assets.xcassets */; };
 		E943898B23BFD68B001CC170 /* ShowDictionaryWatchOS.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = E943896723BFD684001CC170 /* ShowDictionaryWatchOS.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E94E6D5523D1562900BD8764 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94E6D5423D1562900BD8764 /* ProgressBar.swift */; };
 		E95AF34623CA648F00905181 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AF34523CA648F00905181 /* Person.swift */; };
 		E95AF34723CA649A00905181 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AF34523CA648F00905181 /* Person.swift */; };
 		E95AF34823CA649A00905181 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95AF34523CA648F00905181 /* Person.swift */; };
@@ -79,7 +79,6 @@
 		E9DBC9BC23AED7EE004DF3A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9DBC9A523AED7ED004DF3A3 /* Preview Assets.xcassets */; };
 		E9DBC9BD23AED7EE004DF3A3 /* SearchMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9A623AED7ED004DF3A3 /* SearchMethodView.swift */; };
 		E9DBC9BE23AED7EE004DF3A3 /* SeasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9A723AED7ED004DF3A3 /* SeasonType.swift */; };
-		E9DBC9BF23AED7EE004DF3A3 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9A823AED7ED004DF3A3 /* ActivityIndicator.swift */; };
 		E9DBC9C023AED7EE004DF3A3 /* String+isAlphanumeric+localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9A923AED7ED004DF3A3 /* String+isAlphanumeric+localize.swift */; };
 		E9DBC9C123AED7EE004DF3A3 /* ShowObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9AA23AED7ED004DF3A3 /* ShowObserver.swift */; };
 		E9DBC9C223AED7EE004DF3A3 /* EpisodeChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9AB23AED7ED004DF3A3 /* EpisodeChooserView.swift */; };
@@ -159,6 +158,7 @@
 		906FE543A3FFF313A6280D3B /* Pods-ShowDictionaryWatchOS Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryWatchOS Extension.debug.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryWatchOS Extension/Pods-ShowDictionaryWatchOS Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShowDictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98DCA23D1AAEF3B274A4681C /* Pods-ShowDictionaryTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryTVOS.debug.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryTVOS/Pods-ShowDictionaryTVOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D48D506925152FA400BBB94F /* ShowDictionaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDictionaryApp.swift; sourceTree = "<group>"; };
 		E9089C9B23B707B100EE8C95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E9089C9D23B707B400EE8C95 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E92F823323B3244700AB98BE /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
@@ -177,7 +177,6 @@
 		E943898523BFD68B001CC170 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E943898723BFD68B001CC170 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E943898823BFD68B001CC170 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		E94E6D5423D1562900BD8764 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		E95AF34523CA648F00905181 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		E95AF34B23CD1D0A00905181 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		E960FBB423BA67A80071D9EB /* SubText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubText.swift; sourceTree = "<group>"; };
@@ -212,7 +211,6 @@
 		E9DBC9A523AED7ED004DF3A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E9DBC9A623AED7ED004DF3A3 /* SearchMethodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMethodView.swift; sourceTree = "<group>"; };
 		E9DBC9A723AED7ED004DF3A3 /* SeasonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonType.swift; sourceTree = "<group>"; };
-		E9DBC9A823AED7ED004DF3A3 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		E9DBC9A923AED7ED004DF3A3 /* String+isAlphanumeric+localize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+isAlphanumeric+localize.swift"; sourceTree = "<group>"; };
 		E9DBC9AA23AED7ED004DF3A3 /* ShowObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowObserver.swift; sourceTree = "<group>"; };
 		E9DBC9AB23AED7ED004DF3A3 /* EpisodeChooserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeChooserView.swift; sourceTree = "<group>"; };
@@ -227,7 +225,7 @@
 		E9DBC9B423AED7EE004DF3A3 /* SearchMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMethod.swift; sourceTree = "<group>"; };
 		E9DBC9CC23AED80C004DF3A3 /* ShowDictionary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShowDictionary.entitlements; sourceTree = "<group>"; };
 		E9DBC9CE23AED80F004DF3A3 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		E9DBC9D023AED885004DF3A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = /Users/Curtis/Documents/ShowDictionary/ShowDictionary/Info.plist; sourceTree = "<absolute>"; };
+		E9DBC9D023AED885004DF3A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = /Users/curtiswilcox/Documents/ShowDictionary/ShowDictionary/Info.plist; sourceTree = "<absolute>"; };
 		E9EDB96023AED763003BD387 /* Show Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Show Dictionary.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9F66C4D23C136300067C789 /* ShowDictionaryWatchOS Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ShowDictionaryWatchOS Extension.entitlements"; sourceTree = "<group>"; };
 		E9F66C4F23C1363F0067C789 /* ShowDictionaryTVOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShowDictionaryTVOS.entitlements; sourceTree = "<group>"; };
@@ -416,6 +414,7 @@
 				E9DBC9D023AED885004DF3A3 /* Info.plist */,
 				E9DBC9AE23AED7ED004DF3A3 /* AppDelegate.swift */,
 				E9DBC9B123AED7ED004DF3A3 /* SceneDelegate.swift */,
+				D48D506925152FA400BBB94F /* ShowDictionaryApp.swift */,
 				E9DBC9A123AED7EB004DF3A3 /* Array+before+after.swift */,
 				E9DBC99F23AED7EB004DF3A3 /* Collection+safeSubscript.swift */,
 				E9DBC9AD23AED7ED004DF3A3 /* CollectionType+toJSONString.swift */,
@@ -438,13 +437,11 @@
 				E9BDDDEF23AF356F002729B2 /* SeasonView.swift */,
 				E9645E6A23B18E75001B6CBF /* WriterView.swift */,
 				E9DBC9A423AED7ED004DF3A3 /* Preview Content */,
-				E9DBC9A823AED7ED004DF3A3 /* ActivityIndicator.swift */,
 				E9DBC9A323AED7EC004DF3A3 /* Episode.swift */,
 				E9763A0223C581FA00B03AA5 /* EpisodeObserver.swift */,
 				E9BDDDF323AFC88D002729B2 /* GridStack.swift */,
 				E9C430AF23C3E86200157BDE /* HamburgerMenuView.swift */,
 				E95AF34523CA648F00905181 /* Person.swift */,
-				E94E6D5423D1562900BD8764 /* ProgressBar.swift */,
 				E9A0E79823C129CB00CCB256 /* ShowData.swift */,
 				E9DBC9B223AED7ED004DF3A3 /* SearchBar.swift */,
 				E9DBC9B423AED7EE004DF3A3 /* SearchMethod.swift */,
@@ -546,7 +543,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = wilcoxcurtis;
 				TargetAttributes = {
 					E943896623BFD684001CC170 = {
@@ -820,7 +817,6 @@
 				E9DBC9B823AED7EE004DF3A3 /* DescriptionView.swift in Sources */,
 				E9BDDDF423AFC88D002729B2 /* GridStack.swift in Sources */,
 				E9DBC9BE23AED7EE004DF3A3 /* SeasonType.swift in Sources */,
-				E94E6D5523D1562900BD8764 /* ProgressBar.swift in Sources */,
 				E92F823423B3244700AB98BE /* CharacterView.swift in Sources */,
 				E9DBC9C623AED7EE004DF3A3 /* Date+new+written+toString.swift in Sources */,
 				E9BDDDF023AF356F002729B2 /* SeasonView.swift in Sources */,
@@ -836,7 +832,6 @@
 				E9DBC9B923AED7EE004DF3A3 /* Array+before+after.swift in Sources */,
 				E95AF34C23CD1D0A00905181 /* TestView.swift in Sources */,
 				E9763A0323C581FA00B03AA5 /* EpisodeObserver.swift in Sources */,
-				E9DBC9BF23AED7EE004DF3A3 /* ActivityIndicator.swift in Sources */,
 				E9DBC9B723AED7EE004DF3A3 /* Collection+safeSubscript.swift in Sources */,
 				E9645E7123B1D0D7001B6CBF /* CompanionView.swift in Sources */,
 				E9DBC9C023AED7EE004DF3A3 /* String+isAlphanumeric+localize.swift in Sources */,
@@ -844,6 +839,7 @@
 				E9DBC9C123AED7EE004DF3A3 /* ShowObserver.swift in Sources */,
 				E9645E6D23B195E9001B6CBF /* DirectorView.swift in Sources */,
 				E997C38523B41C23003A88B2 /* GlobalImportantThings.swift in Sources */,
+				D48D506A25152FA400BBB94F /* ShowDictionaryApp.swift in Sources */,
 				E9BDDDF223AF3D8F002729B2 /* EpisodeDetailView.swift in Sources */,
 				E9645E6F23B19F6A001B6CBF /* DoctorView.swift in Sources */,
 				E9DBC9BB23AED7EE004DF3A3 /* Episode.swift in Sources */,
@@ -1089,6 +1085,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1113,7 +1110,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1150,6 +1147,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1168,7 +1166,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
