@@ -37,9 +37,10 @@ struct SearchMethodView: View {
                     if self.progress == 100 { timer.invalidate() }
                 }
             }
-//            ActivityIndicator(shouldAnimate: self.$shouldSpin)
             if self.progress != 100 && (self.show.episodes?.isEmpty ?? true) {
-                ProgressBar(progress: self.$progress)
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                    
             }
         }
     }

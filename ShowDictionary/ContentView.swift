@@ -9,6 +9,106 @@
 import CloudKit
 import SwiftUI
 
+
+struct ContentGridView: View {
+    @ObservedObject private var observer = ShowObserver()
+    @State private var progress: CGFloat = 0
+    
+    var body: some View {
+        NavigationView {
+            ZStack {
+                GridView(observer: self.observer, progress: self.$progress)
+                
+                if self.progress < 100 {
+                    ProgressView(value: self.progress, total: 100)
+                        .progressViewStyle(LinearProgressViewStyle())
+                        .padding(.horizontal)
+                }
+            }
+            .navigationBarTitle("\(NSLocalizedString("home", comment: "").capitalized)", displayMode: .large)
+            .onAppear {
+                guard self.progress <= 100 else { return }
+                let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+                    guard !self.observer.data.isEmpty else { return }
+                    self.progress = self.observer.percentCompleted
+                    if self.progress == 100 { timer.invalidate() }
+                }
+            }
+        }
+    }
+}
+
+extension ContentGridView {
+    struct GridView: View {
+        @ObservedObject var observer: ShowObserver
+        @Binding var progress: CGFloat
+        @State var somethingIsPressed = false
+        
+        private let columns: Int = {
+            switch (UIDevice.current.userInterfaceIdiom, UIDevice.current.orientation) {
+//            case (.pad, .portrait), (.pad, .portraitUpsideDown), (.phone, .landscapeLeft), (.phone, .landscapeRight):
+//                return 4
+//            case (.pad, .landscapeLeft), (.pad, .landscapeRight):
+//                return 5
+//            case (.phone, .portrait), (.phone, .portraitUpsideDown):
+//                return 3
+            default:
+                return 3 //TODO something to think about... scale effect gets wonky :(
+            }
+        }()
+        
+        var body: some View {
+            guard self.progress == 100 else { return AnyView(EmptyView()) }
+            return AnyView(GeometryReader { geometry in
+                ScrollView {
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns), spacing: 20) {
+                        ForEach(0..<self.observer.data.count) { i in
+//                            NavigationLink(destination: SearchMethodView(show: datum.show)) {
+                            TitleCard(datum: observer.data[i], geometry: geometry, columns: CGFloat(columns), column: i % 3, anotherIsPressed: $somethingIsPressed)
+//                            }
+                        }
+                    }
+                    .padding()
+                }
+            })
+        }
+    }
+    
+    struct TitleCard: View {
+        let datum: ShowData
+        let geometry: GeometryProxy
+        let columns: CGFloat
+        let column: Int
+                
+        @State var isPressed = false
+        @Binding var anotherIsPressed: Bool
+        
+        var body: some View {
+            Button(action: { isPressed.toggle(); anotherIsPressed.toggle() }) {
+                ZStack {
+                    Rectangle().foregroundColor(.white)
+                    Image(uiImage: datum.titleCard ?? UIImage(systemName: "questionmark.circle")!)
+                        .resizable()
+                        .opacity(isPressed ? 0 : 1)
+                }
+                .frame(width: geometry.size.width / (columns + 1), height: geometry.size.width / (columns + 1))
+                .cornerRadius(20)
+                .shadow(radius: 40)
+                .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(datum.titleCard == nil ? UIColor.black : UIColor.label), lineWidth: 1))
+                .rotation3DEffect(isPressed ? .degrees(180) : .zero, axis: (0, 10, 0))
+            }
+            .scaleEffect(isPressed ? columns : anotherIsPressed ? 0.01 : 1)
+            .opacity(isPressed ? 1 : anotherIsPressed ? 0 : 1)
+            .animation(.linear(duration: 0.6))
+            .disabled(!isPressed && anotherIsPressed)
+        }
+    }
+}
+
+
+
+/************************************************************************************/
+
 struct ContentView: View {
     @ObservedObject private var observer = ShowObserver()
     @State private var progress: CGFloat = 0
@@ -18,7 +118,9 @@ struct ContentView: View {
             ZStack {
                 ShowListView(observer: self.observer, progress: self.$progress)
                 if self.progress < 100 {
-                    ProgressBar(progress: self.$progress)
+                    ProgressView(value: self.progress / 100, total: 1)
+                        .progressViewStyle(LinearProgressViewStyle())
+                        .padding([.leading, .trailing])
                 }
             }
             .navigationBarTitle("\(NSLocalizedString("home", comment: "").capitalized)", displayMode: .large)
@@ -126,8 +228,10 @@ extension ContentView {
 
 
 fileprivate func getOption<T>(_ img: UIImage?, nilOption: T, presentOption: T) -> T {
-    if img == nil { return nilOption }
-    else { return presentOption }
+    guard img != nil else { return nilOption }
+    return presentOption
+//    if img == nil { return nilOption }
+//    else { return presentOption }
 }
 
 
