@@ -85,12 +85,12 @@ extension ContentGridView {
 		
 		var body: some View {
 			Button {
-//        guard !isPressed else { return }
+        guard !isPressed else { return }
 				isPressed.toggle()
 				anotherIsPressed.toggle()
 			} label: {
 				ZStack {
-					RectListView(showing: $isPressed, datum: datum)
+					RectListView(showing: $isPressed, anotherIsPressed: $anotherIsPressed, datum: datum)
 					Image(uiImage: datum.titleCard ?? UIImage(systemName: "questionmark.circle")!)
 						.resizable()
 						.opacity(isPressed ? 0 : 1)
@@ -122,6 +122,7 @@ extension ContentGridView {
 
 struct RectListView: View {
 	@Binding var showing: Bool
+	@Binding var anotherIsPressed: Bool // this is gross :(
 	let datum: ShowData
 	
 	var body: some View {
@@ -129,12 +130,23 @@ struct RectListView: View {
 			return AnyView(Rectangle().foregroundColor(.white))
 		}
 		return AnyView(
-			List(datum.show.getAvailableSearchMethods()) { method in
-				NavigationLink(destination: Rectangle().foregroundColor(.green)) {
-					Text(method.toString(seasonType: datum.show.typeOfSeasons))
+			VStack(alignment: .leading) {
+				Button {
+					showing.toggle()
+					anotherIsPressed.toggle() // hate this
+				} label: { Image(systemName: "x.circle") }
+				.padding([.top, .leading], 5)
+				.opacity(showing ? 1 : 0)
+				.scaleEffect(0.75)
+				
+				List(datum.show.getAvailableSearchMethods()) { method in
+					NavigationLink(destination: Rectangle().foregroundColor(.green)) {
+						Text(method.toString(seasonType: datum.show.typeOfSeasons))
+							.scaleEffect(x: 1, y: 2)
+					}
+					.scaleEffect(x: 1, y: 0.5)
 				}
-			}
-			.rotation3DEffect(.degrees(180), axis: (0, 10, 0))
+			}.rotation3DEffect(.degrees(180), axis: (0, 10, 0))
 		)
 	}
 }
