@@ -93,8 +93,12 @@ extension ContentGridView {
 				showSelected = (isPressed ? (datum, true) : (nil, false))
 			} label: {
 				ZStack {
-					Image(uiImage: datum.titleCard ?? UIImage(systemName: "questionmark.circle")!)
-						.resizable()
+					if let titleCard = datum.titleCard {
+						Image(uiImage: titleCard)
+							.resizable()
+					} else {
+						Text(datum.show.name)
+					}
 				}
 				.frame(width: geometry.size.width / (columns + 1), height: (geometry.size.width / (columns + 1)))
 				.overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(datum.titleCard == nil ? UIColor.black : UIColor.label), lineWidth: 1))
