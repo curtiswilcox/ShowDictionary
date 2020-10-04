@@ -93,6 +93,8 @@ extension ContentGridView {
 				showSelected = (isPressed ? (datum, true) : (nil, false))
 			} label: {
 				ZStack {
+					Rectangle()
+						.foregroundColor(.white)
 					if let titleCard = datum.titleCard {
 						Image(uiImage: titleCard)
 							.resizable()
