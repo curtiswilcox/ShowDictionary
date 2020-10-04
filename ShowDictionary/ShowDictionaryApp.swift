@@ -16,7 +16,7 @@ var signedIn: Bool = false
 struct ShowDictionaryApp: App {
     @SceneBuilder var body: some Scene {
         WindowGroup {
-            ContentGridView()
+            ContentView()
         }
     }
     

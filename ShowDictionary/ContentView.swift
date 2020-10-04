@@ -9,7 +9,7 @@
 import CloudKit
 import SwiftUI
 
-struct ContentGridView: View {
+struct ContentView: View {
 	@ObservedObject private var observer = ShowObserver()
 	@State private var progress: CGFloat = 0
 	@State var showSelected: (show: ShowData?, display: Bool) = (nil, false)
@@ -44,7 +44,7 @@ struct ContentGridView: View {
 	}
 }
 
-extension ContentGridView {
+extension ContentView {
 	struct GridView: View {
 		@ObservedObject var observer: ShowObserver
 		@Binding var progress: CGFloat
@@ -57,8 +57,8 @@ extension ContentGridView {
 			return AnyView(GeometryReader { geometry in
 				ScrollView {
 					LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns), spacing: 20) {
-						ForEach(0..<self.observer.data.count) { i in
-							TitleCard(datum: observer.data[i], geometry: geometry, columns: CGFloat(columns), column: i % 3, showSelected: $showSelected)
+						ForEach(self.observer.data) { datum in
+							TitleCard(datum: datum, geometry: geometry, columns: CGFloat(columns), showSelected: $showSelected)
 						}
 					}
 					.padding()
@@ -71,7 +71,6 @@ extension ContentGridView {
 		let datum: ShowData
 		let geometry: GeometryProxy
 		let columns: CGFloat
-		let column: Int
 		
 		@State var isPressed = false
 		@Binding var showSelected: (show: ShowData?, display: Bool)

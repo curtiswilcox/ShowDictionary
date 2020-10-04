@@ -9,15 +9,21 @@
 import SwiftUI
 
 struct SubText<S: StringProtocol>: View {
-    let content: S
-
-    var body: some View {
-        Text(content)
-            .font(.subheadline)
-            .foregroundColor(.gray)
-    }
-    
-    init(_ content: S) {
-        self.content = content
-    }
+  let content: S
+  
+  var body: some View {
+    #if os(iOS)
+    Text(content)
+      .font(.subheadline)
+      .foregroundColor(Color(UIColor.systemGray))
+    #elseif os(watchOS)
+    Text(content)
+      .font(.subheadline)
+      .foregroundColor(Color(UIColor.gray))
+    #endif
+  }
+  
+  init(_ content: S) {
+    self.content = content
+  }
 }
