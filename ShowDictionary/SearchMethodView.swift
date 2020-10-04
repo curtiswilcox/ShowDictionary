@@ -12,8 +12,7 @@ struct SearchMethodView: View {
     @ObservedObject private(set) var show: Show
     @ObservedObject private(set) var observer: EpisodeObserver
     @State private var progress: CGFloat = 0
-//    @Binding private var display: Bool
-            
+    
     var body: some View {
         ZStack {
             List((self.show.episodes?.isEmpty ?? true) ? [] : show.getAvailableSearchMethods()) { method in
@@ -38,20 +37,17 @@ struct SearchMethodView: View {
                     if self.progress == 100 { timer.invalidate() }
                 }
             }
-//            .onDisappear { self.display = false }
-            
             if self.progress != 100 && (self.show.episodes?.isEmpty ?? true) {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
-                    
+                
             }
         }
     }
     
-    init(show: Show) {//, display: Binding<Bool>) {
+    init(show: Show) {
         self.show = show
         self.observer = EpisodeObserver(show.filename)
-//        self._display = display
     }
     
     func getDestination(_ method: SearchMethod) -> some View {
@@ -77,7 +73,7 @@ struct SearchMethodView: View {
         case .keyword:
             return AnyView(DescriptionView(show: self.show))
         /*case .name:
-            return AnyView(DescriptionView(show: self.show))*/
+         return AnyView(DescriptionView(show: self.show))*/
         case .random:
             return AnyView(EpisodeView(show: self.show))//, episode: self.show.episodes.randomElement()!))
         case .rangeAirdates:
