@@ -12,6 +12,7 @@ struct SearchMethodView: View {
     @ObservedObject private(set) var show: Show
     @ObservedObject private(set) var observer: EpisodeObserver
     @State private var progress: CGFloat = 0
+//    @Binding private var display: Bool
             
     var body: some View {
         ZStack {
@@ -37,6 +38,7 @@ struct SearchMethodView: View {
                     if self.progress == 100 { timer.invalidate() }
                 }
             }
+//            .onDisappear { self.display = false }
             
             if self.progress != 100 && (self.show.episodes?.isEmpty ?? true) {
                 ProgressView()
@@ -46,9 +48,10 @@ struct SearchMethodView: View {
         }
     }
     
-    init(show: Show) {
+    init(show: Show) {//, display: Binding<Bool>) {
         self.show = show
         self.observer = EpisodeObserver(show.filename)
+//        self._display = display
     }
     
     func getDestination(_ method: SearchMethod) -> some View {

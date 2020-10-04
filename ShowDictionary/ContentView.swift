@@ -39,7 +39,6 @@ struct ContentGridView: View {
 					self.progress = self.observer.percentCompleted
 					if self.progress == 100 { timer.invalidate() }
 				}
-				showSelected.display = false
 			}
 		}
 	}
@@ -102,16 +101,17 @@ extension ContentGridView {
 				.cornerRadius(20)
 			}
 			.shadow(radius: 40)
+			.onAppear { isPressed = false }
 		}
 		
-		func calcOffset(_ geometry: GeometryProxy, _ column: Int) -> CGFloat {
-			switch column {
-			case 0: return geometry.size.width / 9.5
-			case 1: return 0
-			case 2: return -(geometry.size.width / 9.5)
-			default: return 0
-			}
-		}
+//		func calcOffset(_ geometry: GeometryProxy, _ column: Int) -> CGFloat {
+//			switch column {
+//			case 0: return geometry.size.width / 9.5
+//			case 1: return 0
+//			case 2: return -(geometry.size.width / 9.5)
+//			default: return 0
+//			}
+//		}
 	}
 }
 
@@ -151,6 +151,7 @@ struct RectListView: View {
 
 /************************************************************************************/
 
+/*
 struct ContentView: View {
 	@ObservedObject private var observer = ShowObserver()
 	@State private var progress: CGFloat = 0
@@ -288,3 +289,4 @@ struct MainView_Previews: PreviewProvider {
 		}
 	}
 }
+*/
