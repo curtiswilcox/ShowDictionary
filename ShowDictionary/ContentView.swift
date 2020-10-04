@@ -13,20 +13,22 @@ import SwiftUI
 struct ContentGridView: View {
 	@ObservedObject private var observer = ShowObserver()
 	@State private var progress: CGFloat = 0
-	@State var showSelected: (show: ShowData?, selected: Bool) = (nil, false)
+	@State var showSelected: (show: ShowData?, display: Bool) = (nil, false)
 	
 	var body: some View {
 		NavigationView {
 			ZStack {
+				if let show = showSelected.show?.show {
+					NavigationLink(destination: SearchMethodView(show: show), isActive: $showSelected.display) {
+						EmptyView()
+					}
+				}
 				GridView(observer: self.observer, progress: self.$progress, showSelected: self.$showSelected)
 				
 				if self.progress < 100 {
 					ProgressView(value: self.progress, total: 100)
 						.progressViewStyle(LinearProgressViewStyle())
 						.padding(.horizontal)
-				} else if showSelected.selected, let show = showSelected.show {
-					SearchMethodView(show: show.show, display: $showSelected.selected)
-						.transition(AnyTransition.opacity.combined(with: .scale))
 				}
 			}
 			.navigationBarTitle("\(NSLocalizedString("home", comment: "").capitalized)", displayMode: .large)
@@ -37,6 +39,7 @@ struct ContentGridView: View {
 					self.progress = self.observer.percentCompleted
 					if self.progress == 100 { timer.invalidate() }
 				}
+				showSelected.display = false
 			}
 		}
 	}
@@ -46,7 +49,7 @@ extension ContentGridView {
 	struct GridView: View {
 		@ObservedObject var observer: ShowObserver
 		@Binding var progress: CGFloat
-		@Binding var showSelected: (show: ShowData?, selected: Bool)
+		@Binding var showSelected: (show: ShowData?, display: Bool)
 		
 		private let columns: Int = {
 			switch (UIDevice.current.userInterfaceIdiom, UIDevice.current.orientation) {
@@ -83,7 +86,7 @@ extension ContentGridView {
 		let column: Int
 		
 		@State var isPressed = false
-		@Binding var showSelected: (show: ShowData?, selected: Bool)
+		@Binding var showSelected: (show: ShowData?, display: Bool)
 		
 		var body: some View {
 			Button {
@@ -94,7 +97,7 @@ extension ContentGridView {
 					Image(uiImage: datum.titleCard ?? UIImage(systemName: "questionmark.circle")!)
 						.resizable()
 				}
-				.frame(width: geometry.size.width / (columns + 1), height: (geometry.size.width / (columns + 1)) * (isPressed ? /*1.5*/ 1 : 1))
+				.frame(width: geometry.size.width / (columns + 1), height: (geometry.size.width / (columns + 1)))
 				.overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(datum.titleCard == nil ? UIColor.black : UIColor.label), lineWidth: 1))
 				.cornerRadius(20)
 			}
@@ -193,7 +196,7 @@ extension ContentView {
 					ForEach(self.getSectionHeaders(), id: \.self) { header in
 						Section(header: Text(header)) {
 							ForEach(self.observer.data.filter { $0.show.name.firstLetter() == header }) { datum in
-								NavigationLink(destination: SearchMethodView(show: datum.show, display: $display)) {
+								NavigationLink(destination: SearchMethodView(show: datum.show)) {//}, display: $display)) {
 									HStack {
 										TitleCardView(datum: datum)
 										RowInfoView(datum: datum)
