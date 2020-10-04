@@ -12,6 +12,7 @@ struct SearchMethodView: View {
     @ObservedObject private(set) var show: Show
     @ObservedObject private(set) var observer: EpisodeObserver
     @State private var progress: CGFloat = 0
+    @Binding var display: Bool
             
     var body: some View {
         ZStack {
@@ -25,6 +26,7 @@ struct SearchMethodView: View {
                 }
             }
             .navigationBarTitle(self.show.name)
+            .navigationBarItems(leading: Button { self.display = false } label: { Text("< Back") })
             .lineLimit(nil)
             .onAppear {
                 self.observer.getEpisodes() { (episodes, hasFaves) in
@@ -45,9 +47,10 @@ struct SearchMethodView: View {
         }
     }
     
-    init(show: Show) {
+    init(show: Show, display: Binding<Bool>) {
         self.show = show
         self.observer = EpisodeObserver(show.filename)
+        self._display = display
     }
     
     func getDestination(_ method: SearchMethod) -> some View {

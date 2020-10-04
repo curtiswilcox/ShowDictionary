@@ -13,16 +13,20 @@ import SwiftUI
 struct ContentGridView: View {
 	@ObservedObject private var observer = ShowObserver()
 	@State private var progress: CGFloat = 0
+	@State var showSelected: (show: ShowData?, selected: Bool) = (nil, false)
 	
 	var body: some View {
 		NavigationView {
 			ZStack {
-				GridView(observer: self.observer, progress: self.$progress)
+				GridView(observer: self.observer, progress: self.$progress, showSelected: self.$showSelected)
 				
 				if self.progress < 100 {
 					ProgressView(value: self.progress, total: 100)
 						.progressViewStyle(LinearProgressViewStyle())
 						.padding(.horizontal)
+				} else if showSelected.selected, let show = showSelected.show {
+					SearchMethodView(show: show.show, display: $showSelected.selected)
+						.transition(AnyTransition.opacity.combined(with: .scale))
 				}
 			}
 			.navigationBarTitle("\(NSLocalizedString("home", comment: "").capitalized)", displayMode: .large)
@@ -42,7 +46,7 @@ extension ContentGridView {
 	struct GridView: View {
 		@ObservedObject var observer: ShowObserver
 		@Binding var progress: CGFloat
-		@State var somethingIsPressed = false
+		@Binding var showSelected: (show: ShowData?, selected: Bool)
 		
 		private let columns: Int = {
 			switch (UIDevice.current.userInterfaceIdiom, UIDevice.current.orientation) {
@@ -63,9 +67,7 @@ extension ContentGridView {
 				ScrollView {
 					LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns), spacing: 20) {
 						ForEach(0..<self.observer.data.count) { i in
-							//  NavigationLink(destination: SearchMethodView(show: datum.show)) {
-							TitleCard(datum: observer.data[i], geometry: geometry, columns: CGFloat(columns), column: i % 3, anotherIsPressed: $somethingIsPressed)
-							//  }
+							TitleCard(datum: observer.data[i], geometry: geometry, columns: CGFloat(columns), column: i % 3, showSelected: $showSelected)
 						}
 					}
 					.padding()
@@ -81,31 +83,22 @@ extension ContentGridView {
 		let column: Int
 		
 		@State var isPressed = false
-		@Binding var anotherIsPressed: Bool
+		@Binding var showSelected: (show: ShowData?, selected: Bool)
 		
 		var body: some View {
 			Button {
-        guard !isPressed else { return }
 				isPressed.toggle()
-				anotherIsPressed.toggle()
+				showSelected = (isPressed ? (datum, true) : (nil, false))
 			} label: {
 				ZStack {
-					RectListView(showing: $isPressed, anotherIsPressed: $anotherIsPressed, datum: datum)
 					Image(uiImage: datum.titleCard ?? UIImage(systemName: "questionmark.circle")!)
 						.resizable()
-						.opacity(isPressed ? 0 : 1)
 				}
-				.frame(width: geometry.size.width / (columns + 1), height: (geometry.size.width / (columns + 1)) * (isPressed ? 1.5 : 1))
+				.frame(width: geometry.size.width / (columns + 1), height: (geometry.size.width / (columns + 1)) * (isPressed ? /*1.5*/ 1 : 1))
 				.overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(datum.titleCard == nil ? UIColor.black : UIColor.label), lineWidth: 1))
 				.cornerRadius(20)
-				.rotation3DEffect(isPressed ? .degrees(180) : .zero, axis: (0, 10, 0))
 			}
-			.offset(x: isPressed ? calcOffset(geometry, column) : 0)
-			.scaleEffect(isPressed ? columns : anotherIsPressed ? 0.01 : 1)
-			.opacity(isPressed ? 1 : anotherIsPressed ? 0 : 1)
 			.shadow(radius: 40)
-			.animation(.linear(duration: 0.6))
-			.disabled(!isPressed && anotherIsPressed)
 		}
 		
 		func calcOffset(_ geometry: GeometryProxy, _ column: Int) -> CGFloat {
@@ -119,7 +112,7 @@ extension ContentGridView {
 	}
 }
 
-
+/*
 struct RectListView: View {
 	@Binding var showing: Bool
 	@Binding var anotherIsPressed: Bool // this is gross :(
@@ -150,7 +143,7 @@ struct RectListView: View {
 		)
 	}
 }
-
+*/
 
 
 /************************************************************************************/
@@ -189,6 +182,7 @@ extension ContentView {
 		@State var displayDescription: Bool = false
 		@Binding var progress: CGFloat
 		//        @State var searchText: String = ""
+		@State var display: Bool = false
 		
 		var body: some View {
 			//            ScrollView {
@@ -199,7 +193,7 @@ extension ContentView {
 					ForEach(self.getSectionHeaders(), id: \.self) { header in
 						Section(header: Text(header)) {
 							ForEach(self.observer.data.filter { $0.show.name.firstLetter() == header }) { datum in
-								NavigationLink(destination: SearchMethodView(show: datum.show)) {
+								NavigationLink(destination: SearchMethodView(show: datum.show, display: $display)) {
 									HStack {
 										TitleCardView(datum: datum)
 										RowInfoView(datum: datum)
