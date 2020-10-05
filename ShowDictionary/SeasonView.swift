@@ -52,7 +52,7 @@ struct SeasonView: View {
                     }
                     Spacer()
                   }
-                  .frame(width: width - 20)
+                  .frame(width: abs(width - 20))
                   .frame(minHeight: (width / 2) - 20)
                 }
               }
