@@ -93,7 +93,7 @@ extension EpisodeChooserView {
               .padding(.all, 0)
             Group {
               HStack {
-                SubText(episode.airdate.written())
+                SubText(episode.airdate.written(ms: 3))
                 Spacer()
                 Image(systemName: "star.fill")
                   .foregroundColor(episode.isFavorite ? .secondary : .clear)
@@ -103,15 +103,15 @@ extension EpisodeChooserView {
           }
         }
       }
-      .contextMenu {
-        Button(action: self.toggleFavoritism) {
-          HStack {
-            Text(self.episode.isFavorite ? NSLocalizedString("Unfavorite", comment: "") : NSLocalizedString("Favorite", comment: ""))
-            Image(systemName: "star\(self.episode.isFavorite ? "" : ".fill")")
-              .foregroundColor(.secondary)
-          }
-        }
-      }
+//      .contextMenu {
+//        Button(action: self.toggleFavoritism) {
+//          HStack {
+//            Text(self.episode.isFavorite ? NSLocalizedString("Unfavorite", comment: "") : NSLocalizedString("Favorite", comment: ""))
+//            Image(systemName: "star\(self.episode.isFavorite ? "" : ".fill")")
+//              .foregroundColor(.secondary)
+//          }
+//        }
+//      }
     }
     
     private func seasonNum(_ episode: Episode) -> String {
