@@ -15,7 +15,7 @@ struct CardView<Content: View>: View {
   let horizAlignment: HorizontalAlignment
   let content: Content
   
-  init(width: CGFloat, vertAlignment: VerticalAlignment = .center, horizAlignment: HorizontalAlignment = .center, @ViewBuilder content: () -> Content) {
+  init(width: CGFloat, vertAlignment: VerticalAlignment = .center, horizAlignment: HorizontalAlignment = .leading, @ViewBuilder content: () -> Content) {
     self.width = width
     self.vertAlignment = vertAlignment
     self.horizAlignment = horizAlignment
