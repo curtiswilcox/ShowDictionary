@@ -97,43 +97,53 @@ extension SearchMethodView {
     var body: some View {
       GeometryReader { geometry in
         ScrollView {
-          let offset: CGFloat = 30
-          LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: offset) {
+          LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
             ForEach(self.show.getAvailableSearchMethods()) { method in
               Button {
                 chosenMethod = (method, true)
               } label: {
-                let width = geometry.size.width / 2.25
-                ZStack {
-                  RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color(UIColor.label), lineWidth: 2)
-                    .frame(width: width)
-                    .padding([.horizontal])
-                  HStack {
-                    VStack(alignment: .leading) {
-                        Text(method.toString(seasonType: self.show.typeOfSeasons))
-                          .font(.callout)
-                          .bold()
-                          .foregroundColor(Color(UIColor.label))
-                          .padding(.top)
-                        Divider()
-                          .frame(width: width / 3)
-                          .padding(.all, 0)
-                        SubText(method.desc(seasonType: self.show.typeOfSeasons))
-                          .padding(.bottom)
-                      Spacer()
-                    }
-                    Spacer()
-                  }
-                  .frame(width: width - 20)
-                  .frame(minHeight: (width / 2) - 20)
-                }
+                let width = geometry.size.width / 2.5
+                MethodView(show: show, method: method, width: width)
               }
             }
           }
           .padding(.horizontal)
         }
         .onAppear { chosenMethod = (nil, false) }
+      }
+    }
+  }
+  
+  struct MethodView: View {
+    @ObservedObject var show: Show
+    let method: SearchMethod
+    let width: CGFloat
+    
+    var body: some View {
+      ZStack {
+        RoundedRectangle(cornerRadius: 20)
+          .stroke(Color(UIColor.label), lineWidth: 2)
+          .frame(width: width)
+          .padding([.horizontal])
+        HStack {
+          VStack(alignment: .leading) {
+            Text(method.toString(seasonType: self.show.typeOfSeasons))
+              .font(.callout)
+              .bold()
+              .foregroundColor(Color(UIColor.label))
+              .padding(.top)
+            Divider()
+              .background(Color(UIColor.systemGray))
+              .frame(width: width / 3)
+              .padding(.all, 0)
+            SubText(method.desc(seasonType: self.show.typeOfSeasons))
+              .padding(.bottom)
+            Spacer()
+          }
+          Spacer()
+        }
+        .frame(width: width - 20)
+        .frame(minHeight: (width / 2) - 20)
       }
     }
   }

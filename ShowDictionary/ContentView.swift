@@ -91,7 +91,7 @@ extension ContentView {
 					}
 				}
 				.frame(width: geometry.size.width / (columns + 1), height: (geometry.size.width / (columns + 1)))
-				.overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(datum.titleCard == nil ? UIColor.black : UIColor.label), lineWidth: 1))
+				.overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(datum.titleCard == nil ? UIColor.black : UIColor.label), lineWidth: 2))
 				.cornerRadius(20)
 			}
 			.shadow(radius: 40)

@@ -24,14 +24,11 @@ extension Date {
 		}
 	}
 
-	func written(/*lang: AvailableLanguage*/) -> String {
-		let formatter = DateFormatter()
-//		formatter.locale = Locale(identifier: lang.rawValue)
-        formatter.locale = Locale.current
-		formatter.dateFormat =
-//				DateFormatter.dateFormat(fromTemplate: "yMMMMd", options: 0, locale: Locale(identifier: lang.rawValue))!
-            DateFormatter.dateFormat(fromTemplate: "yMMMMd", options: 0, locale: Locale.current)!
-		return formatter.string(from: self)
+  func written(/*lang: AvailableLanguage*/) -> String {
+    let formatter = DateFormatter()
+    formatter.locale = Locale.current
+    formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMd", options: 0, locale: Locale.current)!
+    return formatter.string(from: self)
 	}
 
 	func toString() -> String {
