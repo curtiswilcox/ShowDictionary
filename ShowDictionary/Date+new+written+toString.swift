@@ -24,10 +24,11 @@ extension Date {
 		}
 	}
 
-  func written(/*lang: AvailableLanguage*/) -> String {
+  func written(ms: Int) -> String {
+    let monthFormat = String(repeating: "M", count: ms)
     let formatter = DateFormatter()
     formatter.locale = Locale.current
-    formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMd", options: 0, locale: Locale.current)!
+    formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "y\(monthFormat)d", options: 0, locale: Locale.current)!
     return formatter.string(from: self)
 	}
 
