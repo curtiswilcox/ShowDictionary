@@ -67,7 +67,8 @@ extension EpisodeChooserView {
             .stroke(Color(UIColor.label), lineWidth: 2)
             .frame(width: width)
             .padding(.horizontal)
-          VStack(alignment: .leading) {
+          
+          CardView(width: width, vertAlignment: .top, horizAlignment: .leading) {
             HStack(alignment: .top) {
               Text(episode.title)
                 .font(.callout)
@@ -100,8 +101,6 @@ extension EpisodeChooserView {
             }
             .padding(.bottom)
           }
-          .frame(width: abs(width - 20))
-          .frame(minHeight: (width / 2) - 20)
         }
       }
       .contextMenu {

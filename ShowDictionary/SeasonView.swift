@@ -30,30 +30,19 @@ struct SeasonView: View {
                 seasonSelected = (season, true)
               } label: {
                 let width = geometry.size.width / 2.5
-                ZStack {
-                  RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color(UIColor.label), lineWidth: 2)
-                    .frame(width: width)
-                    .padding([.horizontal])
-                  HStack {
-                    VStack(alignment: .leading) {
-                      Text(self.getTitle(self.show, season))
-                        .font(.callout)
-                        .bold()
-                        .foregroundColor(Color(UIColor.label))
-                        .padding(.top)
-                      Spacer()
-                      Divider()
-                        .background(Color(UIColor.systemGray))
-                        .frame(width: width / 3)
-                        .padding(.all, 0)
-                      SubText("episode".localizeWithFormat(quantity: self.getNumEps(season)))
-                        .padding(.bottom)
-                    }
-                    Spacer()
-                  }
-                  .frame(width: abs(width - 20))
-                  .frame(minHeight: (width / 2) - 20)
+                CardView(width: width, horizAlignment: .leading) {
+                  Text(self.getTitle(self.show, season))
+                    .font(.callout)
+                    .bold()
+                    .foregroundColor(Color(UIColor.label))
+                    .padding(.top)
+                  Spacer()
+                  Divider()
+                    .background(Color(UIColor.systemGray))
+                    .frame(width: width / 3)
+                    .padding(.all, 0)
+                  SubText("episode".localizeWithFormat(quantity: self.getNumEps(season)))
+                    .padding(.bottom)
                 }
               }
             }

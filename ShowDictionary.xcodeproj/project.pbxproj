@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D326A720263BEFA194795263 /* Pods_ShowDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */; };
 		D48D506A25152FA400BBB94F /* ShowDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D506925152FA400BBB94F /* ShowDictionaryApp.swift */; };
+		D4DFB2E6252BA61E006E63FF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DFB2E5252BA61E006E63FF /* CardView.swift */; };
 		D4E01370252A75B20025A08C /* SubText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960FBB423BA67A80071D9EB /* SubText.swift */; };
 		D5E9989EF2F9B4FB8619E98D /* Pods_ShowDictionaryTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1745D98D4130EBE111279095 /* Pods_ShowDictionaryTVOS.framework */; };
 		E9089C9A23B707B100EE8C95 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E9089C9C23B707B100EE8C95 /* Localizable.stringsdict */; };
@@ -159,6 +160,7 @@
 		9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShowDictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98DCA23D1AAEF3B274A4681C /* Pods-ShowDictionaryTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryTVOS.debug.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryTVOS/Pods-ShowDictionaryTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		D48D506925152FA400BBB94F /* ShowDictionaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDictionaryApp.swift; sourceTree = "<group>"; };
+		D4DFB2E5252BA61E006E63FF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E9089C9B23B707B100EE8C95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E9089C9D23B707B400EE8C95 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		E92F823323B3244700AB98BE /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				E9BDDDF123AF3D8F002729B2 /* EpisodeDetailView.swift */,
 				E9DBC9B023AED7ED004DF3A3 /* EpisodeView.swift */,
 				E9DBC9A623AED7ED004DF3A3 /* SearchMethodView.swift */,
+				D4DFB2E5252BA61E006E63FF /* CardView.swift */,
 				E9BDDDEF23AF356F002729B2 /* SeasonView.swift */,
 				E9645E6A23B18E75001B6CBF /* WriterView.swift */,
 				E9DBC9A423AED7ED004DF3A3 /* Preview Content */,
@@ -843,6 +846,7 @@
 				E9BDDDF223AF3D8F002729B2 /* EpisodeDetailView.swift in Sources */,
 				E9645E6F23B19F6A001B6CBF /* DoctorView.swift in Sources */,
 				E9DBC9BB23AED7EE004DF3A3 /* Episode.swift in Sources */,
+				D4DFB2E6252BA61E006E63FF /* CardView.swift in Sources */,
 				E9DBC9B523AED7EE004DF3A3 /* Show.swift in Sources */,
 				E9C430B023C3E86200157BDE /* HamburgerMenuView.swift in Sources */,
 			);
