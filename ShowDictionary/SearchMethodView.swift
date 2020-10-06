@@ -70,10 +70,8 @@ struct SearchMethodView: View {
       )
     case .keyword:
       return AnyView(DescriptionView(show: self.show))
-    /*case .name:
-     return AnyView(DescriptionView(show: self.show))*/
     case .random:
-      return AnyView(EpisodeView(show: self.show))//, episode: self.show.episodes.randomElement()!))
+      return AnyView(EpisodeView(show: self.show, episode: self.show.episodes.randomElement()!))
     case .rangeAirdates:
       return AnyView(DescriptionView(show: self.show))
     case .season:
