@@ -17,7 +17,7 @@ struct EpisodeChooserView: View {
     var body: some View {
         List {
             ForEach(self.getSeasons(), id: \.self) { season in
-                Section(header: Text(getSeasonText(self.show, season))) {
+              Section(header: Text(getSeasonText(self.show, season))) {
                     ForEach(self.episodes.filter { $0.seasonNumber == season } ) { episode in
                         NavigationLink(destination: EpisodeView(show: self.show, episode: episode)) {
                             EpisodeRow(episode: episode)
