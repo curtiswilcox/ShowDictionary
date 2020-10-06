@@ -41,12 +41,13 @@ extension DoctorView {
                 doctorSelected = (doctor, true)
               } label: {
                 let width = geometry.size.width / 2.5
-                CardView(width: width, horizAlignment: .leading) {
+                CardView(width: width, vertAlignment: .top, horizAlignment: .leading) {
                   Text(localizeDoctor(doctor))
                     .font(.callout)
                     .bold()
                     .foregroundColor(Color(UIColor.label))
                     .padding(.top)
+                  Spacer()
                   Divider()
                     .background(Color(UIColor.systemGray))
                     .frame(width: width / 3)
