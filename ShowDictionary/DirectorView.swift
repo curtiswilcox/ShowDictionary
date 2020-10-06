@@ -9,54 +9,87 @@
 import SwiftUI
 
 struct DirectorView: View {
-    var show: Show
-    
-    var body: some View {
-        List {
-            ForEach(self.getSectionHeaders(), id: \.self) { header in
-                Section(header: Text(header)) {
-                    ForEach(self.getDirectors().filter { $0.lastName.first!.uppercased() == header }) { director in
-                        DirectorRow(show: self.show, director: director)
-                    }
-                }
-            }
-        }
-        .listStyle(GroupedListStyle())
-        .navigationBarTitle("director".localizeWithFormat(quantity: getDirectors().count).capitalized)
+  var show: Show
+  @State var directorSelected: (director: Person?, showing: Bool) = (nil, false)
+  
+  var body: some View {
+    if let director = directorSelected.director {
+      let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), director.fullName))"
+      let episodesToPass = show.episodes.filter { episode in episode.directors!.contains(director) }
+      
+      NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, episodes: episodesToPass), isActive: $directorSelected.showing) {
+        EmptyView()
+      }
     }
-    
-    private func getSectionHeaders() -> [String] {
-        return Set(getDirectors().map { $0.lastName.first!.uppercased() }).sorted()
+    GeometryReader { geometry in
+      ScrollView {
+        let width = geometry.size.width / 2.5
+        GridView(show: show, directorSelected: $directorSelected, width: width)
+          .onAppear { directorSelected = (nil, false) }
+      }
     }
-    
-    private func getDirectors() -> [Person] {
-        var directors = [Person]()
-        for episode in self.show.episodes {
-            for director in episode.directors! {
-                directors.append(director)
-            }
-        }
-        return Set(directors).sorted()
-    }
+    .navigationBarTitle("director".localizeWithFormat(quantity: getDirectors(show: show).count).capitalized)
+  }
 }
 
 
 extension DirectorView {
-    struct DirectorRow: View {
-        let show: Show
-        let director: Person
-        
-        var body: some View {
-            NavigationLink(destination: EpisodeChooserView(navTitle: "\(String(format: NSLocalizedString("Episodes directed by %@", comment: ""), director.fullName))", show: self.show, episodes: self.show.episodes.filter { episode in episode.directors!.contains(director) })) {
-                VStack(alignment: .leading) {
-                    Text(director.fullName)
-                    SubText("episode".localizeWithFormat(quantity: self.getNumEps(director)))
+  struct GridView: View {
+    @ObservedObject var show: Show
+    @Binding var directorSelected: (director: Person?, showing: Bool)
+    let width: CGFloat
+    
+    var body: some View {
+      LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
+        ForEach(getSectionHeaders(show: show), id: \.self) { header in
+          Section(header:
+                    HStack {
+                      VStack { Divider().padding(.horizontal) }
+                      Text(header).bold()
+                      VStack { Divider().padding(.horizontal) }
+                    }) {
+            ForEach(getDirectors(show: show).filter { $0.lastName.firstLetter() == header }, id: \.self) { director in
+              Button {
+                directorSelected = (director, true)
+              } label: {
+                CardView(width: width, vertAlignment: .top) {
+                  Text(director.fullName)
+                    .font(.callout)
+                    .bold()
+                    .foregroundColor(Color(UIColor.label))
+                    .padding(.top)
+                  Spacer()
+                  Divider()
+                    .background(Color(UIColor.systemGray))
+                    .frame(width: width / 3)
+                    .padding(.all, 0)
+                  SubText("episode".localizeWithFormat(quantity: getNumEps(director, show: show)))
+                    .padding(.bottom)
                 }
+              }
             }
+          }
         }
-        
-        private func getNumEps(_ director: Person) -> Int {
-            return show.episodes.filter { $0.directors!.contains(director) }.count
-        }
+      }
+      .padding(.horizontal)
     }
+  }
+}
+
+fileprivate func getDirectors(show: Show) -> [Person] {
+  var directors = [Person]()
+  for episode in show.episodes {
+    for director in episode.directors! {
+      directors.append(director)
+    }
+  }
+  return Set(directors).sorted()
+}
+
+fileprivate func getSectionHeaders(show: Show) -> [String] {
+  return Set(getDirectors(show: show).map { $0.lastName.first!.uppercased() }).sorted()
+}
+
+fileprivate func getNumEps(_ director: Person, show: Show) -> Int {
+  return show.episodes.filter { $0.directors!.contains(director) }.count
 }
