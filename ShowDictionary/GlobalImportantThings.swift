@@ -11,35 +11,35 @@ import Foundation
 
 
 func getSeasonText(_ show: Show, _ season: Int) -> String {
-    let preColon = "\(NSLocalizedString(show.typeOfSeasons.localizeCapSing, comment: "")) \(season)"
-    if let title = show.seasonTitles?[season] {
-        return "\(preColon): \(title)"
-    }
-    else { return preColon }
+  let preColon = "\(NSLocalizedString(show.typeOfSeasons.localizeCapSing, comment: "")) \(season)"
+  if let title = show.seasonTitles?[season] {
+    return "\(preColon): \(title)"
+  }
+  else { return preColon }
 }
 
 func updateServerEpisodeIsFavorite(filename show: String, code: Int, completion: @escaping ((CKRecord.ID?) -> ())) {
-    guard signedIn else {
-        completion(nil)
-        return
+  guard signedIn else {
+    completion(nil)
+    return
+  }
+  
+  let episodeRecord = CKRecord(recordType: "episodes")
+  episodeRecord["filename"] = show
+  episodeRecord["code"] = code
+  CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase.save(episodeRecord) { (record, error) in
+    if let error = error {
+      print("Problem updating favorite episode: \(error.localizedDescription)")
+    } else if let record = record {
+      print("Saved record to favorites: \(record)")
+      completion(record.recordID)
     }
-    
-    let episodeRecord = CKRecord(recordType: "episodes")
-    episodeRecord["filename"] = show
-    episodeRecord["code"] = code
-    CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase.save(episodeRecord) { (record, error) in
-        if let error = error {
-            print("Problem updating favorite episode: \(error.localizedDescription)")
-        } else if let record = record {
-            print("Saved record to favorites: \(record)")
-            completion(record.recordID)
-        }
-    }
+  }
 //        self.state.show.hasFavoritedEpisodes = true //TODO: set this var to true when func is called
 }
 
 func updateServerEpisodeIsNotFavorite(filename show: String, code episode: Int, id: CKRecord.ID) {
-    CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase.delete(withRecordID: id) { _, _ in print("Deleted \(show), \(episode) from favorites.")}
+  CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase.delete(withRecordID: id) { _, _ in print("Deleted \(show), \(episode) from favorites.")}
 }
 
 /*
