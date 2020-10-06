@@ -11,6 +11,7 @@ import Foundation
 final class Show : Identifiable { // the Swift fields
   let name: String
   let filename: String
+  let sortname: String
   let description: String
   let numberOfSeasons: Int
   let numberOfEpisodes: Int
@@ -26,6 +27,7 @@ final class Show : Identifiable { // the Swift fields
   init(name: String) {
     self.name = name
     self.filename = name.lowercased().filter { String($0).isAlphanumeric }
+    self.sortname = ""
     self.description = ""
     self.numberOfSeasons = 0
     self.numberOfEpisodes = 0
@@ -40,6 +42,7 @@ final class Show : Identifiable { // the Swift fields
     let values = try decoder.container(keyedBy: CodingKeys.self)
     name = try values.decode(String.self, forKey: .name)
     filename = try values.decode(String.self, forKey: .filename)
+    sortname = try values.decode(String.self, forKey: .sortname)
     description = try values.decode(String.self, forKey: .description)
     numberOfSeasons = try Int(values.decode(String.self, forKey: .numberOfSeasons))!
     numberOfEpisodes = try Int(values.decode(String.self, forKey: .numberOfEpisodes))!
@@ -122,6 +125,7 @@ extension Show {
   enum CodingKeys: String, CodingKey { // the JSON keys
     case name = "Name"
     case filename = "Filename"
+    case sortname = "SortName"
     case description = "Description"
     case numberOfSeasons = "NumberOfSeasons"
     case numberOfEpisodes = "NumberOfEpisodes"
@@ -141,26 +145,10 @@ extension Show: Comparable {
   }
   
   static func < (lhs: Show, rhs: Show) -> Bool {
-    let first = lhs.name.lowercased().filter { String($0).isAlphanumeric || String($0) == " " }
-    let second = rhs.name.lowercased().filter { String($0).isAlphanumeric || String($0) == " " }
+    let first = lhs.sortname.lowercased().filter { String($0).isAlphanumeric || String($0) == " " }
+    let second = rhs.sortname.lowercased().filter { String($0).isAlphanumeric || String($0) == " " }
     
-    var mutFirst = first
-    var mutSecond = second
-    
-    let articles = ["the", "el", "los", "la", "las"] // TODO: this is bad
-    for article in articles where mutFirst.hasPrefix("\(article) ") {
-//			if mutFirst.hasPrefix("\(article) ") {
-      mutFirst = String(first.dropFirst(article.count + 1))
-      break
-//			}
-    }
-    for article in articles where mutSecond.hasPrefix("\(article) ") {
-//			if mutSecond.hasPrefix("\(article) ") {
-      mutSecond = String(second.dropFirst(article.count + 1))
-      break
-//			}
-    }
-    return mutFirst.lowercased() < mutSecond.lowercased()
+    return first < second
   }
 }
 
