@@ -16,9 +16,10 @@ struct SeasonView: View {
     ZStack {
       if let season = seasonSelected.season {
         let title = getTitle(self.show, season)
-        let navTitle = "\(String(format: NSLocalizedString("Episodes in %@", comment: ""), title))"
+//        let navTitle = "\(String(format: NSLocalizedString("Episodes in %@", comment: ""), title))"
+        let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), title))"
         
-        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, episodes: self.show.episodes.filter { $0.seasonNumber == season }), isActive: $seasonSelected.showing) {
+        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, useSections: false, episodes: self.show.episodes.filter { $0.seasonNumber == season }), isActive: $seasonSelected.showing) {
           EmptyView()
         }
       }

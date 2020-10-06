@@ -15,9 +15,10 @@ struct CharacterView: View {
   var body: some View {
     ZStack {
       if let character = characterSelected.character {
-        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), character.character.fullName))"
+//        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), character.character.fullName))"
+        let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), character.character.fullName))"
         let episodesToPass = epsWithChar(character, show: show)
-        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, episodes: episodesToPass), isActive: $characterSelected.showing) {
+        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, useSections: true, episodes: episodesToPass), isActive: $characterSelected.showing) {
           EmptyView()
         }
       }

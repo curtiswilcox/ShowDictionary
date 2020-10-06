@@ -10,7 +10,8 @@ import CloudKit
 import Foundation
 
 
-func getSeasonText(_ show: Show, _ season: Int) -> String {
+func getSeasonText(_ show: Show, _ season: Int, _ useSections: Bool = true) -> String {
+  guard useSections else { return "" }
   let preColon = "\(NSLocalizedString(show.typeOfSeasons.localizeCapSing, comment: "")) \(season)"
   if let title = show.seasonTitles?[season] {
     return "\(preColon): \(title)"

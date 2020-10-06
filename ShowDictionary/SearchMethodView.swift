@@ -66,7 +66,7 @@ struct SearchMethodView: View {
       return AnyView(DescriptionView(show: self.show))
     case .favorite:
       return AnyView(
-        EpisodeChooserView(navTitle: NSLocalizedString("Favorite Episodes", comment: ""), show: self.show, episodes: self.show.episodes.filter { $0.isFavorite })
+        EpisodeChooserView(navTitle: NSLocalizedString("Favorite Episodes", comment: ""), show: self.show, useSections: true, episodes: self.show.episodes.filter { $0.isFavorite })
       )
     case .keyword:
       return AnyView(DescriptionView(show: self.show))
@@ -77,7 +77,7 @@ struct SearchMethodView: View {
     case .season:
       return AnyView(SeasonView(show: self.show))
     case .showAll:
-      return AnyView(EpisodeChooserView(navTitle: NSLocalizedString("Episodes", comment: "navigation bar title"), show: self.show, episodes: self.show.episodes))
+      return AnyView(EpisodeChooserView(navTitle: NSLocalizedString("Episodes", comment: "navigation bar title"), show: self.show, useSections: true, episodes: self.show.episodes))
     case .singleAirdate:
       return AnyView(DescriptionView(show: self.show))
     case .writer:

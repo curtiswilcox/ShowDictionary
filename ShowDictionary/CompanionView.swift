@@ -15,9 +15,10 @@ struct CompanionView: View {
   var body: some View {
     ZStack {
       if let companion = companionSelected.companion {
-        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), companion.fullName))"
+//        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), companion.fullName))"
+        let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), companion.fullName))"
         let episodesToPass = self.show.episodes.filter { $0.companions!.contains(companion) }
-        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, episodes: episodesToPass), isActive: $companionSelected.showing) {
+        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, useSections: true, episodes: episodesToPass), isActive: $companionSelected.showing) {
           EmptyView()
         }
       }

@@ -15,9 +15,10 @@ struct DoctorView: View {
   var body: some View {
     ZStack {
       if let doctor = doctorSelected.doctor {
-        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), localizeDoctor(doctor, lower: true)))"
+//        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), localizeDoctor(doctor, lower: true)))"
+        let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), localizeDoctor(doctor, lower: true)))"
         let episodesToPass = self.show.episodes.filter { $0.doctors!.contains(doctor) }
-        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, episodes: episodesToPass), isActive: $doctorSelected.showing) {
+        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, useSections: true, episodes: episodesToPass), isActive: $doctorSelected.showing) {
           EmptyView()
         }
       }

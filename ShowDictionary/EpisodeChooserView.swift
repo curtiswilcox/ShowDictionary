@@ -11,6 +11,7 @@ import SwiftUI
 struct EpisodeChooserView: View {
   let navTitle: String
   let show: Show
+  let useSections: Bool
   @State private(set) var episodes: [Episode] = []
   @State private var selected: (episode: Episode?, display: Bool) = (nil, false)
   
@@ -26,7 +27,7 @@ struct EpisodeChooserView: View {
           let width = geometry.size.width / 2.5
           LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
             ForEach(self.getSeasons(), id: \.self) { season in
-              Section(header: Text(getSeasonText(self.show, season)).font(.title).bold().padding(.top)) {
+              Section(header: Text(getSeasonText(self.show, season, useSections)).font(.title).bold().padding(.top)) {
                 ForEach(self.episodes.filter { $0.seasonNumber == season }) { episode in
                   EpisodeSquareView(selected: $selected, show: show, episode: episode, width: width)
                 }

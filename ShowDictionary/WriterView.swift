@@ -14,10 +14,11 @@ struct WriterView: View {
   
   var body: some View {
     if let writer = writerSelected.writer {
-      let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), writer.fullName))"
+//      let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), writer.fullName))"
+      let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), writer.fullName))"
       let episodesToPass = show.episodes.filter { episode in episode.writers!.contains(writer) }
       
-      NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, episodes: episodesToPass), isActive: $writerSelected.showing) {
+      NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, useSections: true, episodes: episodesToPass), isActive: $writerSelected.showing) {
         EmptyView()
       }
     }

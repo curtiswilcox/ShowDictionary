@@ -14,10 +14,11 @@ struct DirectorView: View {
   
   var body: some View {
     if let director = directorSelected.director {
-      let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), director.fullName))"
+//      let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), director.fullName))"
+      let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), director.fullName))"
       let episodesToPass = show.episodes.filter { episode in episode.directors!.contains(director) }
       
-      NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, episodes: episodesToPass), isActive: $directorSelected.showing) {
+      NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, useSections: true, episodes: episodesToPass), isActive: $directorSelected.showing) {
         EmptyView()
       }
     }
