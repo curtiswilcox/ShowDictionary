@@ -27,6 +27,13 @@ struct DoctorView: View {
   }
 }
 
+extension View {
+  func Print(_ vars: Any...) -> some View {
+    for v in vars { print(v) }
+    return EmptyView()
+  }
+}
+
 extension DoctorView {
   struct GridView: View {
     @ObservedObject var show: Show
@@ -47,6 +54,9 @@ extension DoctorView {
                     .bold()
                     .foregroundColor(Color(UIColor.label))
                     .padding(.top)
+                  if let actor = getActor(doctor: doctor, newWho: show.filename == "doctorwho") {
+                    SubText(actor) // note for above: rather than `classicdoctorwho`
+                  }
                   Spacer()
                   Divider()
                     .background(Color(UIColor.systemGray))
@@ -61,6 +71,27 @@ extension DoctorView {
           .padding(.horizontal)
         }
         .onAppear { doctorSelected = (nil, false) }
+      }
+    }
+    
+    func getActor(doctor: String, newWho: Bool = false) -> String? {
+      switch (doctor.lowercased(), newWho) {
+      case ("one", true): return "David Bradley"
+      case ("one", _): return "William Hartnell"
+      case ("two", _): return "Patrick Troughton"
+      case ("three", _): return "Jon Pertwee"
+      case ("four", _): return "Tom Baker"
+      case ("five", _): return "Peter Davison"
+      case ("six", _): return "Colin Baker"
+      case ("seven", _): return "Sylvester McCoy"
+      case ("eight", _): return "Paul McGann"
+      case ("nine", _): return "Christopher Eccleston"
+      case ("ten", _): return "David Tennant"
+      case ("eleven", _): return "Matt Smith"
+      case ("war", _): return "John Hurt"
+      case ("twelve", _): return "Peter Capaldi"
+      case ("thirteen", _): return "Jodie Whittaker"
+      default: return nil
       }
     }
   }
@@ -118,6 +149,7 @@ fileprivate func localizeDoctor(_ doctor: String, lower: Bool = false) -> String
 }
 
 fileprivate func getOrdinal(_ doctor: String) -> String {
+//  print("---------\(doctor)---------")
   guard doctor.lowercased() != "war" else { return NSLocalizedString("The War Doctor", comment: "") }
   
   let formatter = NumberFormatter()
