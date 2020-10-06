@@ -46,7 +46,7 @@ extension DirectorView {
           Section(header:
                     HStack {
                       VStack { Divider().padding(.horizontal) }
-                      Text(header).bold()
+                      Text(header).font(.title).bold()
                       VStack { Divider().padding(.horizontal) }
                     }) {
             ForEach(getDirectors(show: show).filter { $0.lastName.firstLetter() == header }, id: \.self) { director in

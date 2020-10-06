@@ -27,6 +27,7 @@ struct SearchMethodView: View {
       if self.progress != 100 && (self.show.episodes?.isEmpty ?? true) {
         ProgressView()
           .progressViewStyle(CircularProgressViewStyle())
+          .scaleEffect(1.5)
       }
     }
     .navigationBarTitle(self.show.name)

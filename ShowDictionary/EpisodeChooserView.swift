@@ -29,9 +29,9 @@ struct EpisodeChooserView: View {
             ForEach(self.getSeasons(), id: \.self) { season in
               Section(header: useSections ?
                         AnyView(HStack {
-                          Text(getSeasonText(self.show, season)).font(.title).bold()
-                          VStack { Divider().padding(.horizontal) }
-                        }.padding(.top)) : AnyView(EmptyView())) {
+                          Text(getSeasonText(self.show, season)).font(.title).bold()//.layoutPriority(1)
+                          Spacer()
+                        }.padding([.top, .horizontal])) : AnyView(EmptyView())) {
                 ForEach(self.episodes.filter { $0.seasonNumber == season }) { episode in
                   EpisodeSquareView(selected: $selected, show: show, episode: episode, width: width)
                 }
