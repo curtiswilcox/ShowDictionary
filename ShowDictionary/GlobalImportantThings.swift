@@ -35,53 +35,10 @@ func updateServerEpisodeIsFavorite(filename show: String, code: Int, completion:
       completion(record.recordID)
     }
   }
-//        self.state.show.hasFavoritedEpisodes = true //TODO: set this var to true when func is called
 }
 
 func updateServerEpisodeIsNotFavorite(filename show: String, code episode: Int, id: CKRecord.ID) {
-  CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase.delete(withRecordID: id) { _, _ in print("Deleted \(show), \(episode) from favorites.")}
+  CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase.delete(withRecordID: id) { _, _ in print("Deleted \(show), \(episode) from favorites.")
+  }
 }
-
-/*
-func updateServerEpisodeIsNotFavorite(filename show: String, code episode: Int) {
-    let predicate = NSPredicate(value: true)
-    let query = CKQuery(recordType: "episodes", predicate: predicate)
-    let operation = CKQueryOperation(query: query)
-    operation.desiredKeys = ["filename", "code"]
-    
-    var records = [String: CKRecord.ID]()
-    operation.recordFetchedBlock = { record in
-        let filename = record["filename"]!
-        let code = String(format: "%@", record["code"]! as! CVarArg)
-        let recordID = record.recordID
-        records["\(filename)+\(code)"] = recordID
-    }
-    operation.queryCompletionBlock = { (cursor, error) in
-        if let cursor = cursor {
-            let newOperation = CKQueryOperation(cursor: cursor)
-            newOperation.recordFetchedBlock = operation.recordFetchedBlock
-            newOperation.queryCompletionBlock = operation.queryCompletionBlock
-            CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase.add(newOperation)
-        } else {
-            DispatchQueue.main.async {
-                if let error = error { print(error) } else {
-                    for (key, value) in records {
-                        let filename = String(key.split(separator: "+")[0])
-                        let code = Int(key.split(separator: "+")[1])!
-                        let id: CKRecord.ID = value
-                        if filename == show && code == episode {
-                            CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase.delete(withRecordID: id) { _, _ in print("Deleted \(filename), \(code) from favorites.")}
-                        }
-                    }
-    //                let numFaves = self.state.show.episodes.filter { $0.isFavorite }.count
-    //
-    //                self.state.show.hasFavoritedEpisodes = (numFaves != 0) // TODO: do these calcs when func is called
-                }
-            }
-        }
-    }
-    CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase.add(operation)
-}
-*/
-
 
