@@ -9,22 +9,22 @@
 import SwiftUI
 
 struct DescriptionView: View {
-    let show: Show
-    var body: some View {
-        ScrollView {
-            VStack {
-                Text(show.description)
-                    .lineSpacing(10)
-                    .padding(.all, 20)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-        }
-        .navigationBarTitle(String(format: NSLocalizedString("%@ Description", comment: "description of the show"), self.show.name))
+  let show: Show
+  var body: some View {
+    ScrollView {
+      VStack {
+        Text(show.description)
+          .lineSpacing(10)
+          .padding(.all, 20)
+          .fixedSize(horizontal: false, vertical: true)
+      }
     }
+    .navigationBarTitle(String(format: NSLocalizedString("%@ Description", comment: "description of the show"), self.show.name))
+  }
 }
 
 struct DescriptionView_Previews: PreviewProvider {
-    static var previews: some View {
-        DescriptionView(show: Show(name: "test"))
-    }
+  static var previews: some View {
+    DescriptionView(show: Show(name: "test"))
+  }
 }
