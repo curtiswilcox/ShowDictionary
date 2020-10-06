@@ -27,7 +27,11 @@ struct EpisodeChooserView: View {
           let width = geometry.size.width / 2.5
           LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
             ForEach(self.getSeasons(), id: \.self) { season in
-              Section(header: Text(getSeasonText(self.show, season, useSections)).font(.title).bold().padding(.top)) {
+              Section(header: useSections ?
+                        AnyView(HStack {
+                          Text(getSeasonText(self.show, season)).font(.title).bold()
+                          VStack { Divider().padding(.horizontal) }
+                        }.padding(.top)) : AnyView(EmptyView())) {
                 ForEach(self.episodes.filter { $0.seasonNumber == season }) { episode in
                   EpisodeSquareView(selected: $selected, show: show, episode: episode, width: width)
                 }
