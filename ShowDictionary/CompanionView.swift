@@ -10,35 +10,70 @@ import SwiftUI
 
 struct CompanionView: View {
   let show: Show
+  @State var companionSelected: (companion: Person?, showing: Bool) = (nil, false)
   
   var body: some View {
-    List {
-      ForEach(self.getSectionHeaders(), id: \.self) { header in
-        Section(header: Text(header)) {
-          ForEach(self.getCompanions().filter { $0.lastName.firstLetter() == header }, id: \.self) { companion in
-            NavigationLink(destination: EpisodeChooserView(navTitle: "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), companion.fullName))", show: self.show, episodes: self.show.episodes.filter { $0.companions!.contains(companion) })) {
-              VStack(alignment: .leading) {
-                Text(companion.fullName)
-                SubText("episode".localizeWithFormat(quantity: self.getNumEps(companion)))
-              }
-            }
-          }
+    ZStack {
+      if let companion = companionSelected.companion {
+        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), companion.fullName))"
+        let episodesToPass = self.show.episodes.filter { $0.companions!.contains(companion) }
+        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, episodes: episodesToPass), isActive: $companionSelected.showing) {
+          EmptyView()
         }
       }
+      GridView(show: show, companionSelected: $companionSelected)
     }
     .navigationBarTitle("companion".localizeWithFormat(quantity: 2).capitalized)
   }
-  
-  private func getSectionHeaders() -> [String] {
-    return Set(getCompanions().map { $0.lastName.firstLetter().uppercased() }).sorted()
+}
+
+extension CompanionView {
+  struct GridView: View {
+    @ObservedObject var show: Show
+    @Binding var companionSelected: (companion: Person?, showing: Bool)
+    
+    var body: some View {
+      GeometryReader { geometry in
+        ScrollView {
+          LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
+            ForEach(getCompanions(show: show), id: \.self) { companion in
+              Button {
+                companionSelected = (companion, true)
+              } label: {
+                let width = geometry.size.width / 2.5
+                CardView(width: width, vertAlignment: .top, horizAlignment: .leading) {
+                  Text(companion.fullName)
+                    .font(.callout)
+                    .bold()
+                    .foregroundColor(Color(UIColor.label))
+                    .padding(.top)
+                  if let actor = show.characters?.first(where: { $0.character == companion })?.actor {
+                    SubText(actor.fullName)
+                  }
+                  Spacer()
+                  Divider()
+                    .background(Color(UIColor.systemGray))
+                    .frame(width: width / 3)
+                    .padding(.all, 0)
+                  SubText("episode".localizeWithFormat(quantity: getNumEps(show: show, companion: companion)))
+                    .padding(.bottom)
+                }
+              }
+            }
+          }
+          .padding(.horizontal)
+        }
+        .onAppear { companionSelected = (nil, false) }
+      }
+    }
   }
-  
-  private func getCompanions() -> [Person] {
-    let companions = show.episodes!.map { $0.companions! }.reduce([], +)
-    return Set<Person>(companions).sorted()
-  }
-  
-  private func getNumEps(_ companion: Person) -> Int {
-    return show.episodes.filter { $0.companions!.contains(companion) }.count
-  }
+}
+
+fileprivate func getCompanions(show: Show) -> [Person] {
+  let companions = show.episodes!.map { $0.companions! }.reduce([], +)
+  return Set<Person>(companions).sorted()
+}
+
+fileprivate func getNumEps(show: Show, companion: Person) -> Int {
+  return show.episodes.filter { $0.companions!.contains(companion) }.count
 }
