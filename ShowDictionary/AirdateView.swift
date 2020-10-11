@@ -32,9 +32,9 @@ struct AirdateView: View {
     
     let msg: String = {
       if searchMethod == .singleAirdate {
-        return "All episodes of \(show.name) that aired within one week of the selected date will be displayed."
+        return String(format: NSLocalizedString("All episodes of %@ that aired within one week of the selected date will be displayed.", comment: ""), show.name)
       }
-      return "All episodes of \(show.name) that aired between the selected dates will be displayed."
+      return String(format: NSLocalizedString("All episodes of %@ that aired between the selected dates will be displayed.", comment: ""), show.name)
     }()
     
     ScrollView {
@@ -69,7 +69,7 @@ struct AirdateView: View {
             }
             go.toggle()
           } label: {
-            Text("Display episodes")
+            Text(NSLocalizedString("Display episodes", comment: ""))
               .padding()
               .overlay(
                 RoundedRectangle(cornerRadius: 20)
@@ -81,7 +81,7 @@ struct AirdateView: View {
         }
       }
     }
-    .navigationTitle("Date Selection")
+    .navigationTitle(NSLocalizedString("Airdate Selection", comment: ""))
     .onAppear {
       if self.after == Date(hyphenated: "1911-01-01") {
         self.before = self.show.episodes.last!.airdate
@@ -89,7 +89,7 @@ struct AirdateView: View {
       }
     }
     .alert(isPresented: $showNoEpisodeAlert) {
-      Alert(title: Text("No episodes"), message: Text("No episodes aired in the given time frame."), dismissButton: .default(Text("Dismiss")))
+      Alert(title: Text(NSLocalizedString("No episodes", comment: "")), message: Text(NSLocalizedString("No episodes aired in the given time frame.", comment: "")), dismissButton: .default(Text(NSLocalizedString("Dismiss", comment: ""))))
     }
   }
 }

@@ -15,7 +15,7 @@ struct DirectorView: View {
   var body: some View {
     if let director = directorSelected.director {
 //      let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), director.fullName))"
-      let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), director.fullName))"
+      let navTitle = String(format: NSLocalizedString("%@", comment: ""), director.fullName)
       let episodesToPass = show.episodes.filter { episode in episode.directors!.contains(director) }
       
       NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: true, episodes: episodesToPass).environmentObject(show), isActive: $directorSelected.showing) {

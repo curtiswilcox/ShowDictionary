@@ -16,7 +16,7 @@ struct CharacterView: View {
     ZStack {
       if let character = characterSelected.character {
 //        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), character.character.fullName))"
-        let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), character.character.fullName))"
+        let navTitle = String(format: NSLocalizedString("%@", comment: ""), character.character.fullName)
         let episodesToPass = epsWithChar(character, show: show)
         NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: true, episodes: episodesToPass).environmentObject(show), isActive: $characterSelected.showing) {
           EmptyView()

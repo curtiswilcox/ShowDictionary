@@ -17,7 +17,7 @@ struct SeasonView: View {
       if let season = seasonSelected.season {
         let title = getTitle(self.show, season)
 //        let navTitle = "\(String(format: NSLocalizedString("Episodes in %@", comment: ""), title))"
-        let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), title))"
+        let navTitle = String(format: NSLocalizedString("%@", comment: ""), title)
         let episodesToPass = self.show.episodes.filter { $0.seasonNumber == season }
         NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: false, episodes: episodesToPass).environmentObject(show), isActive: $seasonSelected.showing) {
           EmptyView()
