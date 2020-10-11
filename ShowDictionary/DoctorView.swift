@@ -9,35 +9,35 @@
 import SwiftUI
 
 struct DoctorView: View {
-  let show: Show
+  @EnvironmentObject var show: Show
   @State var doctorSelected: (doctor: String?, showing: Bool) = (nil, false)
   
   var body: some View {
     ZStack {
       if let doctor = doctorSelected.doctor {
 //        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), localizeDoctor(doctor, lower: true)))"
-        let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), localizeDoctor(doctor, lower: true)))"
+        let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), localizeDoctor(doctor, lower: true)).capitalizeFirstLetter())"
         let episodesToPass = self.show.episodes.filter { $0.doctors!.contains(doctor) }
-        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, useSections: true, episodes: episodesToPass), isActive: $doctorSelected.showing) {
+        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: true, episodes: episodesToPass).environmentObject(show), isActive: $doctorSelected.showing) {
           EmptyView()
         }
       }
-      GridView(show: show, doctorSelected: $doctorSelected)
+      GridView(doctorSelected: $doctorSelected)
     }
     .navigationBarTitle("doctor".localizeWithFormat(quantity: 2).capitalized)
   }
 }
 
-extension View {
-  func Print(_ vars: Any...) -> some View {
-    for v in vars { print(v) }
-    return EmptyView()
-  }
-}
+//extension View {
+//  func Print(_ vars: Any...) -> some View {
+//    for v in vars { print(v) }
+//    return EmptyView()
+//  }
+//}
 
 extension DoctorView {
   struct GridView: View {
-    @ObservedObject var show: Show
+    @EnvironmentObject var show: Show
     @Binding var doctorSelected: (doctor: String?, showing: Bool)
     
     var body: some View {

@@ -10,8 +10,8 @@
 import SwiftUI
 
 struct EpisodeView: View {
-  let show: Show
-  @ObservedObject private(set) var episode: Episode
+  @EnvironmentObject var show: Show
+  @ObservedObject var episode: Episode
   
   var body: some View {
     VStack {
@@ -26,18 +26,8 @@ struct EpisodeView: View {
         }
       }
       Spacer()
-      Toolbar(show: self.show, episode: self.episode)
+      Toolbar(episode: self.episode).environmentObject(show)
     }
     .navigationBarTitle(episode.title)
-  }
-    
-//    init(show: Show) {
-//        self.show = show
-//        self.episode = show.episodes.randomElement()!
-//    }
-    
-  init(show: Show, episode: Episode) {
-    self.show = show
-    self.episode = episode
   }
 }

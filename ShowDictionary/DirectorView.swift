@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct DirectorView: View {
-  var show: Show
+  @EnvironmentObject var show: Show
   @State var directorSelected: (director: Person?, showing: Bool) = (nil, false)
   
   var body: some View {
@@ -18,14 +18,14 @@ struct DirectorView: View {
       let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), director.fullName))"
       let episodesToPass = show.episodes.filter { episode in episode.directors!.contains(director) }
       
-      NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, useSections: true, episodes: episodesToPass), isActive: $directorSelected.showing) {
+      NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: true, episodes: episodesToPass).environmentObject(show), isActive: $directorSelected.showing) {
         EmptyView()
       }
     }
     GeometryReader { geometry in
       ScrollView {
         let width = geometry.size.width / 2.5
-        GridView(show: show, directorSelected: $directorSelected, width: width)
+        GridView(directorSelected: $directorSelected, width: width)
           .onAppear { directorSelected = (nil, false) }
       }
     }
@@ -36,7 +36,7 @@ struct DirectorView: View {
 
 extension DirectorView {
   struct GridView: View {
-    @ObservedObject var show: Show
+    @EnvironmentObject var show: Show
     @Binding var directorSelected: (director: Person?, showing: Bool)
     let width: CGFloat
     
@@ -45,9 +45,10 @@ extension DirectorView {
         ForEach(getSectionHeaders(show: show), id: \.self) { header in
           Section(header:
                     HStack {
-                      VStack { Divider().padding(.horizontal) }
+//                      VStack { Divider().padding(.horizontal) }
                       Text(header).font(.title).bold()
-                      VStack { Divider().padding(.horizontal) }
+                      Spacer()
+//                      VStack { Divider().padding(.horizontal) }
                     }) {
             ForEach(getDirectors(show: show).filter { $0.lastName.firstLetter() == header }, id: \.self) { director in
               Button {

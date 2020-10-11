@@ -10,7 +10,7 @@ import SwiftUI
 
 struct EpisodeChooserView: View {
   let navTitle: String
-  let show: Show
+  @EnvironmentObject var show: Show
   let useSections: Bool
   @State private(set) var episodes: [Episode] = []
   @State private var selected: (episode: Episode?, display: Bool) = (nil, false)
@@ -18,7 +18,7 @@ struct EpisodeChooserView: View {
   var body: some View {
     ZStack {
       if let episode = selected.episode {
-        NavigationLink(destination: EpisodeView(show: self.show, episode: episode), isActive: $selected.display) {
+        NavigationLink(destination: EpisodeView(episode: episode).environmentObject(show), isActive: $selected.display) {
           EmptyView()
         }
       }
@@ -33,7 +33,7 @@ struct EpisodeChooserView: View {
                           Spacer()
                         }.padding([.top, .horizontal])) : AnyView(EmptyView())) {
                 ForEach(self.episodes.filter { $0.seasonNumber == season }) { episode in
-                  EpisodeSquareView(selected: $selected, show: show, episode: episode, width: width)
+                  EpisodeSquareView(selected: $selected, episode: episode, width: width)
                 }
               }
             }
@@ -59,7 +59,7 @@ struct EpisodeChooserView: View {
 extension EpisodeChooserView {
   struct EpisodeSquareView: View {
     @Binding var selected: (episode: Episode?, display: Bool)
-    let show: Show
+    @EnvironmentObject var show: Show
     @ObservedObject var episode: Episode
     let width: CGFloat
     
@@ -145,65 +145,3 @@ extension EpisodeChooserView {
     }
   }
 }
-/*
-extension EpisodeChooserView {
-  
-  struct EpisodeRow: View {
-    let show: Show
-    @ObservedObject private(set) var episode: Episode
-    
-    var body: some View {
-      HStack {
-        VStack(alignment: .leading) {
-          Text(episode.title)
-          SubText(self.seasonNum(episode))
-          SubText(episode.airdate.written())
-        }
-        Spacer()
-        Image(systemName: "star.fill")
-          .foregroundColor(episode.isFavorite ? .secondary : .clear)
-          .imageScale(.large)
-      }
-      .contextMenu {
-        Button(action: self.toggleFavoritism) {
-          HStack {
-            Text(self.episode.isFavorite ? NSLocalizedString("Unfavorite", comment: "") : NSLocalizedString("Favorite", comment: ""))
-            Image(systemName: "star\(self.episode.isFavorite ? "" : ".fill")")
-              .foregroundColor(.secondary)
-          }
-        }
-      }
-    }
-    
-    private func seasonNum(_ episode: Episode) -> String {
-      let seasonType = self.show.typeOfSeasons.localizeCapSing
-      let seasonNum = episode.seasonNumber
-      let episodeNum = episode.numberInSeason
-      
-      return "\(seasonType) \(seasonNum), \(NSLocalizedString("Episode", comment: "subtitle (doesn't get a number preceding)")) \(episodeNum)"
-    }
-    
-    private func toggleFavoritism() {
-      self.episode.isFavorite.toggle()
-      if self.episode.isFavorite {
-        updateServerEpisodeIsFavorite(filename: self.show.filename, code: self.episode.code) {
-          self.episode.favoritedID = $0
-        }
-        self.show.hasFavoritedEpisodes = true
-      } else {
-        updateServerEpisodeIsNotFavorite(filename: self.show.filename, code: self.episode.code, id: self.episode.favoritedID!)
-        self.episode.favoritedID = nil
-//        for episode in self.show.episodes where !episode.isFavorite {
-//          self.show.hasFavoritedEpisodes = false
-//        }
-        self.show.hasFavoritedEpisodes = (self.show.episodes.filter { $0.isFavorite }.count != 0)
-      }
-    }
-  }
-}
-*/
-//struct EpisodeChooser_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EpisodeChooser()
-//    }
-//}

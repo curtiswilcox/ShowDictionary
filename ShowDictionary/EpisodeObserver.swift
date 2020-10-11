@@ -11,9 +11,13 @@ import CloudKit
 import Foundation
 
 class EpisodeObserver : ObservableObject {
-  private var showname: String
+  var showname: String
   private var records: [Record] = []
   @Published var percentCompleted: Double = 0
+  
+  init() {
+    self.showname = ""
+  }
   
   init(_ showname: String) {
     self.showname = showname // really the filename
@@ -30,16 +34,26 @@ class EpisodeObserver : ObservableObject {
         do {
           let decoder = JSONDecoder()
           episodes = try decoder.decode([Episode].self, from: Data(text.utf8)).sorted(by: <)
+          saveData(text, filename: self.showname)
           self.queryFavoritism(episodes) { (episodes, hasFaves) in
             self.percentCompleted = 100
             completion(episodes, hasFaves)
           }
         } catch {
-          completion([], false)
+          self.mightHaveToLoad(completion: completion)
         }
       case .failure:
-        completion([], false)
+        self.mightHaveToLoad(completion: completion)
       }
+    }
+  }
+  
+  func mightHaveToLoad(completion: @escaping ([Episode], Bool) -> ()) {
+    if let episodes = self.loadData() {
+      self.percentCompleted = 100
+      completion(episodes, false)
+    } else {
+      completion([], false)
     }
   }
   
@@ -96,6 +110,14 @@ class EpisodeObserver : ObservableObject {
   private func getFavorites(_ record: CKRecord) {
     let code = String(format: "%@", record["code"]! as! CVarArg)
     records.append(Record(code: code, filename: record["filename"]!, id: record.recordID))
+  }
+    
+  func loadData() -> [Episode]? {
+    let lang = Locale.current.identifier
+    let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    let fileURL = directoryURL.appendingPathComponent(lang).appendingPathComponent(showname).appendingPathExtension("json")
+    
+    return try? JSONDecoder().decode([Episode].self, from: Data(contentsOf: fileURL)).sorted(by: <)
   }
   
 }

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CompanionView: View {
-  let show: Show
+  @EnvironmentObject var show: Show
   @State var companionSelected: (companion: Person?, showing: Bool) = (nil, false)
   
   var body: some View {
@@ -18,11 +18,11 @@ struct CompanionView: View {
 //        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), companion.fullName))"
         let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), companion.fullName))"
         let episodesToPass = self.show.episodes.filter { $0.companions!.contains(companion) }
-        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, useSections: true, episodes: episodesToPass), isActive: $companionSelected.showing) {
+        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: true, episodes: episodesToPass).environmentObject(show), isActive: $companionSelected.showing) {
           EmptyView()
         }
       }
-      GridView(show: show, companionSelected: $companionSelected)
+      GridView(companionSelected: $companionSelected)
     }
     .navigationBarTitle("companion".localizeWithFormat(quantity: 2).capitalized)
   }
@@ -30,7 +30,7 @@ struct CompanionView: View {
 
 extension CompanionView {
   struct GridView: View {
-    @ObservedObject var show: Show
+    @EnvironmentObject var show: Show
     @Binding var companionSelected: (companion: Person?, showing: Bool)
     
     var body: some View {

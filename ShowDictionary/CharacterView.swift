@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CharacterView: View {
-  let show: Show
+  @EnvironmentObject var show: Show
   @State var characterSelected: (character: Show.Character?, showing: Bool) = (nil, false)
   
   var body: some View {
@@ -18,14 +18,14 @@ struct CharacterView: View {
 //        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), character.character.fullName))"
         let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), character.character.fullName))"
         let episodesToPass = epsWithChar(character, show: show)
-        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, useSections: true, episodes: episodesToPass), isActive: $characterSelected.showing) {
+        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: true, episodes: episodesToPass).environmentObject(show), isActive: $characterSelected.showing) {
           EmptyView()
         }
       }
       GeometryReader { geometry in
         ScrollView {
           let width = geometry.size.width / 2.5
-          GridView(show: show, characterSelected: $characterSelected, width: width)
+          GridView(characterSelected: $characterSelected, width: width)
             .onAppear { characterSelected = (nil, false) }
         }
       }
@@ -36,7 +36,7 @@ struct CharacterView: View {
 
 extension CharacterView {
   struct GridView: View {
-    @ObservedObject var show: Show
+    @EnvironmentObject var show: Show
     @Binding var characterSelected: (character: Show.Character?, showing: Bool)
     let width: CGFloat
     

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct DescriptionView: View {
-  let show: Show
+  @EnvironmentObject var show: Show
   var body: some View {
     ScrollView {
       VStack {
@@ -23,8 +23,8 @@ struct DescriptionView: View {
   }
 }
 
-struct DescriptionView_Previews: PreviewProvider {
-  static var previews: some View {
-    DescriptionView(show: Show(name: "test"))
-  }
-}
+//struct DescriptionView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    DescriptionView(show: Show(name: "test"))
+//  }
+//}

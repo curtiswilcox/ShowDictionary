@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct SeasonView: View {
-  let show: Show
+  @EnvironmentObject var show: Show
   @State var seasonSelected: (season: Int?, showing: Bool) = (nil, false)
 
   var body: some View {
@@ -18,12 +18,12 @@ struct SeasonView: View {
         let title = getTitle(self.show, season)
 //        let navTitle = "\(String(format: NSLocalizedString("Episodes in %@", comment: ""), title))"
         let navTitle = "\(String(format: NSLocalizedString("%@", comment: ""), title))"
-        
-        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, show: self.show, useSections: false, episodes: self.show.episodes.filter { $0.seasonNumber == season }), isActive: $seasonSelected.showing) {
+        let episodesToPass = self.show.episodes.filter { $0.seasonNumber == season }
+        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: false, episodes: episodesToPass).environmentObject(show), isActive: $seasonSelected.showing) {
           EmptyView()
         }
       }
-      GridView(show: show, seasonSelected: $seasonSelected)
+      GridView(seasonSelected: $seasonSelected)
     }
     .navigationBarTitle(show.typeOfSeasons.localizeLowPlur.capitalized)
   }
@@ -31,7 +31,7 @@ struct SeasonView: View {
 
 extension SeasonView {
   struct GridView: View {
-    @ObservedObject var show: Show
+    @EnvironmentObject var show: Show
     @Binding var seasonSelected: (season: Int?, showing: Bool)
     
     var body: some View {

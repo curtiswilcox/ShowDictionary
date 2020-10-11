@@ -18,6 +18,31 @@ func getSeasonText(_ show: Show, _ season: Int) -> String {
   else { return preColon }
 }
 
+func saveData(_ data: String, filename: String) {
+  let lang = Locale.current.identifier
+  let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent(lang)
+
+  if !FileManager.default.fileExists(atPath: directoryURL.path) {
+    do {
+      try FileManager.default.createDirectory(atPath: directoryURL.path, withIntermediateDirectories: true, attributes: nil)
+    } catch let e {
+      print("Couldn't create directory! \(e)")
+    }
+  }
+  let fileURL = directoryURL.appendingPathComponent(filename).appendingPathExtension("json")
+  if !FileManager.default.fileExists(atPath: fileURL.path) {
+    print("Doesn't exist!")
+    FileManager.default.createFile(atPath: fileURL.path, contents: nil, attributes: nil)
+    print("Exists: \(FileManager.default.fileExists(atPath: fileURL.path))")
+  }
+  
+  do {
+    try Data(data.utf8).write(to: fileURL)
+  } catch let e {
+    print("Couldn't save \(lang)/\(filename).json data! \(e)")
+  }
+}
+
 func updateServerEpisodeIsFavorite(filename show: String, code: Int, completion: @escaping ((CKRecord.ID?) -> ())) {
   guard signedIn else {
     completion(nil)

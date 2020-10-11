@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct EpisodeDetailView: View {
-  let show: Show
+  @EnvironmentObject var show: Show
   let episode: Episode
   
   @State private var attributes = [Attribute]()

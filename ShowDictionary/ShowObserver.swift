@@ -36,7 +36,10 @@ class ShowObserver : ObservableObject {
             }
             self.numberCompleted += 1
             self.percentCompleted = self.numberCompleted / CGFloat(shows.count) * 100
-            self.data.sort(by: <)
+            
+            if self.percentCompleted == 100 {
+              self.data.sort(by: <)
+            }
           }
         }).resume()
       }
@@ -47,19 +50,23 @@ class ShowObserver : ObservableObject {
     var shows: [Show] = []
     
     Alamofire.request("https://wilcoxcurtis.com/show-dictionary/files/shows_\(Locale.current.languageCode ?? "en").json", method: .get).responseString() { response in
+//      print("Starting shows request...")
       switch response.result {
       case .success(var text):
+//        print("Success")
         text = text.replacingOccurrences(of: "<pre>", with: "").replacingOccurrences(of: "</pre>", with: "").trimmingCharacters(in: .whitespacesAndNewlines) // remove the pretty-print tags from HTML
         
         do {
           let decoder = JSONDecoder()
           shows = try decoder.decode([Show].self, from: Data(text.utf8)).sorted(by: <)
+          saveData(text, filename: "shows")
           completion(shows)
         } catch {
-          completion([])
+          completion(self.loadShowData() ?? []) // maybe only show the shows that have saved data?
         }
       case .failure:
-        completion([])
+//        print("Failure")
+        completion(self.loadShowData() ?? [])
       }
     }
   }
@@ -76,7 +83,7 @@ class ShowObserver : ObservableObject {
     
     do {
       try data.write(to: fileURL)
-      print("\(show) file written!")
+//      print("\(show) file written!")
     } catch {
       // leave empty for now
     }
@@ -98,6 +105,20 @@ class ShowObserver : ObservableObject {
       return nil
     } catch {
 //      print("\(show) file had a problem loading!")
+      return nil
+    }
+  }
+  
+  func loadShowData() -> [Show]? {
+    let lang = Locale.current.identifier
+    let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    let fileURL = directoryURL.appendingPathComponent(lang).appendingPathComponent("shows").appendingPathExtension("json")
+    
+    do {
+      let shows = try JSONDecoder().decode([Show].self, from: Data(contentsOf: fileURL)).sorted(by: <)
+      return shows
+    } catch let e {
+      print("Couldn't load show data: \(e)")
       return nil
     }
   }

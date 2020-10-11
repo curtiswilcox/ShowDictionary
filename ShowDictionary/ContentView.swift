@@ -18,7 +18,7 @@ struct ContentView: View {
 		NavigationView {
 			ZStack {
 				if let show = showSelected.show?.show {
-					NavigationLink(destination: SearchMethodView(show: show), isActive: $showSelected.display) {
+					NavigationLink(destination: SearchMethodView().environmentObject(show), isActive: $showSelected.display) {
 						EmptyView()
 					}
 				}
