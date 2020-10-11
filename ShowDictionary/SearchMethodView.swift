@@ -96,15 +96,17 @@ extension SearchMethodView {
     @Binding var progress: CGFloat
     @Binding var chosenMethod: (method: SearchMethod?, showing: Bool)
     
+    let columns = UIDevice.current.userInterfaceIdiom == .pad ? 3 : 2
+    
     var body: some View {
       GeometryReader { geometry in
         ScrollView {
-          LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
+          LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns), spacing: 20) {
             ForEach(self.show.getAvailableSearchMethods()) { method in
               Button {
                 chosenMethod = (method, true)
               } label: {
-                let width = geometry.size.width / 2.5
+                let width = geometry.size.width / (CGFloat(columns) + 0.5)
                 MethodView(method: method, width: width)
               }
             }

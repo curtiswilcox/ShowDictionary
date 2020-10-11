@@ -11,7 +11,7 @@ import SwiftUI
 
 struct AirdateView: View {
   @EnvironmentObject var show: Show
-  @State var after = Date() {
+  @State var after = Date(hyphenated: "1911-01-01") {
     didSet {
       guard searchMethod == .singleAirdate else { return }
       before = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: after)!
@@ -19,17 +19,16 @@ struct AirdateView: View {
   }
   @State var before = Date()
   @State var go = false
+  @State var showNoEpisodeAlert = false
   let searchMethod: SearchMethod
   
   var body: some View {
     let navTitle: String = {
       if searchMethod == .singleAirdate {
-        return "Episodes around \(after.written(ms: 4))"
+        return after.written(ys: 2, ms: 2)
       }
-      return "Episodes between \(after.written(ms: 3)) and \(before.written(ms: 3))"
+      return "\(after.written(ys: 2, ms: 2)) - \(before.written(ys: 2, ms: 2))"
     }()
-    
-    let episodesToPass = show.episodes.filter { $0.airdate >= after && $0.airdate < before }
     
     let msg: String = {
       if searchMethod == .singleAirdate {
@@ -40,6 +39,7 @@ struct AirdateView: View {
     
     ScrollView {
       ZStack {
+        let episodesToPass = show.episodes.filter { $0.airdate >= after && $0.airdate < before }
         NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: Set(episodesToPass.map { $0.seasonNumber }).count > 1, episodes: episodesToPass).environmentObject(show), isActive: $go) {
           EmptyView()
         }
@@ -55,7 +55,7 @@ struct AirdateView: View {
           if searchMethod == .rangeAirdates {
             Divider()
               .padding()
-            DatePicker("Episodes before:", selection: $before, in: range, displayedComponents: .date)
+            DatePicker("", selection: $before, in: after...show.episodes.last!.airdate, displayedComponents: .date)
               .datePickerStyle(GraphicalDatePickerStyle())
               .labelsHidden()
               .padding(.vertical)
@@ -63,6 +63,10 @@ struct AirdateView: View {
           Divider()
             .padding()
           Button {
+            guard !episodesToPass.isEmpty else {
+              showNoEpisodeAlert.toggle()
+              return
+            }
             go.toggle()
           } label: {
             Text("Display episodes")
@@ -78,6 +82,14 @@ struct AirdateView: View {
       }
     }
     .navigationTitle("Date Selection")
-    .onAppear { self.after = self.show.episodes.first!.airdate }
+    .onAppear {
+      if self.after == Date(hyphenated: "1911-01-01") {
+        self.before = self.show.episodes.last!.airdate
+        self.after = self.show.episodes.first!.airdate
+      }
+    }
+    .alert(isPresented: $showNoEpisodeAlert) {
+      Alert(title: Text("No episodes"), message: Text("No episodes aired in the given time frame."), dismissButton: .default(Text("Dismiss")))
+    }
   }
 }

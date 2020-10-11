@@ -6,7 +6,6 @@
 //  Copyright © 2020 wilcoxcurtis. All rights reserved.
 //
 
-import Network
 import SwiftUI
 
 struct Toolbar: View {
@@ -32,7 +31,7 @@ struct Toolbar: View {
         Image(systemName: "star\(episode.isFavorite ? ".fill" : "")")
           .imageScale(.large)
       }
-      .disabled(NWPathMonitor().currentPath.status != .satisfied)
+      .disabled(!signedIn)
       .padding()
       
       NavigationLink(destination: EpisodeDetailView(episode: self.episode).environmentObject(show)) {
