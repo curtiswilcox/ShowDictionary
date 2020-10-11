@@ -45,10 +45,11 @@ extension CharacterView {
         ForEach(getSectionHeaders(show: show), id: \.self) { header in
           Section(header:
                     HStack {
-                      VStack { Divider().padding(.horizontal) }
+//                      VStack { Divider().padding(.horizontal) }                      
                       Text(header).font(.title).bold()
-                      VStack { Divider().padding(.horizontal) }
-                    }) {
+                      Spacer()
+//                      VStack { Divider().padding(.horizontal) }
+                    }.padding([.top, .horizontal])) {
             ForEach(getCharacters(show: show).filter { $0.character.lastName.firstLetter() == header }, id: \.self) { character in
               Button {
                 characterSelected = (character, true)
@@ -91,11 +92,12 @@ fileprivate func getSectionHeaders(show: Show) -> [String] {
 }
 
 fileprivate func getCharacters(show: Show) -> [Show.Character] {
-  var characters = [Show.Character]()
-  for episode in show.episodes {
-    for character in episode.characters! {
-      characters.append(character)
-    }
-  }
+//  var characters = [Show.Character]()
+//  for episode in show.episodes {
+//    for character in episode.characters ?? [] {
+//      characters.append(character)
+//    }
+//  }
+  let characters = show.episodes.compactMap({$0.characters.flatMap({$0})}).joined()
   return Set(characters).sorted(by: { $0.character < $1.character })
 }

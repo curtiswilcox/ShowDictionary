@@ -86,6 +86,7 @@ extension ContentView {
 					if let titleCard = datum.titleCard {
 						Image(uiImage: titleCard)
 							.resizable()
+							.accessibility(label: Text(datum.show.name))
 					} else {
 						Text(datum.show.name)
 					}

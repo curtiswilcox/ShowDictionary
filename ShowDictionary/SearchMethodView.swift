@@ -32,25 +32,21 @@ struct SearchMethodView: View {
     }
     .navigationBarTitle(self.show.name)
     .onAppear {
-      if self.observer.showname.isEmpty {
-        self.observer.showname = self.show.filename
-        self.observer.getEpisodes { (episodes, hasFaves) in
-          self.show.episodes = episodes
-          self.show.hasFavoritedEpisodes = hasFaves
-        }
-      }
+      chosenMethod = (nil, false)
+      guard !self.observer.showname.isEmpty else { return }
       
       let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
         self.progress = CGFloat(self.observer.percentCompleted)
         if self.progress == 100 { timer.invalidate() }
       }
+      
+      self.observer.showname = self.show.filename
+      self.observer.getEpisodes { (episodes, hasFaves) in
+        self.show.episodes = episodes
+        self.show.hasFavoritedEpisodes = hasFaves
+      }
     }
   }
-  
-//  init() {
-//    self.show = show
-//    observer = EpisodeObserver(show.filename)
-//  }
   
   func getDestination(_ method: SearchMethod) -> some View {
     switch method {

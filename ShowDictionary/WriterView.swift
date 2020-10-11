@@ -49,7 +49,7 @@ extension WriterView {
                       Text(header).font(.title).bold()
                       Spacer()
 //                      VStack { Divider().padding(.horizontal) }
-                    }) {
+                    }.padding([.top, .horizontal])) {
             ForEach(getWriters(show: show).filter { $0.lastName.firstLetter() == header }, id: \.self) { writer in
               Button {
                 writerSelected = (writer, true)

@@ -49,7 +49,7 @@ extension DirectorView {
                       Text(header).font(.title).bold()
                       Spacer()
 //                      VStack { Divider().padding(.horizontal) }
-                    }) {
+                    }.padding([.top, .horizontal])) {
             ForEach(getDirectors(show: show).filter { $0.lastName.firstLetter() == header }, id: \.self) { director in
               Button {
                 directorSelected = (director, true)
