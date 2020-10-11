@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D326A720263BEFA194795263 /* Pods_ShowDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */; };
+		D419A3C525328A8E008B3B6A /* AirdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D419A3C425328A8E008B3B6A /* AirdateView.swift */; };
 		D48D506A25152FA400BBB94F /* ShowDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D506925152FA400BBB94F /* ShowDictionaryApp.swift */; };
 		D4DFB2E6252BA61E006E63FF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DFB2E5252BA61E006E63FF /* CardView.swift */; };
 		D4E01370252A75B20025A08C /* SubText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E960FBB423BA67A80071D9EB /* SubText.swift */; };
@@ -159,6 +160,7 @@
 		906FE543A3FFF313A6280D3B /* Pods-ShowDictionaryWatchOS Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryWatchOS Extension.debug.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryWatchOS Extension/Pods-ShowDictionaryWatchOS Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShowDictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98DCA23D1AAEF3B274A4681C /* Pods-ShowDictionaryTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryTVOS.debug.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryTVOS/Pods-ShowDictionaryTVOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D419A3C425328A8E008B3B6A /* AirdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirdateView.swift; sourceTree = "<group>"; };
 		D48D506925152FA400BBB94F /* ShowDictionaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDictionaryApp.swift; sourceTree = "<group>"; };
 		D4DFB2E5252BA61E006E63FF /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E9089C9B23B707B100EE8C95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				E960FBB423BA67A80071D9EB /* SubText.swift */,
 				E9BDDDED23AEDA0E002729B2 /* Localizable.strings */,
 				E9089C9C23B707B100EE8C95 /* Localizable.stringsdict */,
+				D419A3C425328A8E008B3B6A /* AirdateView.swift */,
 				E92F823323B3244700AB98BE /* CharacterView.swift */,
 				E9645E7023B1D0D7001B6CBF /* CompanionView.swift */,
 				E9DBC9B323AED7ED004DF3A3 /* ContentView.swift */,
@@ -819,6 +822,7 @@
 				E960FBB523BA67A80071D9EB /* SubText.swift in Sources */,
 				E9DBC9B823AED7EE004DF3A3 /* DescriptionView.swift in Sources */,
 				E9BDDDF423AFC88D002729B2 /* GridStack.swift in Sources */,
+				D419A3C525328A8E008B3B6A /* AirdateView.swift in Sources */,
 				E9DBC9BE23AED7EE004DF3A3 /* SeasonType.swift in Sources */,
 				E92F823423B3244700AB98BE /* CharacterView.swift in Sources */,
 				E9DBC9C623AED7EE004DF3A3 /* Date+new+written+toString.swift in Sources */,

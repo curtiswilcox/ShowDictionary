@@ -26,7 +26,7 @@ struct CardView<Content: View>: View {
         RoundedRectangle(cornerRadius: 20)
           .stroke(Color(UIColor.label), lineWidth: 2)
           .frame(width: width)
-          .padding([.horizontal])
+          .padding(.horizontal)
         HStack(alignment: vertAlignment) {
           VStack(alignment: horizAlignment) {
             content

@@ -77,13 +77,13 @@ struct SearchMethodView: View {
     case .random:
       return AnyView(EpisodeView(episode: self.show.episodes.randomElement()!).environmentObject(show))
     case .rangeAirdates:
-      return AnyView(DescriptionView().environmentObject(show))
+      return AnyView(AirdateView(searchMethod: .rangeAirdates).environmentObject(show))
     case .season:
       return AnyView(SeasonView().environmentObject(show))
     case .showAll:
       return AnyView(EpisodeChooserView(navTitle: NSLocalizedString("Episodes", comment: "navigation bar title"), useSections: true, episodes: self.show.episodes).environmentObject(show))
     case .singleAirdate:
-      return AnyView(DescriptionView().environmentObject(show))
+      return AnyView(AirdateView(searchMethod: .singleAirdate).environmentObject(show))
     case .writer:
       return AnyView(WriterView().environmentObject(show))
     }
