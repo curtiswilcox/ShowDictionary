@@ -20,16 +20,13 @@ struct SectionHeaderView<Content: View>: View {
   var body: some View {
     VStack(alignment: .leading) {
       Divider()
-        .frame(minWidth: width)
         .background(Color.gray)
-      HStack {
-        text
-          .font(.title)
-          .bold()
-          .padding(.trailing, width / 8)
-      }
+        .offset(x: width / (UIDevice.current.userInterfaceIdiom == .pad ? 40 : 24))
+      text
+        .font(.title)
+        .bold()
+        .padding(.leading)
     }
     .padding(.top)
-    .padding(.leading, width / 8)
   }
 }
