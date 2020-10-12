@@ -24,8 +24,7 @@ struct WriterView: View {
     }
     GeometryReader { geometry in
       ScrollView {
-        let width = geometry.size.width / 2.5
-        GridView(writerSelected: $writerSelected, width: width)
+        GridView(writerSelected: $writerSelected, geometry: geometry)
           .onAppear { writerSelected = (nil, false) }
       }
     }
@@ -38,23 +37,19 @@ extension WriterView {
   struct GridView: View {
     @EnvironmentObject var show: Show
     @Binding var writerSelected: (writer: Person?, showing: Bool)
-    let width: CGFloat
+    let geometry: GeometryProxy
     
     var body: some View {
       LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
         ForEach(getSectionHeaders(show: show), id: \.self) { header in
           Section(header:
-                    HStack {
-//                      VStack { Divider().padding(.horizontal) }
-                      Text(header).font(.title).bold()
-                      Spacer()
-//                      VStack { Divider().padding(.horizontal) }
-                    }.padding([.top, .horizontal])) {
+                    SectionHeaderView<Text>(width: geometry.size.width) { Text(header) }) {
             ForEach(getWriters(show: show).filter { $0.lastName.firstLetter() == header }, id: \.self) { writer in
               Button {
                 writerSelected = (writer, true)
               } label: {
-                CardView(width: width, vertAlignment: .top) {
+                let cardWidth = geometry.size.width / 2.5
+                CardView(width: cardWidth, vertAlignment: .top) {
                   Text(writer.fullName)
                     .font(.callout)
                     .bold()
@@ -62,8 +57,8 @@ extension WriterView {
                     .padding(.top)
                   Spacer()
                   Divider()
-                    .background(Color(UIColor.systemGray))
-                    .frame(width: width / 3)
+                    .background(Color.gray)
+                    .frame(width: cardWidth / 3)
                     .padding(.all, 0)
                   SubText("episode".localizeWithFormat(quantity: getNumEps(writer, show: show)))
                     .padding(.bottom)

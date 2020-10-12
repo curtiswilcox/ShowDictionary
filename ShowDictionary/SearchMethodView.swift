@@ -33,7 +33,7 @@ struct SearchMethodView: View {
     .navigationBarTitle(self.show.name)
     .onAppear {
       chosenMethod = (nil, false)
-      guard !self.observer.showname.isEmpty else { return }
+      guard self.observer.showname.isEmpty else { return }
       
       let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
         self.progress = CGFloat(self.observer.percentCompleted)
@@ -127,7 +127,7 @@ extension SearchMethodView {
           .foregroundColor(Color(UIColor.label))
           .padding(.top)
         Divider()
-          .background(Color(UIColor.systemGray))
+          .background(Color.gray)
           .frame(width: width / 3)
           .padding(.all, 0)
         SubText(method.desc(seasonType: self.show.typeOfSeasons))

@@ -15,11 +15,11 @@ struct SubText<S: StringProtocol>: View {
     #if os(iOS)
     Text(content)
       .font(.subheadline)
-      .foregroundColor(Color(UIColor.systemGray))
+      .foregroundColor(.gray)
     #elseif os(watchOS)
     Text(content)
       .font(.subheadline)
-      .foregroundColor(Color(UIColor.gray))
+      .foregroundColor(.gray)
     #endif
   }
   

@@ -11,72 +11,33 @@ import SwiftUI
 
 struct AirdateView: View {
   @EnvironmentObject var show: Show
-  @State var after = Date(hyphenated: "1911-01-01") {
-    didSet {
-      guard searchMethod == .singleAirdate else { return }
-      before = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: after)!
-    }
-  }
+  @State var after = Date(hyphenated: "1911-01-01")
   @State var before = Date()
   @State var go = false
   @State var showNoEpisodeAlert = false
   let searchMethod: SearchMethod
   
   var body: some View {
-    let navTitle: String = {
-      if searchMethod == .singleAirdate {
-        return after.written(ys: 2, ms: 2)
-      }
-      return "\(after.written(ys: 2, ms: 2)) - \(before.written(ys: 2, ms: 2))"
-    }()
-    
-    let msg: String = {
-      if searchMethod == .singleAirdate {
-        return String(format: NSLocalizedString("All episodes of %@ that aired within one week of the selected date will be displayed.", comment: ""), show.name)
-      }
-      return String(format: NSLocalizedString("All episodes of %@ that aired between the selected dates will be displayed.", comment: ""), show.name)
-    }()
+    let afterCenturyAgo = Calendar.current.component(.year, from: after) + 100 < Calendar.current.component(.year, from: Date())
+    let beforeCenturyAgo = Calendar.current.component(.year, from: before) + 100 < Calendar.current.component(.year, from: Date()) // if true, then date is over 100 years ago
+    let navTitle = (searchMethod == .singleAirdate ? after.written() : "\(after.written(ys: (afterCenturyAgo ? 1 : 2), ms: 2, ds: 2)) - \(before.written(ys: (beforeCenturyAgo ? 1 : 2), ms: 2, ds: 2))")
     
     ScrollView {
       ZStack {
-        let episodesToPass = show.episodes.filter { $0.airdate >= after && $0.airdate < before }
-        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: Set(episodesToPass.map { $0.seasonNumber }).count > 1, episodes: episodesToPass).environmentObject(show), isActive: $go) {
-          EmptyView()
+        let episodesToPass = show.episodes.filter { searchMethod == .singleAirdate ? $0.airdate == after : $0.airdate >= after && $0.airdate < before }
+        if episodesToPass.count > 1 {
+          NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: Set(episodesToPass.map { $0.seasonNumber }).count > 1, episodes: episodesToPass).environmentObject(show), isActive: $go) {
+            EmptyView()
+          }
+        } else if !episodesToPass.isEmpty {
+          NavigationLink(destination: EpisodeView(episode: episodesToPass.first!).environmentObject(show), isActive: $go) {
+            EmptyView()
+          }
         }
-        VStack {
-          let range = show.episodes.first!.airdate...show.episodes.last!.airdate
-          Text(msg)
-            .font(.headline)
-            .padding()
-          DatePicker("", selection: $after, in: range, displayedComponents: .date)
-            .datePickerStyle(GraphicalDatePickerStyle())
-            .labelsHidden()
-            .padding(.vertical)
-          if searchMethod == .rangeAirdates {
-            Divider()
-              .padding()
-            DatePicker("", selection: $before, in: after...show.episodes.last!.airdate, displayedComponents: .date)
-              .datePickerStyle(GraphicalDatePickerStyle())
-              .labelsHidden()
-              .padding(.vertical)
-          }
-          Divider()
-            .padding()
-          Button {
-            guard !episodesToPass.isEmpty else {
-              showNoEpisodeAlert.toggle()
-              return
-            }
-            go.toggle()
-          } label: {
-            Text(NSLocalizedString("Display episodes", comment: ""))
-              .padding()
-              .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                  .stroke(Color(UIColor.label), lineWidth: 2)
-              )
-          }
-          .padding()
+        VStack(alignment: .leading) {
+          DateView(after: $after, before: $before, searchMethod: searchMethod)
+          Divider().padding()
+          DisplayEpisodeButton(go: $go, showNoEpisodeAlert: $showNoEpisodeAlert, episodesToPass: episodesToPass)
           Spacer()
         }
       }
@@ -90,6 +51,66 @@ struct AirdateView: View {
     }
     .alert(isPresented: $showNoEpisodeAlert) {
       Alert(title: Text(NSLocalizedString("No episodes", comment: "")), message: Text(NSLocalizedString("No episodes aired in the given time frame.", comment: "")), dismissButton: .default(Text(NSLocalizedString("Dismiss", comment: ""))))
+    }
+  }
+}
+
+extension AirdateView {
+  struct DateView: View {
+    @EnvironmentObject var show: Show
+    @Binding var after: Date
+    @Binding var before: Date
+    let searchMethod: SearchMethod
+    
+    var body: some View {
+      let msg: String = {
+        if searchMethod == .singleAirdate {
+          return String(format: NSLocalizedString("All episodes of %@ that aired on the selected date will be displayed.", comment: ""), show.name)
+        }
+        return String(format: NSLocalizedString("All episodes of %@ that aired between the selected dates will be displayed.", comment: ""), show.name)
+      }()
+      
+      let range = show.episodes.first!.airdate...show.episodes.last!.airdate
+      Text(msg)
+        .font(.headline)
+        .padding()
+      DatePicker("", selection: $after, in: range, displayedComponents: .date)
+        .datePickerStyle(GraphicalDatePickerStyle())
+        .labelsHidden()
+        .padding(.vertical)
+      if searchMethod == .rangeAirdates {
+        Divider()
+          .padding()
+        DatePicker("", selection: $before, in: after...show.episodes.last!.airdate, displayedComponents: .date)
+          .datePickerStyle(GraphicalDatePickerStyle())
+          .labelsHidden()
+          .padding(.vertical)
+      }
+    }
+  }
+  
+  struct DisplayEpisodeButton: View {
+    @Binding var go: Bool
+    @Binding var showNoEpisodeAlert: Bool
+    let episodesToPass: [Episode]
+    
+    var body: some View {
+      HStack {
+        Spacer()
+        Button {
+          guard !episodesToPass.isEmpty else {
+            showNoEpisodeAlert.toggle()
+            return
+          }
+          go.toggle()
+        } label: {
+          Text(NSLocalizedString("Display episodes", comment: ""))
+            .padding()
+            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(UIColor.label), lineWidth: 2))
+        }
+        .padding(.vertical)
+        Spacer()
+      }
     }
   }
 }

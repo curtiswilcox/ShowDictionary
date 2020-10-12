@@ -24,8 +24,7 @@ struct CharacterView: View {
       }
       GeometryReader { geometry in
         ScrollView {
-          let width = geometry.size.width / 2.5
-          GridView(characterSelected: $characterSelected, width: width)
+          GridView(characterSelected: $characterSelected, geometry: geometry)
             .onAppear { characterSelected = (nil, false) }
         }
       }
@@ -38,23 +37,18 @@ extension CharacterView {
   struct GridView: View {
     @EnvironmentObject var show: Show
     @Binding var characterSelected: (character: Show.Character?, showing: Bool)
-    let width: CGFloat
+    let geometry: GeometryProxy
     
     var body: some View {
       LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
         ForEach(getSectionHeaders(show: show), id: \.self) { header in
-          Section(header:
-                    HStack {
-//                      VStack { Divider().padding(.horizontal) }                      
-                      Text(header).font(.title).bold()
-                      Spacer()
-//                      VStack { Divider().padding(.horizontal) }
-                    }.padding([.top, .horizontal])) {
+          Section(header: SectionHeaderView<Text>(width: geometry.size.width) { Text(header) }) {
             ForEach(getCharacters(show: show).filter { $0.character.lastName.firstLetter() == header }, id: \.self) { character in
               Button {
                 characterSelected = (character, true)
               } label: {
-                CardView(width: width, vertAlignment: .top) {
+                let cardWidth = geometry.size.width / 2.5
+                CardView(width: cardWidth, vertAlignment: .top) {
                   Text(character.character.fullName)
                     .font(.callout)
                     .bold()
@@ -63,8 +57,8 @@ extension CharacterView {
                   SubText(character.actor.fullName)
                   Spacer()
                   Divider()
-                    .background(Color(UIColor.systemGray))
-                    .frame(width: width / 3)
+                    .background(Color.gray)
+                    .frame(width: cardWidth / 3)
                     .padding(.all, 0)
                   SubText("episode".localizeWithFormat(quantity: getNumEps(character, show: show)))
                     .padding(.bottom)
@@ -92,12 +86,6 @@ fileprivate func getSectionHeaders(show: Show) -> [String] {
 }
 
 fileprivate func getCharacters(show: Show) -> [Show.Character] {
-//  var characters = [Show.Character]()
-//  for episode in show.episodes {
-//    for character in episode.characters ?? [] {
-//      characters.append(character)
-//    }
-//  }
   let characters = show.episodes.compactMap({$0.characters.flatMap({$0})}).joined()
   return Set(characters).sorted(by: { $0.character < $1.character })
 }

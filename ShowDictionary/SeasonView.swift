@@ -51,7 +51,7 @@ extension SeasonView {
                     .padding(.top)
                   Spacer()
                   Divider()
-                    .background(Color(UIColor.systemGray))
+                    .background(Color.gray)
                     .frame(width: width / 3)
                     .padding(.all, 0)
                   SubText("episode".localizeWithFormat(quantity: self.getNumEps(season)))

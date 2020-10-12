@@ -53,7 +53,7 @@ extension CompanionView {
                   }
                   Spacer()
                   Divider()
-                    .background(Color(UIColor.systemGray))
+                    .background(Color.gray)
                     .frame(width: width / 3)
                     .padding(.all, 0)
                   SubText("episode".localizeWithFormat(quantity: getNumEps(show: show, companion: companion)))

@@ -28,10 +28,7 @@ struct EpisodeChooserView: View {
           LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
             ForEach(self.getSeasons(), id: \.self) { season in
               Section(header: useSections ?
-                        AnyView(HStack {
-                          Text(getSeasonText(self.show, season)).font(.title).bold()//.layoutPriority(1)
-                          Spacer()
-                        }.padding([.top, .horizontal])) : AnyView(EmptyView())) {
+                        AnyView(SectionHeaderView<Text>(width: geometry.size.width) { Text(getSeasonText(self.show, season)) }) : AnyView(EmptyView())) {
                 ForEach(self.episodes.filter { $0.seasonNumber == season }) { episode in
                   EpisodeSquareView(selected: $selected, episode: episode, width: width)
                 }
@@ -87,13 +84,13 @@ extension EpisodeChooserView {
                   Text("\(episode.numberInSeason < 10 ? "0" : "")\(episode.numberInSeason)")
                 }
                 .font(.footnote)
-                .foregroundColor(Color(UIColor.label))
+                .foregroundColor(.gray)
                 Spacer()
               }
               .padding(.top)
             }
             Divider()
-              .background(Color(UIColor.systemGray))
+              .background(Color.gray)
               .frame(width: width / 3)
               .padding(.all, 0)
             Group {

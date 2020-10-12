@@ -24,8 +24,7 @@ struct DirectorView: View {
     }
     GeometryReader { geometry in
       ScrollView {
-        let width = geometry.size.width / 2.5
-        GridView(directorSelected: $directorSelected, width: width)
+        GridView(directorSelected: $directorSelected, geometry: geometry)
           .onAppear { directorSelected = (nil, false) }
       }
     }
@@ -38,23 +37,18 @@ extension DirectorView {
   struct GridView: View {
     @EnvironmentObject var show: Show
     @Binding var directorSelected: (director: Person?, showing: Bool)
-    let width: CGFloat
+    let geometry: GeometryProxy
     
     var body: some View {
       LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
         ForEach(getSectionHeaders(show: show), id: \.self) { header in
-          Section(header:
-                    HStack {
-//                      VStack { Divider().padding(.horizontal) }
-                      Text(header).font(.title).bold()
-                      Spacer()
-//                      VStack { Divider().padding(.horizontal) }
-                    }.padding([.top, .horizontal])) {
+          Section(header: SectionHeaderView<Text>(width: geometry.size.width) { Text(header) }) {
             ForEach(getDirectors(show: show).filter { $0.lastName.firstLetter() == header }, id: \.self) { director in
               Button {
                 directorSelected = (director, true)
               } label: {
-                CardView(width: width, vertAlignment: .top) {
+                let cardWidth = geometry.size.width / 2.5
+                CardView(width: cardWidth, vertAlignment: .top) {
                   Text(director.fullName)
                     .font(.callout)
                     .bold()
@@ -62,8 +56,8 @@ extension DirectorView {
                     .padding(.top)
                   Spacer()
                   Divider()
-                    .background(Color(UIColor.systemGray))
-                    .frame(width: width / 3)
+                    .background(Color.gray)
+                    .frame(width: cardWidth / 3)
                     .padding(.all, 0)
                   SubText("episode".localizeWithFormat(quantity: getNumEps(director, show: show)))
                     .padding(.bottom)
