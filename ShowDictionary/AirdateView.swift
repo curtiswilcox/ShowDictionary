@@ -104,7 +104,7 @@ extension AirdateView {
           }
           go.toggle()
         } label: {
-          Text(NSLocalizedString("Display episodes", comment: ""))
+          Text(NSLocalizedString("Display", comment: ""))
             .padding()
             .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(UIColor.label), lineWidth: 2))
         }

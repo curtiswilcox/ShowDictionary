@@ -450,12 +450,12 @@
 				E9BDDDF323AFC88D002729B2 /* GridStack.swift */,
 				E9C430AF23C3E86200157BDE /* HamburgerMenuView.swift */,
 				E95AF34523CA648F00905181 /* Person.swift */,
-				E9A0E79823C129CB00CCB256 /* ShowData.swift */,
 				E9DBC9B223AED7ED004DF3A3 /* SearchBar.swift */,
 				E9DBC9B423AED7EE004DF3A3 /* SearchMethod.swift */,
 				E9DBC9A723AED7ED004DF3A3 /* SeasonType.swift */,
 				D4B771FB2533CEA9008BDB02 /* SectionHeaderView.swift */,
 				E9DBC99D23AED7EB004DF3A3 /* Show.swift */,
+				E9A0E79823C129CB00CCB256 /* ShowData.swift */,
 				E9DBC9AA23AED7ED004DF3A3 /* ShowObserver.swift */,
 				E930C14023CE16E000AA78F6 /* Toolbar.swift */,
 			);

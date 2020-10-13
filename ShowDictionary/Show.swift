@@ -76,49 +76,46 @@ final class Show : Identifiable { // the Swift fields
   }
   
   func getAvailableSearchMethods() -> [SearchMethod] {
-    var methodArray: [SearchMethod] = [.description, /*.name, */.showAll, .season, .keyword]
-//				[.description, .name, .keyword, .writer, .episodeNumber, .singleAirdate, .rangeAirdates, .season]
+    var methodArray: [SearchMethod] = [.description, .showAll, .season]//, .keyword]
     
     if self.hasFavoritedEpisodes {
       methodArray.append(.favorite)
     }
     
-    for episode in episodes ?? [] where episode.directors != nil {
+    if !episodes.compactMap({ $0.directors }).isEmpty {
       methodArray.append(.director)
-      break
     }
     
-    for episode in episodes ?? [] where episode.writers != nil {
+    if !episodes.compactMap({ $0.writers }).isEmpty {
       methodArray.append(.writer)
-      break
     }
-    
+        
     if self.filename.lowercased().contains("doctorwho") {
       methodArray.append(contentsOf: [.doctor, .companion])
     }
     
-    if let _ = self.characters {
+    if self.characters != nil {
       methodArray.append(.character)
     }
     
-    methodArray.append(contentsOf: [.random, .episodeNumber, .singleAirdate, .rangeAirdates])
+    methodArray.append(contentsOf: [.random/*, .episodeNumber*/, .singleAirdate, .rangeAirdates])
     
-    if self.discSearch {
-      methodArray.append(.disc)
-    }
+//    if self.discSearch {
+//      methodArray.append(.disc)
+//    }
     
     return methodArray
   }
   
-  private func getImageData(completion: @escaping (Data?) -> ()) {
-    URLSession(configuration: .default).dataTask(with: self.titleCardURL) { (data, response, error) in
-      if let data = data {
-        completion(data)
-      } else {
-        completion(nil)
-      }
-    }.resume()
-  }
+//  private func getImageData(completion: @escaping (Data?) -> ()) {
+//    URLSession(configuration: .default).dataTask(with: self.titleCardURL) { (data, response, error) in
+//      if let data = data {
+//        completion(data)
+//      } else {
+//        completion(nil)
+//      }
+//    }.resume()
+//  }
 }
 
 extension Show {

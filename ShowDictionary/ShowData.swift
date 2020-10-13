@@ -14,12 +14,7 @@ class ShowData : Comparable, Identifiable {
     let show: Show
     let titleCard: UIImage?
     
-    init(_ show: Show) {
-        self.show = show
-        self.titleCard = nil
-    }
-    
-    init(_ show: Show, _ titleCard: UIImage) {
+    init(_ show: Show, _ titleCard: UIImage? = nil) {
         self.show = show
         self.titleCard = titleCard
     }

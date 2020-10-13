@@ -80,13 +80,13 @@ enum SearchMethod: String, Identifiable {
     case .random:
       return NSLocalizedString("Display a random episode", comment: "")
     case .rangeAirdates:
-      return NSLocalizedString("Show episodes between two dates", comment: "")
+      return NSLocalizedString("Show episodes that aired between two dates", comment: "")
     case .season:
       return NSLocalizedString("show \(seasonType.lowPlur)", comment: "display all \(seasonType.lowPlur)").capitalizeFirstLetter()
     case .showAll:
       return NSLocalizedString("show all episodes", comment: "display all episodes").capitalizeFirstLetter()
     case .singleAirdate:
-      return NSLocalizedString("Show episode that aired at or within one week of chosen date", comment: "")
+      return NSLocalizedString("Show episode that aired on the chosen date", comment: "")
     case .writer:
       let searchPortion = NSLocalizedString("Search episodes by %@", comment: "")
       let their = "their".localizeWithFormat(quantity: 1)
