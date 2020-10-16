@@ -44,6 +44,13 @@ struct SearchMethodView: View {
       self.observer.getEpisodes { (episodes, hasFaves) in
         self.show.episodes = episodes
         self.show.hasFavoritedEpisodes = hasFaves
+        
+        if let characters = self.show.characters {
+          for episode in episodes {
+            let chars = characters.filter { $0.appearances.contains(episode.code) }
+            episode.setCharacters(chars)
+          }
+        }
       }
     }
   }

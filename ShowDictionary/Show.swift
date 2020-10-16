@@ -62,13 +62,14 @@ final class Show : Identifiable { // the Swift fields
     }
     
     if let characters = try values.decode(String?.self, forKey: .characters) {
-      let initialCharacters = try JSONSerialization.jsonObject(with: characters.data(using: .utf8)!, options: []) as? [[String: String]]
+      let initialCharacters = try JSONSerialization.jsonObject(with: characters.data(using: .utf8)!, options: []) as? [String: [String: Any]]/*[[String: String]]*/
+//      print(initialCharacters)
       self.characters = initialCharacters?.reduce(into: []) { result, entry in
-        let key = Array(entry.keys)[0]
-        let value = entry[Array(entry.keys)[0]]!
-        let character = Person(name: key.trimmingCharacters(in: .whitespacesAndNewlines))
-        let actor = Person(name: value.trimmingCharacters(in: .whitespacesAndNewlines))
-        result?.append(Character(actor: actor, character: character))
+        let character = Person(name: entry.key.trimmingCharacters(in: .whitespacesAndNewlines))
+        let actor = Person(name: (entry.value["actor"] as! String).trimmingCharacters(in: .whitespacesAndNewlines))
+        let appearances = (entry.value["appearances"] as! NSArray).compactMap { ($0 as AnyObject).integerValue }
+
+        result?.append(Character(actor: actor, character: character, appearances: appearances))
       }
     } else {
       self.characters = nil
@@ -156,6 +157,7 @@ extension Show {
     var id: String { return character.lastName }
     let actor: Person
     let character: Person
+    let appearances: [Int]
     
     static func == (lhs: Character, rhs: Character) -> Bool {
       return lhs.actor == rhs.actor && lhs.character == rhs.character
