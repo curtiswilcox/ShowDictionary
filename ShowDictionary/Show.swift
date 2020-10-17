@@ -62,11 +62,11 @@ final class Show : Identifiable { // the Swift fields
     }
     
     if let characters = try values.decode(String?.self, forKey: .characters) {
-      let initialCharacters = try JSONSerialization.jsonObject(with: characters.data(using: .utf8)!, options: []) as? [String: [String: Any]]/*[[String: String]]*/
-//      print(initialCharacters)
+      let initialCharacters = try JSONSerialization.jsonObject(with: characters.data(using: .utf8)!, options: []) as? [String: [String: Any]]
+
       self.characters = initialCharacters?.reduce(into: []) { result, entry in
-        let character = Person(name: entry.key.trimmingCharacters(in: .whitespacesAndNewlines))
-        let actor = Person(name: (entry.value["actor"] as! String).trimmingCharacters(in: .whitespacesAndNewlines))
+        let character = Person(fullName: entry.key.trimmingCharacters(in: .whitespacesAndNewlines))
+        let actor = Person(fullName: (entry.value["actor"] as! String).trimmingCharacters(in: .whitespacesAndNewlines))
         let appearances = (entry.value["appearances"] as! NSArray).compactMap { ($0 as AnyObject).integerValue }
 
         result?.append(Character(actor: actor, character: character, appearances: appearances))

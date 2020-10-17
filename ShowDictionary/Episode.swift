@@ -68,7 +68,7 @@ final class Episode {
       
       if let writer = writer {
         for w in writer.components(separatedBy: NSLocalizedString(" and ", comment: "")) {
-          writers.append(Person(name: w))
+          writers.append(Person(fullName: w))
         }
         self.writers = writers
       } else {
@@ -82,7 +82,7 @@ final class Episode {
       
       if let director = director {
         for d in director.components(separatedBy: NSLocalizedString(" and ", comment: "")) {
-          directors.append(Person(name: d))
+          directors.append(Person(fullName: d))
         }
         self.directors = directors
       } else {
@@ -106,24 +106,10 @@ final class Episode {
         self.doctors = doctors.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
         
         companions.append(contentsOf: ",\((try values.decode(String.self, forKey: .secondaryCompanions)).replacingOccurrences(of: "\\", with: "").replacingOccurrences(of: ", ", with: ","))")
-        self.companions = companions.split(separator: ",").map { Person(name: String($0).trimmingCharacters(in: .whitespacesAndNewlines)) }
+        self.companions = companions.split(separator: ",").map { Person(fullName: String($0).trimmingCharacters(in: .whitespacesAndNewlines)) }
       } else { self.doctors = nil; self.companions = nil; }
     } catch { self.doctors = nil; self.companions = nil }
-    
-//    do {
-//      if let characters = try values.decode(String?.self, forKey: .characters) {
-//        let initialCharacters = try JSONSerialization.jsonObject(with: characters.data(using: .utf8)!, options: []) as? [String: String]
-//
-//        self.characters = initialCharacters?.reduce(into: []) { result, entry in
-//          let character = Person(name: entry.key.trimmingCharacters(in: .whitespacesAndNewlines))
-//          let actor = Person(name: entry.value.trimmingCharacters(in: .whitespacesAndNewlines))
-//          result?.append(Show.Character(actor: actor, character: character))
-//        }
-//      } else {
-//        self.characters = nil
-//      }
-//    } catch { self.characters = nil }
-    
+        
     characters = nil
     seasonNumber = try Int(values.decode(String.self, forKey: .seasonNumber))!
     numberInSeason = try Int(values.decode(String.self, forKey: .numberInSeason))!
@@ -143,45 +129,18 @@ final class Episode {
   }
   
   func runtimeDescription() -> String? {
-    guard let minutes = self.runtime else {
-      return nil
-    }
+    guard var minutes = self.runtime else { return nil }
     
     var desc = ""
     if minutes >= 60 {
       let hours = minutes / 60
-      let leftoverMinutes = minutes % 60
+      minutes %= 60
       
-      desc += "\(hours)"
-      if hours > 1 {
-//				desc += " \("hours".localize(lang: lang)), "
-        desc += " \(NSLocalizedString("hours", comment: "")), "
-      } else {
-//				desc += " \("hour".localize(lang: lang)), "
-        desc += " \(NSLocalizedString("hour", comment: "")), "
-      }
-      
-      if leftoverMinutes > 0 {
-        desc += "\(leftoverMinutes) "
-        if leftoverMinutes > 1 {
-//					desc += " \("minutes".localize(lang: lang))"
-          desc += " \(NSLocalizedString("minutes", comment: ""))"
-        } else {
-//					desc += " \("minute".localize(lang: lang))"
-          desc += " \(NSLocalizedString("minute", comment: ""))"
-        }
-      } else {
-        desc = String(desc.dropLast(2))
-      }
-    } else {
-      desc += "\(minutes)"
-      if minutes > 1 {
-//				desc += " \("minutes".localize(lang: lang))"
-        desc += " \(NSLocalizedString("minutes", comment: ""))"
-      } else if minutes == 1 {
-//				desc += " \("minute".localize(lang: lang))"
-        desc += " \(NSLocalizedString("minute", comment: ""))"
-      }
+      desc += "\(hours) \("hour".localizeWithFormat(quantity: hours))"
+    }
+    if minutes > 0 {
+      if !desc.isEmpty { desc += ", " }
+      desc += "\(minutes) \("minute".localizeWithFormat(quantity: minutes))"
     }
     return desc
   }
