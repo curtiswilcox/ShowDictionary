@@ -125,19 +125,16 @@ extension EpisodeChooserView {
     }
     
     private func toggleFavoritism() {
-      self.episode.isFavorite.toggle()
-      if self.episode.isFavorite {
-        updateServerEpisodeIsFavorite(filename: self.show.filename, code: self.episode.code) {
-          self.episode.favoritedID = $0
+      episode.isFavorite.toggle()
+      if episode.isFavorite {
+        updateServerEpisodeIsFavorite(filename: show.filename, code: episode.code) {
+          episode.favoritedID = $0
         }
-        self.show.hasFavoritedEpisodes = true
+        show.hasFavoritedEpisodes = true
       } else {
-        updateServerEpisodeIsNotFavorite(filename: self.show.filename, code: self.episode.code, id: self.episode.favoritedID!)
-        self.episode.favoritedID = nil
-//        for episode in self.show.episodes where !episode.isFavorite {
-//          self.show.hasFavoritedEpisodes = false
-//        }
-        self.show.hasFavoritedEpisodes = (self.show.episodes.filter { $0.isFavorite }.count != 0)
+        updateServerEpisodeIsNotFavorite(filename: show.filename, code: episode.code, id: episode.favoritedID!)
+        episode.favoritedID = nil
+        show.hasFavoritedEpisodes = (!show.episodes.filter { $0.isFavorite }.isEmpty)
       }
     }
   }
