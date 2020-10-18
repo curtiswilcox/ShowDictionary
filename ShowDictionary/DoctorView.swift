@@ -15,7 +15,6 @@ struct DoctorView: View {
   var body: some View {
     ZStack {
       if let doctor = doctorSelected.doctor {
-//        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), localizeDoctor(doctor, lower: true)))"
         let navTitle = String(format: NSLocalizedString("%@", comment: ""), localizeDoctor(doctor, lower: true)).capitalizeFirstLetter()
         let episodesToPass = self.show.episodes.filter { $0.doctors!.contains(doctor) }
         NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: true, episodes: episodesToPass).environmentObject(show), isActive: $doctorSelected.showing) {
@@ -27,13 +26,6 @@ struct DoctorView: View {
     .navigationBarTitle("doctor".localizeWithFormat(quantity: 2).capitalized)
   }
 }
-
-//extension View {
-//  func Print(_ vars: Any...) -> some View {
-//    for v in vars { print(v) }
-//    return EmptyView()
-//  }
-//}
 
 extension DoctorView {
   struct GridView: View {

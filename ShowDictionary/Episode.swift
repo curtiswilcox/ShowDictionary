@@ -99,8 +99,8 @@ final class Episode {
     catch { runtime = nil }
     
     do {
-      if var doctors = (try values.decode(String?.self, forKey: .doctors))?.replacingOccurrences(of: "\\", with: ""),//.trimmingCharacters(in: .whitespacesAndNewlines),
-         var companions = (try values.decode(String?.self, forKey: .companions))?.replacingOccurrences(of: "\\", with: "") {//}.trimmingCharacters(in: .whitespacesAndNewlines) {
+      if var doctors = (try values.decode(String?.self, forKey: .doctors))?.replacingOccurrences(of: "\\", with: ""),
+         var companions = (try values.decode(String?.self, forKey: .companions))?.replacingOccurrences(of: "\\", with: "") {
         
         doctors.append(contentsOf: ",\((try values.decode(String.self, forKey: .secondaryDoctors)).replacingOccurrences(of: "\\", with: "").replacingOccurrences(of: ", ", with: ","))")
         self.doctors = doctors.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
