@@ -13,9 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>book</string>
+			<string>livro</string>
 			<key>other</key>
-			<string>books</string>
+			<string>livros</string>
 		</dict>
 	</dict>
 	<key>character</key>
@@ -29,9 +29,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>character</string>
+			<string>carácter</string>
 			<key>other</key>
-			<string>characters</string>
+			<string>carácteres</string>
 		</dict>
 	</dict>
 	<key>companion</key>
@@ -45,9 +45,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>companion</string>
+			<string>companheiro</string>
 			<key>other</key>
-			<string>companions</string>
+			<string>companheiros</string>
 		</dict>
 	</dict>
 	<key>director</key>
@@ -63,7 +63,7 @@
 			<key>one</key>
 			<string>director</string>
 			<key>other</key>
-			<string>directors</string>
+			<string>directores</string>
 		</dict>
 	</dict>
 	<key>doctor</key>
@@ -77,9 +77,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>doctor</string>
+			<string>doutor</string>
 			<key>other</key>
-			<string>doctors</string>
+			<string>doutores</string>
 		</dict>
 	</dict>
 	<key>episode</key>
@@ -93,9 +93,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>%u episode</string>
+			<string>%u episódio</string>
 			<key>other</key>
-			<string>%u episodes</string>
+			<string>%u episódios</string>
 		</dict>
 	</dict>
 	<key>hour</key>
@@ -109,9 +109,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>hour</string>
+			<string>hora</string>
 			<key>other</key>
-			<string>hours</string>
+			<string>horas</string>
 		</dict>
 	</dict>
 	<key>minute</key>
@@ -125,9 +125,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>minute</string>
+			<string>minuto</string>
 			<key>other</key>
-			<string>minutes</string>
+			<string>minutos</string>
 		</dict>
 	</dict>
 	<key>season</key>
@@ -141,9 +141,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>season</string>
+			<string>temporada</string>
 			<key>other</key>
-			<string>seasons</string>
+			<string>temporadas</string>
 		</dict>
 	</dict>
 	<key>series</key>
@@ -157,9 +157,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>series</string>
+			<string>série</string>
 			<key>other</key>
-			<string>series</string>
+			<string>séries</string>
 		</dict>
 	</dict>
 	<key>their</key>
@@ -172,8 +172,10 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
+			<key>one</key>
+			<string>o seu</string>
 			<key>other</key>
-			<string>their</string>
+			<string>o seus</string>
 		</dict>
 	</dict>
 	<key>writer</key>
@@ -187,9 +189,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>writer</string>
+			<string>escritor</string>
 			<key>other</key>
-			<string>writers</string>
+			<string>escritores</string>
 		</dict>
 	</dict>
 </dict>
