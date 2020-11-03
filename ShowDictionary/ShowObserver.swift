@@ -30,9 +30,10 @@ class ShowObserver : ObservableObject {
             } else {
               if let img = self.savedImage(show: show.filename) {
                 self.data.append(ShowData(show, img))
-              } else {
-                self.data.append(ShowData(show)) // img is nil
-              }
+              } // no `else`: show only available if episodes have been previously downloaded if unable to download currently
+//              else {
+//                self.data.append(ShowData(show)) // img is nil
+//              }
             }
             self.numberCompleted += 1
             self.percentCompleted = self.numberCompleted / CGFloat(shows.count) * 100
@@ -72,13 +73,15 @@ class ShowObserver : ObservableObject {
   }
   
   func saveImageData(_ data: Data, show: String) {
+    let lang = Locale.current.identifier
     let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    let fileURL = URL(fileURLWithPath: "\(show)-title-card", relativeTo: directoryURL).appendingPathExtension("txt")
+    let fileURL = URL(fileURLWithPath: "\(show)_\(lang)-title-card", relativeTo: directoryURL).appendingPathExtension("txt")
     
     if FileManager.default.fileExists(atPath: fileURL.path) {
-      do {
-        if try Data(contentsOf: fileURL) == data { /*print("\(show) file already exists!");*/ return }
-      } catch { /* doesn't matter */ }
+      if (try? Data(contentsOf: fileURL) == data) ?? false { return }
+//      do {
+//        if try Data(contentsOf: fileURL) == data { /*print("\(show) file already exists!");*/ return }
+//      } catch { /* doesn't matter */ }
     }
     
     do {
@@ -90,30 +93,27 @@ class ShowObserver : ObservableObject {
   }
   
   func savedImage(show: String) -> UIImage? {
+    let lang = Locale.current.identifier
     let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    let fileURL = URL(fileURLWithPath: "\(show)-title-card", relativeTo: directoryURL).appendingPathExtension("txt")
+    let fileURL = URL(fileURLWithPath: "\(show)_\(lang)-title-card", relativeTo: directoryURL).appendingPathExtension("txt")
+    let showURL = directoryURL.appendingPathComponent(lang).appendingPathComponent(show).appendingPathExtension("json")
     
-    guard FileManager.default.fileExists(atPath: fileURL.path) else { /*print("\(show) file doesn't exist.");*/ return nil }
+    guard FileManager.default.fileExists(atPath: fileURL.path) && FileManager.default.fileExists(atPath: showURL.path) else { /*print("\(show) file doesn't exist.");*/ return nil }
     
-    do {
-      let data = try Data(contentsOf: fileURL)
-      if let image = UIImage(data: data) {
+//      let data = try? Data(contentsOf: fileURL)
+    if let data = try? Data(contentsOf: fileURL), let image = UIImage(data: data) {
 //        print("\(show) file exists and loaded!")
-        return image
-      }
-//      print("\(show) file exists and NOT loaded!")
-      return nil
-    } catch {
-//      print("\(show) file had a problem loading!")
-      return nil
+      return image
     }
+//      print("\(show) file exists and NOT loaded!")
+    return nil
   }
   
   func loadShowData() -> [Show]? {
     let lang = Locale.current.identifier
     let directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let fileURL = directoryURL.appendingPathComponent(lang).appendingPathComponent("shows").appendingPathExtension("json")
-    
+
     do {
       let shows = try JSONDecoder().decode([Show].self, from: Data(contentsOf: fileURL)).sorted(by: <)
       return shows

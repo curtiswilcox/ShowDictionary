@@ -22,7 +22,12 @@ struct ContentView: View {
 						EmptyView()
 					}
 				}
-				GridView(observer: self.observer, progress: self.$progress, showSelected: self.$showSelected)
+				if !self.observer.data.isEmpty && self.progress >= 100 {
+					GridView(observer: self.observer, progress: self.$progress, showSelected: self.$showSelected)
+				} else {
+					Text(NSLocalizedString("There are no shows available for searching.", comment: ""))
+						.bold().font(.title)
+				}
 				
 				if self.progress < 100 {
 					ProgressView(value: self.progress, total: 100)

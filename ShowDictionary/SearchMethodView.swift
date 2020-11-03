@@ -137,7 +137,7 @@ extension SearchMethodView {
           .background(Color.gray)
           .frame(width: width / 3)
           .padding(.all, 0)
-        SubText(method.desc(seasonType: self.show.typeOfSeasons))
+        SubText(method.desc(seasonType: self.show.typeOfSeasons, numEpisodes: self.show.numberOfEpisodes))
           .padding(.bottom)
         Spacer()
       }

@@ -50,7 +50,7 @@ enum SearchMethod: String, Identifiable {
     }
   }
   
-  func desc(seasonType: SeasonType) -> String {
+  func desc(seasonType: SeasonType, numEpisodes: Int) -> String {
     switch (self) {
     case .character:
       return String(format: NSLocalizedString("Episodes with a specific %@", comment: ""), "character".localizeWithFormat(quantity: 1))
@@ -84,7 +84,7 @@ enum SearchMethod: String, Identifiable {
     case .season:
       return NSLocalizedString("show \(seasonType.lowPlur)", comment: "display all \(seasonType.lowPlur)").capitalizeFirstLetter()
     case .showAll:
-      return NSLocalizedString("show all episodes", comment: "display all episodes").capitalizeFirstLetter()
+      return String(format: NSLocalizedString("show all %@ episodes", comment: "display all episodes"), numEpisodes.toWord()).capitalizeFirstLetter()
     case .singleAirdate:
       return NSLocalizedString("Show episode that aired on the chosen date", comment: "")
     case .writer:

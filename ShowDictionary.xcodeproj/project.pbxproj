@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D326A720263BEFA194795263 /* Pods_ShowDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */; };
+		D40B3C88254B16130067F4AF /* Int+toWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B3C87254B16130067F4AF /* Int+toWord.swift */; };
+		D40B3C91254B169C0067F4AF /* Int+toWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B3C87254B16130067F4AF /* Int+toWord.swift */; };
+		D40B3C96254B169D0067F4AF /* Int+toWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B3C87254B16130067F4AF /* Int+toWord.swift */; };
 		D419A3C525328A8E008B3B6A /* AirdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D419A3C425328A8E008B3B6A /* AirdateView.swift */; };
 		D48D506A25152FA400BBB94F /* ShowDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D506925152FA400BBB94F /* ShowDictionaryApp.swift */; };
 		D4B771FC2533CEA9008BDB02 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B771FB2533CEA9008BDB02 /* SectionHeaderView.swift */; };
@@ -161,6 +164,7 @@
 		906FE543A3FFF313A6280D3B /* Pods-ShowDictionaryWatchOS Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryWatchOS Extension.debug.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryWatchOS Extension/Pods-ShowDictionaryWatchOS Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShowDictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		98DCA23D1AAEF3B274A4681C /* Pods-ShowDictionaryTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowDictionaryTVOS.debug.xcconfig"; path = "Target Support Files/Pods-ShowDictionaryTVOS/Pods-ShowDictionaryTVOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D40B3C87254B16130067F4AF /* Int+toWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+toWord.swift"; sourceTree = "<group>"; };
 		D419A3C425328A8E008B3B6A /* AirdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirdateView.swift; sourceTree = "<group>"; };
 		D45DDE1A2542503D00974448 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Interface.strings; sourceTree = "<group>"; };
 		D45DDE1B2542503D00974448 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -444,6 +448,7 @@
 				E9DBC9AD23AED7ED004DF3A3 /* CollectionType+toJSONString.swift */,
 				E9DBC9AF23AED7ED004DF3A3 /* Date+new+written+toString.swift */,
 				E997C38423B41C23003A88B2 /* GlobalImportantThings.swift */,
+				D40B3C87254B16130067F4AF /* Int+toWord.swift */,
 				E9DBC9A923AED7ED004DF3A3 /* String+isAlphanumeric+localize.swift */,
 				E960FBB423BA67A80071D9EB /* SubText.swift */,
 				E9BDDDED23AEDA0E002729B2 /* Localizable.strings */,
@@ -808,6 +813,7 @@
 				E9A0E77523BFD75900CCB256 /* Date+new+written+toString.swift in Sources */,
 				E943898123BFD68A001CC170 /* NotificationView.swift in Sources */,
 				E9F66C5923C148C70067C789 /* EpisodeChooserView.swift in Sources */,
+				D40B3C91254B169C0067F4AF /* Int+toWord.swift in Sources */,
 				E9F66C5323C1380F0067C789 /* Observers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -817,6 +823,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9A0E79723BFDB1900CCB256 /* String+isAlphanumeric+localize.swift in Sources */,
+				D40B3C96254B169D0067F4AF /* Int+toWord.swift in Sources */,
 				E9A0E79023BFDB0600CCB256 /* SearchMethod.swift in Sources */,
 				E9A0E79123BFDB0900CCB256 /* Episode.swift in Sources */,
 				E9A0E78E23BFDB0100CCB256 /* Show.swift in Sources */,
@@ -847,6 +854,7 @@
 				E9DBC9B823AED7EE004DF3A3 /* DescriptionView.swift in Sources */,
 				E9BDDDF423AFC88D002729B2 /* GridStack.swift in Sources */,
 				D419A3C525328A8E008B3B6A /* AirdateView.swift in Sources */,
+				D40B3C88254B16130067F4AF /* Int+toWord.swift in Sources */,
 				E9DBC9BE23AED7EE004DF3A3 /* SeasonType.swift in Sources */,
 				E92F823423B3244700AB98BE /* CharacterView.swift in Sources */,
 				E9DBC9C623AED7EE004DF3A3 /* Date+new+written+toString.swift in Sources */,

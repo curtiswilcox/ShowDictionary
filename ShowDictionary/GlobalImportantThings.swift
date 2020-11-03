@@ -31,9 +31,9 @@ func saveData(_ data: String, filename: String) {
   }
   let fileURL = directoryURL.appendingPathComponent(filename).appendingPathExtension("json")
   if !FileManager.default.fileExists(atPath: fileURL.path) {
-    print("Doesn't exist!")
+//    print("Doesn't exist!")
     FileManager.default.createFile(atPath: fileURL.path, contents: nil, attributes: nil)
-    print("Exists: \(FileManager.default.fileExists(atPath: fileURL.path))")
+//    print("Exists: \(FileManager.default.fileExists(atPath: fileURL.path))")
   }
   
   do {
