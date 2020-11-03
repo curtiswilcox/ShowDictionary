@@ -22,14 +22,20 @@ struct ContentView: View {
 						EmptyView()
 					}
 				}
-				if !self.observer.data.isEmpty && self.progress >= 100 {
-					GridView(observer: self.observer, progress: self.$progress, showSelected: self.$showSelected)
+				
+				if self.progress == -1 {
+					VStack {
+						Text(NSLocalizedString("There are no shows available for searching. Connect to the internet and try again.", comment: ""))
+							.bold()
+							.font(.title)
+							.padding()
+						Spacer()
+					}
 				} else {
-					Text(NSLocalizedString("There are no shows available for searching.", comment: ""))
-						.bold().font(.title)
+					GridView(observer: self.observer, progress: self.$progress, showSelected: self.$showSelected)
 				}
 				
-				if self.progress < 100 {
+				if self.progress >= 0 && self.progress < 100 {
 					ProgressView(value: self.progress, total: 100)
 						.progressViewStyle(LinearProgressViewStyle())
 						.padding(.horizontal)
@@ -40,9 +46,9 @@ struct ContentView: View {
 			.onAppear {
 				guard self.progress <= 100 else { return }
 				let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-					guard !self.observer.data.isEmpty else { return }
+//					guard self.progress != -1 && !self.observer.data.isEmpty else { return }
 					self.progress = self.observer.percentCompleted
-					if self.progress == 100 { timer.invalidate() }
+					if self.progress == -1 || self.progress == 100 { timer.invalidate() }
 				}
 			}
 		}

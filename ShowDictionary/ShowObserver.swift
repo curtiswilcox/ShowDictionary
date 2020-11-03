@@ -18,6 +18,10 @@ class ShowObserver : ObservableObject {
   
   init() {
     getShows() { shows in
+      guard !shows.isEmpty else {
+        self.percentCompleted = -1
+        return
+      }
       for show in shows {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 30
@@ -63,7 +67,7 @@ class ShowObserver : ObservableObject {
           saveData(text, filename: "shows")
           completion(shows)
         } catch {
-          completion(self.loadShowData() ?? []) // maybe only show the shows that have saved data?
+          completion(self.loadShowData() ?? [])
         }
       case .failure:
 //        print("Failure")
