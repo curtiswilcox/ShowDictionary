@@ -12,16 +12,19 @@ import Foundation
 import UIKit.UIImage
 
 class ShowObserver : ObservableObject {
-  var data: [ShowData] = []
-  private var numberCompleted: CGFloat = 0
-  @Published private(set) var percentCompleted: CGFloat = 0
+  private(set) var data: [ShowData] = []
+  @Published private(set) var completion = 0
+  private(set) var maxCount: CGFloat = 0
+//  @Published private(set) var percentCompleted: CGFloat = 0
   
   init() {
     getShows() { shows in
       guard !shows.isEmpty else {
-        self.percentCompleted = -1
+//        self.percentCompleted = -1
+        self.completion = -1
         return
       }
+      self.maxCount = CGFloat(shows.count)
       for show in shows {
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 30
@@ -39,10 +42,10 @@ class ShowObserver : ObservableObject {
 //                self.data.append(ShowData(show)) // img is nil
 //              }
             }
-            self.numberCompleted += 1
-            self.percentCompleted = self.numberCompleted / CGFloat(shows.count) * 100
+            self.completion += 1
+//            self.percentCompleted = self.numberCompleted / CGFloat(shows.count) * 100
             
-            if self.percentCompleted == 100 {
+            if self.completion == shows.count {
               self.data.sort(by: <)
             }
           }

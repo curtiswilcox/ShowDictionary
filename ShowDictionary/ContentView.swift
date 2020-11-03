@@ -35,8 +35,8 @@ struct ContentView: View {
 					GridView(observer: self.observer, progress: self.$progress, showSelected: self.$showSelected)
 				}
 				
-				if self.progress >= 0 && self.progress < 100 {
-					ProgressView(value: self.progress, total: 100)
+				if self.progress >= 0 && self.progress < self.observer.maxCount {
+					ProgressView(value: self.progress, total: self.observer.maxCount)
 						.progressViewStyle(LinearProgressViewStyle())
 						.padding(.horizontal)
 						.transformEffect(.init(scaleX: 1, y: 1.5))
@@ -44,11 +44,13 @@ struct ContentView: View {
 			}
 			.navigationBarTitle("\(NSLocalizedString("home", comment: "").capitalized)", displayMode: .large)
 			.onAppear {
-				guard self.progress <= 100 else { return }
+//				guard self.progress <= self.observer.maxCount else { return }
 				let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-//					guard !self.observer.data.isEmpty else { return }
-					self.progress = self.observer.percentCompleted
-					if self.progress == -1 || self.progress <= 100 { timer.invalidate() }
+					guard self.observer.maxCount != 0 && self.progress != self.observer.maxCount else { return }
+					self.progress = CGFloat(self.observer.completion)
+					if self.progress == -1 || self.progress == self.observer.maxCount {
+						timer.invalidate()
+					}
 				}
 			}
 		}
@@ -64,7 +66,7 @@ extension ContentView {
 		private let columns = 3
 		
 		var body: some View {
-			guard self.progress == 100 else { return AnyView(EmptyView()) }
+			guard self.progress == self.observer.maxCount else { return AnyView(EmptyView()) }
 			return AnyView(GeometryReader { geometry in
 				ScrollView {
 					LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns), spacing: 20) {
