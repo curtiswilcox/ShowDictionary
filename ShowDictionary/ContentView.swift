@@ -46,9 +46,9 @@ struct ContentView: View {
 			.onAppear {
 				guard self.progress <= 100 else { return }
 				let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-//					guard self.progress != -1 && !self.observer.data.isEmpty else { return }
+//					guard !self.observer.data.isEmpty else { return }
 					self.progress = self.observer.percentCompleted
-					if self.progress == -1 || self.progress == 100 { timer.invalidate() }
+					if self.progress == -1 || self.progress <= 100 { timer.invalidate() }
 				}
 			}
 		}
