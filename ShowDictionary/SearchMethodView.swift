@@ -60,11 +60,13 @@ struct SearchMethodView: View {
     case .character:
       return AnyView(CharacterView().environmentObject(show))
     case .companion:
-      return AnyView(CompanionView().environmentObject(show))
+      return AnyView(PersonView(searchMethod: .companion).environmentObject(show))
+//      return AnyView(CompanionView().environmentObject(show))
     case .description:
       return AnyView(DescriptionView().environmentObject(show))
     case .director:
-      return AnyView(DirectorView().environmentObject(show))
+      return AnyView(PersonView(searchMethod: .director).environmentObject(show))
+//      return AnyView(DirectorView().environmentObject(show))
     case .disc:
       return AnyView(DescriptionView().environmentObject(show))
     case .doctor:
@@ -88,7 +90,8 @@ struct SearchMethodView: View {
     case .singleAirdate:
       return AnyView(AirdateView(searchMethod: .singleAirdate).environmentObject(show))
     case .writer:
-      return AnyView(WriterView().environmentObject(show))
+      return AnyView(PersonView(searchMethod: .writer).environmentObject(show))
+//      return AnyView(WriterView().environmentObject(show))
     }
   }
 }

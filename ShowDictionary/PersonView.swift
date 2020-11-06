@@ -16,7 +16,18 @@ struct PersonView: View {
   var body: some View {
     if let person = personSelected.person {
       let navTitle = String(format: NSLocalizedString("%@", comment: ""), person.fullName)
-      let episodesToPass = show.episodes.filter { episode in episode.writers!.contains(person) }
+      let episodesToPass = show.episodes.filter { episode in
+        switch searchMethod {
+        case .companion:
+          return episode.companions!.contains(person)
+        case .director:
+          return episode.directors!.contains(person)
+        case .writer:
+          return episode.writers!.contains(person)
+        default:
+          fatalError("Unknown search method! \(#function), \(#line)")
+        }
+      }
       
       NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: true, episodes: episodesToPass).environmentObject(show), isActive: $personSelected.showing) {
         EmptyView()
@@ -28,7 +39,7 @@ struct PersonView: View {
           .onAppear { personSelected = (nil, false) }
       }
     }
-    .navigationBarTitle("writer".localizeWithFormat(quantity: getPeople(show: show, type: searchMethod).count).capitalized)
+    .navigationBarTitle(searchMethod.rawValue.localizeWithFormat(quantity: getPeople(show: show, type: searchMethod).count).capitalized)
   }
 }
 
@@ -75,17 +86,11 @@ extension PersonView {
 }
 
 fileprivate func getPeople(show: Show, type: SearchMethod) -> [Person] {
-//  var people = [Person]()
-//  for episode in show.episodes {
-//    for writer in episode.writers! {
-//      people.append(writer)
-  //    }
-  //  }
-  return Set(show.episodes.compactMap({ type == .director ? $0.directors : type == .writer ? $0.writers : $0.companions }).reduce([], +)).sorted()
+  Set(show.episodes.compactMap({ type == .director ? $0.directors : type == .writer ? $0.writers : $0.companions }).reduce([], +)).sorted()
 }
 
 fileprivate func getSectionHeaders(show: Show, type: SearchMethod) -> [String] {
-  return Set(getPeople(show: show, type: type).map { $0.lastName.first!.uppercased() }).sorted()
+  Set(getPeople(show: show, type: type).map { $0.lastName.first!.uppercased() }).sorted()
 }
 
 fileprivate func getNumEps(_ person: Person, show: Show, type: SearchMethod) -> Int {

@@ -15,7 +15,6 @@ struct CharacterView: View {
   var body: some View {
     ZStack {
       if let character = characterSelected.character {
-//        let navTitle = "\(String(format: NSLocalizedString("Episodes with %@", comment: ""), character.character.fullName))"
         let navTitle = String(format: NSLocalizedString("%@", comment: ""), character.character.fullName)
         let episodesToPass = epsWithChar(character, show: show)
         NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: true, episodes: episodesToPass).environmentObject(show), isActive: $characterSelected.showing) {
@@ -74,18 +73,18 @@ extension CharacterView {
 }
 
 fileprivate func getNumEps(_ character: Show.Character, show: Show) -> Int {
-  return epsWithChar(character, show: show).count
+  epsWithChar(character, show: show).count
 }
 
 fileprivate func epsWithChar(_ character: Show.Character, show: Show) -> [Episode] {
-  return show.episodes.filter { $0.characters?.contains(character) ?? false }
+  show.episodes.filter { $0.characters?.contains(character) ?? false }
 }
 
 fileprivate func getSectionHeaders(show: Show) -> [String] {
-  return Set(getCharacters(show: show).map { $0.character.lastName.firstLetter().uppercased() }).sorted()
+  Set(getCharacters(show: show).map { $0.character.lastName.firstLetter().uppercased() }).sorted()
 }
 
 fileprivate func getCharacters(show: Show) -> [Show.Character] {
   let characters = show.episodes.compactMap({$0.characters.flatMap({$0})}).joined()
-  return Set(characters).sorted(by: { $0.character < $1.character })
+  return Set(characters).sorted { $0.character < $1.character }
 }
