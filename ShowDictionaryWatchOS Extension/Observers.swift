@@ -11,35 +11,35 @@ import CloudKit
 import Foundation
 
 class ShowObserver: ObservableObject {
-    @Published private(set) var data: [Show] = []
-
-    init() {
-        getShows() { shows in
-            self.data = shows
-        }
+  @Published private(set) var data: [Show] = []
+  
+  init() {
+    getShows() { shows in
+      self.data = shows
     }
-
-    func getShows(completion: @escaping ([Show]) -> ()) {
-        var shows: [Show] = []
-
-        Alamofire.request("https://wilcoxcurtis.com/show-dictionary/files/shows_\(Locale.current.languageCode ?? "en").json", method: .get).responseString() { response in
-
-            switch response.result {
-            case .success(var text):
-                text = text.replacingOccurrences(of: "<pre>", with: "").replacingOccurrences(of: "</pre>", with: "").trimmingCharacters(in: .whitespacesAndNewlines) // remove the pretty-print tags from HTML
-                do {
-                    let decoder = JSONDecoder()
-                    shows = try decoder.decode([Show].self, from: Data(text.utf8)).sorted(by: <)
-                    shows = shows.sorted(by: <)
-                    completion(shows)
-                } catch {
-                    completion([])
-                }
-            case .failure:
-                completion([])
-            }
+  }
+  
+  func getShows(completion: @escaping ([Show]) -> ()) {
+    var shows: [Show] = []
+    
+    Alamofire.request("https://wilcoxcurtis.com/show-dictionary/files/shows_\(Locale.current.languageCode ?? "en").json", method: .get).responseString() { response in
+      
+      switch response.result {
+      case .success(var text):
+        text = text.replacingOccurrences(of: "<pre>", with: "").replacingOccurrences(of: "</pre>", with: "").trimmingCharacters(in: .whitespacesAndNewlines) // remove the pretty-print tags from HTML
+        do {
+          let decoder = JSONDecoder()
+          shows = try decoder.decode([Show].self, from: Data(text.utf8)).sorted(by: <)
+          shows = shows.sorted(by: <)
+          completion(shows)
+        } catch {
+          completion([])
         }
+      case .failure:
+        completion([])
+      }
     }
+  }
 }
 
 /*

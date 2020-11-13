@@ -13,9 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>book</string>
+			<string>libro</string>
 			<key>other</key>
-			<string>books</string>
+			<string>libri</string>
 		</dict>
 	</dict>
 	<key>character</key>
@@ -29,9 +29,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>character</string>
+			<string>carattere</string>
 			<key>other</key>
-			<string>characters</string>
+			<string>caratteri</string>
 		</dict>
 	</dict>
 	<key>companion</key>
@@ -45,9 +45,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>companion</string>
+			<string>compagno</string>
 			<key>other</key>
-			<string>companions</string>
+			<string>compagni</string>
 		</dict>
 	</dict>
 	<key>director</key>
@@ -61,9 +61,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>director</string>
+			<string>direttore</string>
 			<key>other</key>
-			<string>directors</string>
+			<string>direttori</string>
 		</dict>
 	</dict>
 	<key>doctor</key>
@@ -77,9 +77,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>doctor</string>
+			<string>dottore</string>
 			<key>other</key>
-			<string>doctors</string>
+			<string>dottori</string>
 		</dict>
 	</dict>
 	<key>episode</key>
@@ -93,9 +93,41 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>%u episode</string>
+			<string>%u episodio</string>
 			<key>other</key>
-			<string>%u episodes</string>
+			<string>%u episodi</string>
+		</dict>
+	</dict>
+	<key>hour</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@hour@</string>
+		<key>hour</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>one</key>
+			<string>ora</string>
+			<key>other</key>
+			<string>orari</string>
+		</dict>
+	</dict>
+	<key>minute</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@minute@</string>
+		<key>minute</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>one</key>
+			<string>minuto</string>
+			<key>other</key>
+			<string>minuti</string>
 		</dict>
 	</dict>
 	<key>season</key>
@@ -109,9 +141,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>season</string>
+			<string>stagione</string>
 			<key>other</key>
-			<string>seasons</string>
+			<string>stagioni</string>
 		</dict>
 	</dict>
 	<key>series</key>
@@ -124,10 +156,8 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
-			<key>one</key>
-			<string>series</string>
 			<key>other</key>
-			<string>series</string>
+			<string>serie</string>
 		</dict>
 	</dict>
 	<key>their</key>
@@ -141,7 +171,7 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>other</key>
-			<string>their</string>
+			<string>loro</string>
 		</dict>
 	</dict>
 	<key>writer</key>
@@ -155,9 +185,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>writer</string>
+			<string>scrittore</string>
 			<key>other</key>
-			<string>writers</string>
+			<string>scrittori</string>
 		</dict>
 	</dict>
 </dict>

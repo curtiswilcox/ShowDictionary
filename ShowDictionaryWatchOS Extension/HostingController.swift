@@ -34,11 +34,12 @@ class HostingController: WKHostingController<ContentView> {
     
     private func getiCloudLoginStatus(completion: @escaping (Bool) -> ()) {
         CKContainer.default().accountStatus() { (status, error) in
-            if status == .available {
-                completion(true)
-            } else {
-                completion(false)
-            }
+          completion(status == .available)
+//            if status == .available {
+//                completion(true)
+//            } else {
+//                completion(false)
+//            }
         }
     }
 }
