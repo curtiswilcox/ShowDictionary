@@ -61,46 +61,20 @@ final class Episode {
     code = try Int(values.decode(String.self, forKey: .code))!
     airdate = try Date(hyphenated: values.decode(String.self, forKey: .airdate))
     title = try values.decode(String.self, forKey: .title).trimmingCharacters(in: .whitespacesAndNewlines)
+        
+    writers = try? values.decode(String.self, forKey: .writers).trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: NSLocalizedString(" and ", comment: "")).map { Person(fullName: $0) }
     
-    do {
-      let writer = try values.decode(String?.self, forKey: .writers)?.trimmingCharacters(in: .whitespacesAndNewlines)
-      var writers = [Person]()
-      
-      if let writer = writer {
-        for w in writer.components(separatedBy: NSLocalizedString(" and ", comment: "")) {
-          writers.append(Person(fullName: w))
-        }
-        self.writers = writers
-      } else {
-        self.writers = nil
-      }
-    } catch { writers = nil }
-    
-    do {
-      let director = try values.decode(String?.self, forKey: .directors)?.trimmingCharacters(in: .whitespacesAndNewlines)
-      var directors = [Person]()
-      
-      if let director = director {
-        for d in director.components(separatedBy: NSLocalizedString(" and ", comment: "")) {
-          directors.append(Person(fullName: d))
-        }
-        self.directors = directors
-      } else {
-        self.directors = nil
-      }
-    } catch { directors = nil }
-    
+    directors = try? values.decode(String.self, forKey: .directors).trimmingCharacters(in: .whitespacesAndNewlines).components(separatedBy: NSLocalizedString(" and ", comment: "")).map { Person(fullName: $0) }
+        
     summary = try values.decode(String.self, forKey: .summary).trimmingCharacters(in: .whitespacesAndNewlines)
     
-    do { keywords = try values.decode(String?.self, forKey: .keywords)?.trimmingCharacters(in: .whitespacesAndNewlines) }
-    catch { keywords = nil }
+    keywords = try? values.decode(String.self, forKey: .keywords).trimmingCharacters(in: .whitespacesAndNewlines)
     
-    do { runtime = try Int(values.decode(String?.self, forKey: .runtime) ?? "") }
-    catch { runtime = nil }
+    runtime = try? Int(values.decode(String.self, forKey: .runtime))
     
     do {
-      if var doctors = (try values.decode(String?.self, forKey: .doctors))?.replacingOccurrences(of: "\\", with: ""),
-         var companions = (try values.decode(String?.self, forKey: .companions))?.replacingOccurrences(of: "\\", with: "") {
+      if var doctors = (try? values.decode(String.self, forKey: .doctors))?.replacingOccurrences(of: "\\", with: ""),
+         var companions = (try? values.decode(String.self, forKey: .companions))?.replacingOccurrences(of: "\\", with: "") {
         
         doctors.append(contentsOf: ",\((try values.decode(String.self, forKey: .secondaryDoctors)).replacingOccurrences(of: "\\", with: "").replacingOccurrences(of: ", ", with: ","))")
         self.doctors = doctors.split(separator: ",").map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
@@ -110,17 +84,11 @@ final class Episode {
       } else { self.doctors = nil; self.companions = nil; }
     } catch { self.doctors = nil; self.companions = nil }
         
-    characters = nil
     seasonNumber = try Int(values.decode(String.self, forKey: .seasonNumber))!
     numberInSeason = try Int(values.decode(String.self, forKey: .numberInSeason))!
     numberInSeries = try Int(values.decode(String.self, forKey: .numberInSeries))!
     
-    do {
-      if let discNumber = try values.decode(String?.self, forKey: .discNumber)?.trimmingCharacters(in: .whitespacesAndNewlines),
-         let episodeOnDisc = try values.decode(String?.self, forKey: .episodeOnDisc)?.trimmingCharacters(in: .whitespacesAndNewlines) {
-        discInfo = (String(seasonNumber), discNumber, episodeOnDisc)
-      }
-    } catch { discInfo = nil }
+    discInfo = try? (season: String(seasonNumber), disc: values.decode(String.self, forKey: .discNumber).trimmingCharacters(in: .whitespacesAndNewlines), episode: values.decode(String.self, forKey: .episodeOnDisc).trimmingCharacters(in: .whitespacesAndNewlines))
   }
   
   func setCharacters(_ characters: [Show.Character]) {
