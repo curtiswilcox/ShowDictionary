@@ -51,7 +51,7 @@ extension CharacterView {
                   Text(character.character.fullName)
                     .font(.callout)
                     .bold()
-                    .foregroundColor(Color(UIColor.label))
+                    .foregroundColor(Color(.label))
                     .padding(.top)
                   SubText(character.actor.fullName)
                   Spacer()

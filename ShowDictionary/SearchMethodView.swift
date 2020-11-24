@@ -23,29 +23,28 @@ struct SearchMethodView: View {
       }
       if self.progress == 100 {
         GridView(progress: self.$progress, chosenMethod: self.$chosenMethod)
-      }
-      if self.progress != 100 && (self.show.episodes?.isEmpty ?? true) {
+      } else if self.progress != 100 && (self.show.episodes?.isEmpty ?? true) {
         ProgressView()
           .progressViewStyle(CircularProgressViewStyle())
           .scaleEffect(1.5)
       }
     }
-    .navigationBarTitle(self.show.name)
+    .navigationBarTitle(show.name)
     .onAppear {
       chosenMethod = (nil, false)
-      guard self.observer.showname.isEmpty else { return }
+      guard observer.showname.isEmpty else { return }
       
       let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-        self.progress = CGFloat(self.observer.percentCompleted)
+        self.progress = CGFloat(observer.percentCompleted)
         if self.progress == 100 { timer.invalidate() }
       }
       
-      self.observer.showname = self.show.filename
-      self.observer.getEpisodes { (episodes, hasFaves) in
-        self.show.episodes = episodes
-        self.show.hasFavoritedEpisodes = hasFaves
+      observer.showname = self.show.filename
+      observer.getEpisodes { (episodes, hasFaves) in
+        show.episodes = episodes
+        show.hasFavoritedEpisodes = hasFaves
         
-        if let characters = self.show.characters {
+        if let characters = show.characters {
           for episode in episodes {
             let chars = characters.filter { $0.appearances.contains(episode.code) }
             episode.setCharacters(chars)
@@ -134,7 +133,7 @@ extension SearchMethodView {
         Text(method.toString(seasonType: self.show.typeOfSeasons))
           .font(.callout)
           .bold()
-          .foregroundColor(Color(UIColor.label))
+          .foregroundColor(Color(.label))
           .padding(.top)
         Divider()
           .background(Color.gray)

@@ -47,7 +47,7 @@
 //                      Text(companion.fullName)
 //                        .font(.callout)
 //                        .bold()
-//                        .foregroundColor(Color(UIColor.label))
+//                        .foregroundColor(Color(.label))
 //                        .padding(.top)
 //                      if let actor = show.characters?.first(where: { $0.character == companion })?.actor {
 //                        SubText(actor.fullName)

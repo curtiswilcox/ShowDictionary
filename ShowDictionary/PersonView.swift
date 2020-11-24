@@ -65,7 +65,7 @@ extension PersonView {
                   Text(person.fullName)
                     .font(.callout)
                     .bold()
-                    .foregroundColor(Color(UIColor.label))
+                    .foregroundColor(Color(.label))
                     .padding(.top)
                   Spacer()
                   Divider()

@@ -50,7 +50,8 @@ struct AirdateView: View {
       }
     }
     .alert(isPresented: $showNoEpisodeAlert) {
-      Alert(title: Text(NSLocalizedString("No episodes", comment: "")), message: Text(NSLocalizedString("No episodes aired in the given time frame.", comment: "")), dismissButton: .default(Text(NSLocalizedString("Dismiss", comment: ""))))
+      let alertText = "No episodes aired \(searchMethod == .singleAirdate ? "on the given date" : "in the given time frame")."
+      return Alert(title: Text(NSLocalizedString("No episodes", comment: "")), message: Text(NSLocalizedString(alertText, comment: "")), dismissButton: .default(Text(NSLocalizedString("Dismiss", comment: ""))))
     }
   }
 }
@@ -77,14 +78,14 @@ extension AirdateView {
       DatePicker("", selection: $after, in: range, displayedComponents: .date)
         .datePickerStyle(GraphicalDatePickerStyle())
         .labelsHidden()
-        .padding(.vertical)
+        .padding()
       if searchMethod == .rangeAirdates {
         Divider()
           .padding()
         DatePicker("", selection: $before, in: after...show.episodes.last!.airdate, displayedComponents: .date)
           .datePickerStyle(GraphicalDatePickerStyle())
           .labelsHidden()
-          .padding(.vertical)
+          .padding()
       }
     }
   }
@@ -106,7 +107,7 @@ extension AirdateView {
         } label: {
           Text(NSLocalizedString("Display", comment: ""))
             .padding()
-            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(UIColor.label), lineWidth: 2))
+            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Color(.label), lineWidth: 2))
         }
         .padding(.vertical)
         Spacer()

@@ -47,7 +47,7 @@ extension SeasonView {
                   Text(getTitle(self.show, season))
                     .font(.callout)
                     .bold()
-                    .foregroundColor(Color(UIColor.label))
+                    .foregroundColor(Color(.label))
                     .padding(.top)
                   Spacer()
                   Divider()

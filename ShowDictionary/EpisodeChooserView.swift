@@ -66,7 +66,7 @@ extension EpisodeChooserView {
       } label: {
         ZStack {
           RoundedRectangle(cornerRadius: 20)
-            .stroke(Color(UIColor.label), lineWidth: 2)
+            .stroke(Color(.label), lineWidth: 2)
             .frame(width: width)
             .padding(.horizontal)
           
@@ -75,7 +75,8 @@ extension EpisodeChooserView {
               Text(episode.title)
                 .font(.callout)
                 .bold()
-                .foregroundColor(Color(UIColor.label))
+                .allowsTightening(true)
+                .foregroundColor(Color(.label))
                 .padding(.top)
               Spacer()
               VStack {

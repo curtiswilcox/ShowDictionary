@@ -18,6 +18,9 @@ class ShowObserver : ObservableObject {
 //  @Published private(set) var percentCompleted: CGFloat = 0
   
   init() {
+//    let documentsURLs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//    print(try? FileManager.default.contentsOfDirectory(at: documentsURLs, includingPropertiesForKeys: nil))
+    
     getShows() { shows in
       guard !shows.isEmpty else {
 //        self.percentCompleted = -1
@@ -35,6 +38,7 @@ class ShowObserver : ObservableObject {
               self.data.append(ShowData(show, img))
               self.saveImageData(imageData, show: show.filename)
             } else {
+//              print("Couldn't download image for \(show.filename).")
               if let img = self.savedImage(show: show.filename) {
                 self.data.append(ShowData(show, img))
               } // no `else`: show only available if episodes have been previously downloaded if unable to download currently
@@ -105,7 +109,7 @@ class ShowObserver : ObservableObject {
     let fileURL = URL(fileURLWithPath: "\(show)_\(lang)-title-card", relativeTo: directoryURL).appendingPathExtension("txt")
     let showURL = directoryURL.appendingPathComponent(lang).appendingPathComponent(show).appendingPathExtension("json")
     
-    guard FileManager.default.fileExists(atPath: fileURL.path) && FileManager.default.fileExists(atPath: showURL.path) else { /*print("\(show) file doesn't exist.");*/ return nil }
+    guard FileManager.default.fileExists(atPath: fileURL.path) && FileManager.default.fileExists(atPath: showURL.path) else { print("\(show) file doesn't exist."); return nil }
     
 //      let data = try? Data(contentsOf: fileURL)
     if let data = try? Data(contentsOf: fileURL), let image = UIImage(data: data) {
@@ -125,7 +129,7 @@ class ShowObserver : ObservableObject {
       let shows = try JSONDecoder().decode([Show].self, from: Data(contentsOf: fileURL)).sorted(by: <)
       return shows
     } catch let e {
-      print("Couldn't load show data: \(e)")
+//      print("Couldn't load show data: \(e)")
       return nil
     }
   }

@@ -45,7 +45,7 @@ extension DoctorView {
                   Text(localizeDoctor(doctor))
                     .font(.callout)
                     .bold()
-                    .foregroundColor(Color(UIColor.label))
+                    .foregroundColor(Color(.label))
                     .padding(.top)
                   if let actor = getActor(doctor: doctor, newWho: show.filename == "doctorwho") {
                     SubText(actor) // note for above: rather than `classicdoctorwho`
