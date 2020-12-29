@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D326A720263BEFA194795263 /* Pods_ShowDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */; };
 		D40B3C88254B16130067F4AF /* Int+toWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B3C87254B16130067F4AF /* Int+toWord.swift */; };
 		D40B3C91254B169C0067F4AF /* Int+toWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B3C87254B16130067F4AF /* Int+toWord.swift */; };
 		D40B3C96254B169D0067F4AF /* Int+toWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B3C87254B16130067F4AF /* Int+toWord.swift */; };
 		D419A3C525328A8E008B3B6A /* AirdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D419A3C425328A8E008B3B6A /* AirdateView.swift */; };
+		D46430132574445A00EB40DC /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9DBC9CE23AED80F004DF3A3 /* CloudKit.framework */; };
+		D46430192574446000EB40DC /* Pods_ShowDictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9102168FCCE192F198B2EC77 /* Pods_ShowDictionary.framework */; };
 		D48D506A25152FA400BBB94F /* ShowDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D506925152FA400BBB94F /* ShowDictionaryApp.swift */; };
 		D4B771FC2533CEA9008BDB02 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B771FB2533CEA9008BDB02 /* SectionHeaderView.swift */; };
 		D4DFB2E6252BA61E006E63FF /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DFB2E5252BA61E006E63FF /* CardView.swift */; };
@@ -99,7 +100,6 @@
 		E9DBC9C923AED7EE004DF3A3 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9B223AED7ED004DF3A3 /* SearchBar.swift */; };
 		E9DBC9CA23AED7EE004DF3A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9B323AED7ED004DF3A3 /* ContentView.swift */; };
 		E9DBC9CB23AED7EE004DF3A3 /* SearchMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9B423AED7EE004DF3A3 /* SearchMethod.swift */; };
-		E9DBC9CF23AED80F004DF3A3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9DBC9CE23AED80F004DF3A3 /* CloudKit.framework */; };
 		E9F66C4B23C1347F0067C789 /* ShowObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DBC9AA23AED7ED004DF3A3 /* ShowObserver.swift */; };
 		E9F66C4C23C134970067C789 /* ShowData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A0E79823C129CB00CCB256 /* ShowData.swift */; };
 		E9F66C4E23C136340067C789 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E968E33823BC5668009AF7B3 /* CloudKit.framework */; };
@@ -302,9 +302,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D46430132574445A00EB40DC /* CloudKit.framework in Frameworks */,
 				E9918CE823D219B300BF8271 /* SwiftUIRefresh in Frameworks */,
-				E9DBC9CF23AED80F004DF3A3 /* CloudKit.framework in Frameworks */,
-				D326A720263BEFA194795263 /* Pods_ShowDictionary.framework in Frameworks */,
+				D46430192574446000EB40DC /* Pods_ShowDictionary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1252,6 +1252,7 @@
 				DEVELOPMENT_TEAM = RN9D88P79F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ShowDictionary/Info.plist;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1261,7 +1262,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -1278,6 +1279,7 @@
 				DEVELOPMENT_TEAM = RN9D88P79F;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ShowDictionary/Info.plist;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1286,7 +1288,7 @@
 				PRODUCT_NAME = "Show Dictionary";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};

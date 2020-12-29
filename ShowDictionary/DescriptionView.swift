@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DescriptionView: View {
   @EnvironmentObject var show: Show
+  
   var body: some View {
     ScrollView {
       VStack {

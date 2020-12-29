@@ -128,7 +128,7 @@ class ShowObserver : ObservableObject {
     do {
       let shows = try JSONDecoder().decode([Show].self, from: Data(contentsOf: fileURL)).sorted(by: <)
       return shows
-    } catch let e {
+    } catch { // let e {
 //      print("Couldn't load show data: \(e)")
       return nil
     }

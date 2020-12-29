@@ -60,7 +60,7 @@ final class Show : Identifiable { // the Swift fields
     } else {
       self.seasonTitles = nil
     }
-    
+
     if let characters = try values.decode(String?.self, forKey: .characters) {
       let initialCharacters = try JSONSerialization.jsonObject(with: characters.data(using: .utf8)!, options: []) as? [String: [String: Any]]
 

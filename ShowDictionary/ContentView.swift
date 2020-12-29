@@ -10,7 +10,7 @@ import CloudKit
 import SwiftUI
 
 struct ContentView: View {
-	@ObservedObject private var observer = ShowObserver()
+	@StateObject private var observer = ShowObserver()  // was @ObservedObject... change back if hinky
 	@State private var progress: CGFloat = 0
 	@State var showSelected: (show: ShowData?, display: Bool) = (nil, false)
 	
