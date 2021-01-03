@@ -66,12 +66,19 @@ extension ContentView {
 		private let columns = 3
 		
 		var body: some View {
-			guard self.progress == self.observer.maxCount else { return AnyView(EmptyView()) }
+			guard progress == observer.maxCount else { return AnyView(EmptyView()) }
 			return AnyView(GeometryReader { geometry in
 				ScrollView {
-					LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns), spacing: 20) {
-						ForEach(self.observer.data) { datum in
-							TitleCard(datum: datum, geometry: geometry, columns: CGFloat(columns), showSelected: $showSelected)
+					let headers = Set(self.observer.data.map { $0.show.sortname.first! }).map { $0.uppercased() }.sorted()
+					ForEach(headers, id: \.self) { header in
+						Section(header: SectionHeaderView<Text>(width: geometry.size.width) { Text(header) }) {
+							LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns), spacing: 20) {
+								let data = observer.data.filter { $0.show.sortname.uppercased().hasPrefix(header) }
+								ForEach(data) { datum in
+									TitleCard(datum: datum, geometry: geometry, columns: CGFloat(columns), showSelected: $showSelected)
+								}
+							}
+							.padding(.horizontal, 5)
 						}
 					}
 					.padding()
