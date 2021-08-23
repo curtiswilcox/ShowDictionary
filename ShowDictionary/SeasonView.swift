@@ -16,10 +16,10 @@ struct SeasonView: View {
     ZStack {
       if let season = seasonSelected.season {
         let title = getTitle(self.show, season)
-//        let navTitle = "\(String(format: NSLocalizedString("Episodes in %@", comment: ""), title))"
         let navTitle = String(format: NSLocalizedString("%@", comment: ""), title)
         let episodesToPass = self.show.episodes.filter { $0.seasonNumber == season }
-        NavigationLink(destination: EpisodeChooserView(navTitle: navTitle, useSections: false, episodes: episodesToPass).environmentObject(show), isActive: $seasonSelected.showing) {
+        let destination = EpisodeChooserView(navTitle: navTitle, useSections: false, episodes: episodesToPass).environmentObject(show)
+        NavigationLink(destination: destination, isActive: $seasonSelected.showing) {
           EmptyView()
         }
       }
@@ -37,26 +37,31 @@ extension SeasonView {
     var body: some View {
       GeometryReader { geometry in
         ScrollView {
+//          let columns = UIDevice.current.userInterfaceIdiom == .phone ? 1 : 2
           LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 20) {
             ForEach(1..<show.numberOfSeasons + 1) { season in
               Button {
                 seasonSelected = (season, true)
               } label: {
                 let width = geometry.size.width / 2.5
-                CardView(width: width, horizAlignment: .leading) {
-                  Text(getTitle(self.show, season))
-                    .font(.callout)
-                    .bold()
-                    .foregroundColor(Color(.label))
-                    .padding(.top)
-                  Spacer()
-                  Divider()
-                    .background(Color.gray)
-                    .frame(width: width / 3)
-                    .padding(.all, 0)
-                  SubText("episode".localizeWithFormat(quantity: self.getNumEps(season)))
-                    .padding(.bottom)
-                }
+//                HStack {
+                  CardView(width: width, horizAlignment: .leading) {
+                    Text(getTitle(self.show, season))
+                      .font(.callout)
+                      .bold()
+                      .foregroundColor(Color(.label))
+                      .padding(.top)
+                    Spacer()
+                    Divider()
+                      .background(Color.gray)
+                      .frame(width: width / 3)
+                      .padding(.all, 0)
+                    SubText("episode".localizeWithFormat(quantity: self.getNumEps(season)))
+                      .padding(.bottom)
+                  }
+//                  Spacer()
+//                }
+//                .padding()
               }
             }
           }

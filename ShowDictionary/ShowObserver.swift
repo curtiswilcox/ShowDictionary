@@ -14,8 +14,7 @@ import UIKit.UIImage
 class ShowObserver : ObservableObject {
   private(set) var data: [ShowData] = []
   @Published private(set) var completion = 0
-  private(set) var maxCount: CGFloat = 0
-//  @Published private(set) var percentCompleted: CGFloat = 0
+  private(set) var maxCount: CGFloat = 100
   
   init() {
 //    let documentsURLs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
