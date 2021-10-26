@@ -1,3 +1,4 @@
+/*
 //
 //  GlobalImportantThings.swift
 //  ShowDictionary
@@ -67,3 +68,4 @@ func updateServerEpisodeIsNotFavorite(filename show: String, code episode: Int, 
   }
 }
 
+*/

@@ -1,3 +1,4 @@
+/*
 //
 //  HostingController.swift
 //  ShowDictionaryWatchOS Extension
@@ -43,3 +44,4 @@ class HostingController: WKHostingController<ContentView> {
         }
     }
 }
+*/

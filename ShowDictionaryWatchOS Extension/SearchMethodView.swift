@@ -1,3 +1,4 @@
+/*
 //
 //  SearchMethodView.swift
 //  ShowDictionaryWatchOS Extension
@@ -74,3 +75,4 @@ struct SearchMethodView: View {
     }
   }
 }
+*/

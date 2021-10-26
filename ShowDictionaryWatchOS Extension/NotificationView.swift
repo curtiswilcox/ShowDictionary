@@ -1,3 +1,4 @@
+/*
 //
 //  NotificationView.swift
 //  ShowDictionaryWatchOS Extension
@@ -19,3 +20,4 @@ struct NotificationView_Previews: PreviewProvider {
         NotificationView()
     }
 }
+*/

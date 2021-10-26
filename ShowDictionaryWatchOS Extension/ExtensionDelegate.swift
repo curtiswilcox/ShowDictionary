@@ -1,3 +1,4 @@
+/*
 //
 //  ExtensionDelegate.swift
 //  ShowDictionaryWatchOS Extension
@@ -54,3 +55,4 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
 
 }
+*/

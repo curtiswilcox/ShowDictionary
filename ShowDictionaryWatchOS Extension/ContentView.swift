@@ -1,3 +1,4 @@
+/*
 //
 //  ContentView.swift
 //  ShowDictionaryWatchOS Extension
@@ -86,3 +87,4 @@ struct ContentView_Previews: PreviewProvider {
   }
 }
 #endif
+*/

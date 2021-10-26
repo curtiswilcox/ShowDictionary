@@ -1,3 +1,4 @@
+/*
 //
 //  DescriptionView.swift
 //  ShowDictionaryWatchOS Extension
@@ -20,3 +21,4 @@ struct DescriptionView: View {
         }
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 //
 //  SeasonView.swift
 //  ShowDictionaryWatchOS Extension
@@ -25,3 +26,4 @@ struct SeasonView: View {
         .navigationBarTitle(self.show.typeOfSeasons.localizeLowPlur.capitalized)
     }
 }
+*/
