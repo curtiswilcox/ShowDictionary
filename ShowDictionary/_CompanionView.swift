@@ -1,3 +1,4 @@
+/*
 ////
 ////  CompanionView.swift
 ////  ShowDictionary
@@ -88,3 +89,4 @@
 //fileprivate func getSectionHeaders(show: Show) -> [String] {
 //  return Set(getCompanions(show: show).map { $0.lastName.firstLetter().uppercased() }).sorted()
 //}
+*/

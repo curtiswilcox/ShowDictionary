@@ -1,3 +1,4 @@
+/*
 //
 //  ShowData.swift
 //  ShowDictionary
@@ -28,3 +29,4 @@ class ShowData : Comparable, Identifiable {
     }
 }
 
+*/

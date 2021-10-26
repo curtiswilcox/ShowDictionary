@@ -1,3 +1,4 @@
+/*
 //
 //  CharacterView.swift
 //  ShowDictionary
@@ -88,3 +89,4 @@ fileprivate func getCharacters(show: Show) -> [Show.Character] {
   let characters = show.episodes.compactMap({$0.characters.flatMap({$0})}).joined()
   return Set(characters).sorted { $0.character < $1.character }
 }
+*/

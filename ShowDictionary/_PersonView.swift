@@ -1,3 +1,4 @@
+/*
 //
 //  PersonView.swift
 //  ShowDictionary
@@ -107,3 +108,4 @@ fileprivate func getNumEps(_ person: Person, show: Show, type: SearchMethod) -> 
     fatalError("Unknown search method! \(#function), \(#line)")
   }
 }
+*/

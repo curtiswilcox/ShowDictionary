@@ -1,3 +1,4 @@
+/*
 //
 //  SeasonType.swift
 //  ShowDictionary
@@ -65,3 +66,4 @@ enum SeasonType: String, Codable, Identifiable {
 //		return NSLocalizedString(self.toString(), comment: "\"\(self.toString())\" type of seasons, lowercase, plural")
 //	}
 }
+*/

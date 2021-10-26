@@ -1,3 +1,4 @@
+/*
 ////
 ////  DirectorView.swift
 ////  ShowDictionary
@@ -89,3 +90,4 @@
 //fileprivate func getNumEps(_ director: Person, show: Show) -> Int {
 //  return show.episodes.filter { $0.directors!.contains(director) }.count
 //}
+*/

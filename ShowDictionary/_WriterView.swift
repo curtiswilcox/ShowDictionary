@@ -1,3 +1,4 @@
+/*
 ////
 ////  WriterView.swift
 ////  ShowDictionary
@@ -90,3 +91,4 @@
 //fileprivate func getNumEps(_ writer: Person, show: Show) -> Int {
 //  return show.episodes.filter { $0.writers!.contains(writer) }.count
 //}
+*/

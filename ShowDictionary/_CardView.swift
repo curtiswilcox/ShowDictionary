@@ -1,3 +1,4 @@
+/*
 //
 //  SwiftUIView.swift
 //  ShowDictionary
@@ -44,3 +45,4 @@ struct CardView<Content: View>: View {
 //        CardView()
 //    }
 //}
+*/

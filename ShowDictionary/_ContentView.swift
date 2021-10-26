@@ -1,3 +1,4 @@
+/*
 //
 //  ContentView.swift
 //  SwiftUITest
@@ -120,3 +121,4 @@ extension ContentView {
 		}
 	}
 }
+*/

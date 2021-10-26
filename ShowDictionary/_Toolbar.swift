@@ -1,3 +1,4 @@
+/*
 //
 //  Toolbar.swift
 //  ShowDictionary
@@ -48,3 +49,4 @@ struct Toolbar: View {
 //        Toolbar()
 //    }
 //}
+*/

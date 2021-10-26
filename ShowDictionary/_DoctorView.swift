@@ -1,3 +1,4 @@
+/*
 //
 //  DoctorView.swift
 //  ShowDictionary
@@ -155,3 +156,4 @@ fileprivate func getOrdinal(_ doctor: String) -> String {
   
   return formatter.string(from: number)!
 }
+*/

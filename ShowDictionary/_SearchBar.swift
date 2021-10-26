@@ -1,3 +1,4 @@
+/*
 //
 //  SearchBar.swift
 //  SearchBar
@@ -43,3 +44,4 @@ struct SearchBar : UIViewRepresentable {
         uiView.text = text
     }
 }
+*/

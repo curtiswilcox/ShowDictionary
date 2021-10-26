@@ -1,3 +1,4 @@
+/*
 //
 //  Observers.swift
 //  ShowDictionary
@@ -133,3 +134,4 @@ class ShowObserver : ObservableObject {
     }
   }
 }
+*/

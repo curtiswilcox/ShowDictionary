@@ -1,3 +1,4 @@
+/*
 //
 //  SearchMethod.swift
 //  ShowDictionary
@@ -134,3 +135,4 @@ enum SearchMethod: String, Identifiable {
 		}
 	}*/
 }
+*/

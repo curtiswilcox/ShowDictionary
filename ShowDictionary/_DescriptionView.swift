@@ -1,3 +1,4 @@
+/*
 //
 //  DescriptionView.swift
 //  ShowDictionary
@@ -29,3 +30,4 @@ struct DescriptionView: View {
 //    DescriptionView(show: Show(name: "test"))
 //  }
 //}
+*/

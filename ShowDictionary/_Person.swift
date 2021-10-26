@@ -1,3 +1,4 @@
+/*
 //
 //  Person.swift
 //  ShowDictionary
@@ -30,3 +31,4 @@ struct Person: Comparable, Codable, Hashable, Identifiable {
   }
 }
 
+*/

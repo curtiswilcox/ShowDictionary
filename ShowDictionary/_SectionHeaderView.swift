@@ -1,3 +1,4 @@
+/*
 //
 //  SectionHeaderView.swift
 //  ShowDictionary
@@ -30,3 +31,4 @@ struct SectionHeaderView<Content: View>: View {
     .padding(.top)
   }
 }
+*/

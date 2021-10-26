@@ -1,3 +1,4 @@
+/*
 //
 //  HamburgerMenuView.swift
 //  ShowDictionary
@@ -52,3 +53,4 @@ struct HamburgerMenuView_Previews: PreviewProvider {
         HamburgerMenuView()
     }
 }
+*/

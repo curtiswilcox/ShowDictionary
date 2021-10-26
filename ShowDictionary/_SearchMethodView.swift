@@ -1,3 +1,4 @@
+/*
 //
 //  SearchMethodView.swift
 //  ShowDictionary
@@ -146,3 +147,4 @@ extension SearchMethodView {
     }
   }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 //
 //  Show.swift
 //  ShowDictionaryMac
@@ -164,3 +165,4 @@ extension Show {
     }
   }
 }
+*/
