@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Observable: Comparable, CustomStringConvertible, Decodable, Identifiable {
-    func validItem(searchText: String) -> Bool
+protocol Observable: Comparable, CustomStringConvertible, Decodable, Hashable, Identifiable {
+    func matchesSearchText(_ searchText: String) -> Bool
 }
 

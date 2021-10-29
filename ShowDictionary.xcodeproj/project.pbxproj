@@ -29,8 +29,8 @@
 		D4093C862728919300F41BBF /* Int+toWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6A2728919300F41BBF /* Int+toWord.swift */; };
 		D4093C872728919300F41BBF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6B2728919300F41BBF /* ContentView.swift */; };
 		D4093C882728919300F41BBF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6B2728919300F41BBF /* ContentView.swift */; };
-		D4093C892728919300F41BBF /* SubText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6C2728919300F41BBF /* SubText.swift */; };
-		D4093C8A2728919300F41BBF /* SubText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6C2728919300F41BBF /* SubText.swift */; };
+		D4093C892728919300F41BBF /* Subtext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6C2728919300F41BBF /* Subtext.swift */; };
+		D4093C8A2728919300F41BBF /* Subtext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6C2728919300F41BBF /* Subtext.swift */; };
 		D4093C8B2728919300F41BBF /* SeasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6D2728919300F41BBF /* SeasonType.swift */; };
 		D4093C8C2728919300F41BBF /* SeasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6D2728919300F41BBF /* SeasonType.swift */; };
 		D4093C8D2728919300F41BBF /* Array+before+after.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6E2728919300F41BBF /* Array+before+after.swift */; };
@@ -45,6 +45,28 @@
 		D4093C962728919300F41BBF /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C722728919300F41BBF /* LoaderView.swift */; };
 		D4093C98272891C000F41BBF /* ShowDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C97272891BF00F41BBF /* ShowDictionaryApp.swift */; };
 		D4093C99272891C000F41BBF /* ShowDictionaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C97272891BF00F41BBF /* ShowDictionaryApp.swift */; };
+		D4093CCA2728944B00F41BBF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4093CC92728944B00F41BBF /* CloudKit.framework */; };
+		D4093CCC2728946300F41BBF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4093CCB2728946300F41BBF /* CloudKit.framework */; };
+		D4093CCF27299E9E00F41BBF /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CCE27299E9E00F41BBF /* Record.swift */; };
+		D4093CD027299E9E00F41BBF /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CCE27299E9E00F41BBF /* Record.swift */; };
+		D4093CD3272A43F700F41BBF /* URLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CD2272A43F700F41BBF /* URLError.swift */; };
+		D4093CD4272A43F700F41BBF /* URLError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CD2272A43F700F41BBF /* URLError.swift */; };
+		D4093CD6272AF57900F41BBF /* CKRecord+getString+getInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CD5272AF57900F41BBF /* CKRecord+getString+getInt.swift */; };
+		D4093CD7272AF57900F41BBF /* CKRecord+getString+getInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CD5272AF57900F41BBF /* CKRecord+getString+getInt.swift */; };
+		D4093CD9272B213400F41BBF /* EpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CD8272B213400F41BBF /* EpisodeView.swift */; };
+		D4093CDA272B213400F41BBF /* EpisodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CD8272B213400F41BBF /* EpisodeView.swift */; };
+		D4093CDC272B2FB800F41BBF /* View+if.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CDB272B2FB800F41BBF /* View+if.swift */; };
+		D4093CDD272B2FB800F41BBF /* View+if.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CDB272B2FB800F41BBF /* View+if.swift */; };
+		D4093CDF272B3F3200F41BBF /* SeasonScrollMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CDE272B3F3200F41BBF /* SeasonScrollMenu.swift */; };
+		D4093CE0272B3F3300F41BBF /* SeasonScrollMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CDE272B3F3200F41BBF /* SeasonScrollMenu.swift */; };
+		D4093CE2272B50F500F41BBF /* Portrayal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CE1272B50F500F41BBF /* Portrayal.swift */; };
+		D4093CE3272B50F500F41BBF /* Portrayal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CE1272B50F500F41BBF /* Portrayal.swift */; };
+		D4093CE5272B518C00F41BBF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CE4272B518C00F41BBF /* Person.swift */; };
+		D4093CE6272B518C00F41BBF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CE4272B518C00F41BBF /* Person.swift */; };
+		D4093CE8272B52AE00F41BBF /* NameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CE7272B52AE00F41BBF /* NameError.swift */; };
+		D4093CE9272B52AE00F41BBF /* NameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CE7272B52AE00F41BBF /* NameError.swift */; };
+		D4093CEB272B82C000F41BBF /* CircledNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CEA272B82C000F41BBF /* CircledNumber.swift */; };
+		D4093CEC272B82C000F41BBF /* CircledNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CEA272B82C000F41BBF /* CircledNumber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,7 +84,7 @@
 		D4093C692728919300F41BBF /* TitleCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCardView.swift; sourceTree = "<group>"; };
 		D4093C6A2728919300F41BBF /* Int+toWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+toWord.swift"; sourceTree = "<group>"; };
 		D4093C6B2728919300F41BBF /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		D4093C6C2728919300F41BBF /* SubText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubText.swift; sourceTree = "<group>"; };
+		D4093C6C2728919300F41BBF /* Subtext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subtext.swift; sourceTree = "<group>"; };
 		D4093C6D2728919300F41BBF /* SeasonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonType.swift; sourceTree = "<group>"; };
 		D4093C6E2728919300F41BBF /* Array+before+after.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+before+after.swift"; sourceTree = "<group>"; };
 		D4093C6F2728919300F41BBF /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
@@ -70,6 +92,19 @@
 		D4093C712728919300F41BBF /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		D4093C722728919300F41BBF /* LoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		D4093C97272891BF00F41BBF /* ShowDictionaryApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowDictionaryApp.swift; sourceTree = "<group>"; };
+		D4093CC72728944500F41BBF /* ShowDictionary (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ShowDictionary (iOS).entitlements"; sourceTree = "<group>"; };
+		D4093CC92728944B00F41BBF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		D4093CCB2728946300F41BBF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		D4093CCE27299E9E00F41BBF /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		D4093CD2272A43F700F41BBF /* URLError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLError.swift; sourceTree = "<group>"; };
+		D4093CD5272AF57900F41BBF /* CKRecord+getString+getInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CKRecord+getString+getInt.swift"; sourceTree = "<group>"; };
+		D4093CD8272B213400F41BBF /* EpisodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeView.swift; sourceTree = "<group>"; };
+		D4093CDB272B2FB800F41BBF /* View+if.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+if.swift"; sourceTree = "<group>"; };
+		D4093CDE272B3F3200F41BBF /* SeasonScrollMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonScrollMenu.swift; sourceTree = "<group>"; };
+		D4093CE1272B50F500F41BBF /* Portrayal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portrayal.swift; sourceTree = "<group>"; };
+		D4093CE4272B518C00F41BBF /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		D4093CE7272B52AE00F41BBF /* NameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameError.swift; sourceTree = "<group>"; };
+		D4093CEA272B82C000F41BBF /* CircledNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4093CCA2728944B00F41BBF /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4093CCC2728946300F41BBF /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,9 +130,11 @@
 		D4093C33272890F000F41BBF = {
 			isa = PBXGroup;
 			children = (
+				D4093CC72728944500F41BBF /* ShowDictionary (iOS).entitlements */,
 				D4093C38272890F000F41BBF /* Shared */,
 				D4093C47272890F900F41BBF /* macOS */,
 				D4093C41272890F900F41BBF /* Products */,
+				D4093CC82728944B00F41BBF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,10 +143,12 @@
 			children = (
 				D4093C5B2728913400F41BBF /* Classes */,
 				D4093C592728912B00F41BBF /* Enums */,
+				D4093CD1272A43E800F41BBF /* Errors */,
 				D4093C572728912000F41BBF /* Extensions */,
 				D4093C5D2728913B00F41BBF /* Lifecyle */,
 				D4093C5A2728912F00F41BBF /* Models */,
 				D4093C582728912500F41BBF /* Protocols */,
+				D4093CCD27299E8900F41BBF /* Typealiases */,
 				D4093C5C2728913800F41BBF /* Views */,
 				D4093C3B272890F800F41BBF /* Assets.xcassets */,
 			);
@@ -135,12 +176,14 @@
 			isa = PBXGroup;
 			children = (
 				D4093C6E2728919300F41BBF /* Array+before+after.swift */,
+				D4093CD5272AF57900F41BBF /* CKRecord+getString+getInt.swift */,
 				D4093C632728919200F41BBF /* Collection+safeSubscript.swift */,
 				D4093C642728919200F41BBF /* CollectionType+toJSONString.swift */,
 				D4093C652728919200F41BBF /* Date+new+written+toString.swift */,
 				D4093C6A2728919300F41BBF /* Int+toWord.swift */,
 				D4093C612728919200F41BBF /* String+isAlphanumeric+localize.swift */,
 				D4093C702728919300F41BBF /* URL+ExpressibleByStringLiteral.swift */,
+				D4093CDB272B2FB800F41BBF /* View+if.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -165,6 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				D4093C622728919200F41BBF /* Episode.swift */,
+				D4093CE4272B518C00F41BBF /* Person.swift */,
+				D4093CE1272B50F500F41BBF /* Portrayal.swift */,
 				D4093C6F2728919300F41BBF /* Show.swift */,
 			);
 			name = Models;
@@ -209,7 +254,7 @@
 		D4093C5F2728914900F41BBF /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
-				D4093C6C2728919300F41BBF /* SubText.swift */,
+				D4093C6C2728919300F41BBF /* Subtext.swift */,
 			);
 			name = ViewModifiers;
 			sourceTree = "<group>";
@@ -217,9 +262,38 @@
 		D4093C602728915200F41BBF /* Helper Views */ = {
 			isa = PBXGroup;
 			children = (
+				D4093CEA272B82C000F41BBF /* CircledNumber.swift */,
+				D4093CD8272B213400F41BBF /* EpisodeView.swift */,
+				D4093CDE272B3F3200F41BBF /* SeasonScrollMenu.swift */,
 				D4093C692728919300F41BBF /* TitleCardView.swift */,
 			);
 			name = "Helper Views";
+			sourceTree = "<group>";
+		};
+		D4093CC82728944B00F41BBF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4093CCB2728946300F41BBF /* CloudKit.framework */,
+				D4093CC92728944B00F41BBF /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4093CCD27299E8900F41BBF /* Typealiases */ = {
+			isa = PBXGroup;
+			children = (
+				D4093CCE27299E9E00F41BBF /* Record.swift */,
+			);
+			name = Typealiases;
+			sourceTree = "<group>";
+		};
+		D4093CD1272A43E800F41BBF /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				D4093CE7272B52AE00F41BBF /* NameError.swift */,
+				D4093CD2272A43F700F41BBF /* URLError.swift */,
+			);
+			name = Errors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,22 +400,32 @@
 			files = (
 				D4093C7B2728919300F41BBF /* Date+new+written+toString.swift in Sources */,
 				D4093C812728919300F41BBF /* Observer.swift in Sources */,
+				D4093CDC272B2FB800F41BBF /* View+if.swift in Sources */,
+				D4093CD3272A43F700F41BBF /* URLError.swift in Sources */,
 				D4093C872728919300F41BBF /* ContentView.swift in Sources */,
 				D4093C8D2728919300F41BBF /* Array+before+after.swift in Sources */,
+				D4093CDF272B3F3200F41BBF /* SeasonScrollMenu.swift in Sources */,
+				D4093CE8272B52AE00F41BBF /* NameError.swift in Sources */,
 				D4093C932728919300F41BBF /* Observable.swift in Sources */,
 				D4093C732728919300F41BBF /* String+isAlphanumeric+localize.swift in Sources */,
 				D4093C752728919300F41BBF /* Episode.swift in Sources */,
+				D4093CE5272B518C00F41BBF /* Person.swift in Sources */,
 				D4093C952728919300F41BBF /* LoaderView.swift in Sources */,
 				D4093C8F2728919300F41BBF /* Show.swift in Sources */,
 				D4093C772728919300F41BBF /* Collection+safeSubscript.swift in Sources */,
 				D4093C912728919300F41BBF /* URL+ExpressibleByStringLiteral.swift in Sources */,
+				D4093CCF27299E9E00F41BBF /* Record.swift in Sources */,
 				D4093C7F2728919300F41BBF /* AllEpisodeView.swift in Sources */,
+				D4093CD9272B213400F41BBF /* EpisodeView.swift in Sources */,
 				D4093C8B2728919300F41BBF /* SeasonType.swift in Sources */,
 				D4093C98272891C000F41BBF /* ShowDictionaryApp.swift in Sources */,
-				D4093C892728919300F41BBF /* SubText.swift in Sources */,
+				D4093CEB272B82C000F41BBF /* CircledNumber.swift in Sources */,
+				D4093C892728919300F41BBF /* Subtext.swift in Sources */,
 				D4093C792728919300F41BBF /* CollectionType+toJSONString.swift in Sources */,
 				D4093C852728919300F41BBF /* Int+toWord.swift in Sources */,
 				D4093C832728919300F41BBF /* TitleCardView.swift in Sources */,
+				D4093CD6272AF57900F41BBF /* CKRecord+getString+getInt.swift in Sources */,
+				D4093CE2272B50F500F41BBF /* Portrayal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,22 +435,32 @@
 			files = (
 				D4093C7C2728919300F41BBF /* Date+new+written+toString.swift in Sources */,
 				D4093C822728919300F41BBF /* Observer.swift in Sources */,
+				D4093CDD272B2FB800F41BBF /* View+if.swift in Sources */,
+				D4093CD4272A43F700F41BBF /* URLError.swift in Sources */,
 				D4093C882728919300F41BBF /* ContentView.swift in Sources */,
 				D4093C8E2728919300F41BBF /* Array+before+after.swift in Sources */,
+				D4093CE0272B3F3300F41BBF /* SeasonScrollMenu.swift in Sources */,
+				D4093CE9272B52AE00F41BBF /* NameError.swift in Sources */,
 				D4093C942728919300F41BBF /* Observable.swift in Sources */,
 				D4093C742728919300F41BBF /* String+isAlphanumeric+localize.swift in Sources */,
 				D4093C762728919300F41BBF /* Episode.swift in Sources */,
+				D4093CE6272B518C00F41BBF /* Person.swift in Sources */,
 				D4093C962728919300F41BBF /* LoaderView.swift in Sources */,
 				D4093C902728919300F41BBF /* Show.swift in Sources */,
 				D4093C782728919300F41BBF /* Collection+safeSubscript.swift in Sources */,
 				D4093C922728919300F41BBF /* URL+ExpressibleByStringLiteral.swift in Sources */,
+				D4093CD027299E9E00F41BBF /* Record.swift in Sources */,
 				D4093C802728919300F41BBF /* AllEpisodeView.swift in Sources */,
+				D4093CDA272B213400F41BBF /* EpisodeView.swift in Sources */,
 				D4093C8C2728919300F41BBF /* SeasonType.swift in Sources */,
 				D4093C99272891C000F41BBF /* ShowDictionaryApp.swift in Sources */,
-				D4093C8A2728919300F41BBF /* SubText.swift in Sources */,
+				D4093CEC272B82C000F41BBF /* CircledNumber.swift in Sources */,
+				D4093C8A2728919300F41BBF /* Subtext.swift in Sources */,
 				D4093C7A2728919300F41BBF /* CollectionType+toJSONString.swift in Sources */,
 				D4093C862728919300F41BBF /* Int+toWord.swift in Sources */,
 				D4093C842728919300F41BBF /* TitleCardView.swift in Sources */,
+				D4093CD7272AF57900F41BBF /* CKRecord+getString+getInt.swift in Sources */,
+				D4093CE3272B50F500F41BBF /* Portrayal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +583,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "ShowDictionary (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RN9D88P79F;
@@ -519,6 +614,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "ShowDictionary (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RN9D88P79F;

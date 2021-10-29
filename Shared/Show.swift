@@ -18,7 +18,8 @@ struct Show: Observable {
     let filename: String
     let sortName: String
     let seasonTitles: [Int: String]?
-    let characters: [String: (`actor`: String, appearances: [Int])]?
+    let characters: [Portrayal]?
+    
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -44,21 +45,22 @@ struct Show: Observable {
         }
         
         if let characters = try? values.decode(String.self, forKey: .characters), let data = characters.data(using: .utf8), let initialCharacters = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: [String: Any]] {
-            self.characters = initialCharacters.reduce(into: [:]) { result, entry in
-                let character = entry.key.trimmingCharacters(in: .whitespacesAndNewlines)
-                let actor = (entry.value["actor"] as! String).trimmingCharacters(in: .whitespacesAndNewlines)
+            self.characters = try? initialCharacters.reduce(into: []) { result, entry in
+                let character = try Person(fullName: entry.key.trimmingCharacters(in: .whitespacesAndNewlines))
+                let actor = try Person(fullName: (entry.value["actor"] as! String).trimmingCharacters(in: .whitespacesAndNewlines))
                 let appearances = (entry.value["appearances"] as! NSArray).compactMap {
                     ($0 as AnyObject).integerValue
                 }
-                result?[character] = (actor: actor, appearances: appearances)
+                result?.append(Portrayal(character: character, actor: actor, appearances: appearances))
             }
         } else {
             self.characters = nil
         }
     }
     
-    func validItem(searchText: String) -> Bool {
-        name.lowercased().contains(searchText.lowercased())
+    func matchesSearchText(_ searchText: String) -> Bool {
+        guard !searchText.isEmpty else { return true }
+        return name.lowercased().contains(searchText.lowercased())
     }
 }
 

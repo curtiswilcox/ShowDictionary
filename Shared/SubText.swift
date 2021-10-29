@@ -16,7 +16,7 @@ struct Subtext: ViewModifier {
     }
 }
 
-extension Text {
+extension View {
     func subtext() -> some View {
         modifier(Subtext())
     }

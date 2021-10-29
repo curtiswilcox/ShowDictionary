@@ -21,7 +21,7 @@ struct TitleCardView: View {
             ProgressView()
                 .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
         }
-        .background(.white)
+        .background(.background)
         .frame(width: width / (columns + 0.5), height: width / (columns + 0.5))
         .overlay(RoundedRectangle(cornerRadius: 20).stroke(.primary, lineWidth: 2))
         .cornerRadius(20)

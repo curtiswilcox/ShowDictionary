@@ -35,6 +35,7 @@ struct LoaderView<T: Observable, InnerView: View>: View {
             }
         }
         .task(id: loadAgain, priority: .high) {
+            guard observer.items.isEmpty else { return }
             loading = true
             do {
                 try await observer.summon()

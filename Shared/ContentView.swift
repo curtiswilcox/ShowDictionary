@@ -23,7 +23,7 @@ struct ContentView: View {
                     ScrollView {
                         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns)) {
                             ForEach($observer.items.filter({ $show in
-                                searchText.isEmpty || show.validItem(searchText: searchText)
+                                show.matchesSearchText(searchText)
                             })) { $show in
                                 NavigationLink(destination: AllEpisodeView(show: $show, filename: show.filename, language: "en")) {
                                     TitleCardView(show: $show, width: width, columns: CGFloat(columns))

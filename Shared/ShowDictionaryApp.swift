@@ -17,12 +17,9 @@ struct ShowDictionaryApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-        }
-    }
-        
-    init() {
-        Task { [self] in
-            await connectToCloudKit()
+                .task {
+                    await connectToCloudKit()
+                }
         }
     }
         

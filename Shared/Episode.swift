@@ -17,13 +17,13 @@ struct Episode: Observable {
     let episodeInSeason: Int
     let episodeInShow: Int
     
-    let writer: String
-    let director: String
+    let writers: [Person]?
+    let directors: [Person]?
     
     let airdate: Date
     let keywords: [String]?
     
-    let runtime: Int
+    let runtime: Int?
     
     var isFavorite = false
     
@@ -36,17 +36,27 @@ struct Episode: Observable {
         self.seasonNumber = Int(try values.decode(String.self, forKey: .seasonNumber))!
         self.episodeInSeason = Int(try values.decode(String.self, forKey: .episodeInSeason))!
         self.episodeInShow = Int(try values.decode(String.self, forKey: .episodeInShow))!
-        self.writer = try values.decode(String.self, forKey: .writer)
-        self.director = try values.decode(String.self, forKey: .director)
+        self.writers = try? values.decode(String.self, forKey: .writers).components(separatedBy: " and ").map {
+            do {
+                return try Person(fullName: $0)
+            } catch let e{
+                print("writer error: \($0)")
+                throw e
+            }
+            
+        }
+        self.directors = try? values.decode(String.self, forKey: .directors).components(separatedBy: " and ").compactMap {
+            do { return try Person(fullName: $0) } catch let e{ print("director error: \($0)"); throw e}}
         self.airdate = Date(hyphenated: try values.decode(String.self, forKey: .airdate))
         self.keywords = {
             guard let keywords = try? values.decode(String.self, forKey: .keywords), keywords.lowercased() != "none", !keywords.isEmpty else { return nil }
             return keywords.components(separatedBy: ", ")
         }()
-        self.runtime = Int(try values.decode(String.self, forKey: .runtime))!
+        self.runtime = try? Int(values.decode(String.self, forKey: .runtime))
     }
     
-    func validItem(searchText: String) -> Bool {
+    func matchesSearchText(_ searchText: String) -> Bool {
+        guard !searchText.isEmpty else { return true }
         let searchText = searchText.lowercased()
         
         let nameContains = name.lowercased().contains(searchText)
@@ -58,6 +68,24 @@ struct Episode: Observable {
         
         return nameContains || summaryContains || keywordsContains
     }
+    
+    func runtimeDescription() -> String? {
+        guard var minutes = self.runtime else { return nil }
+        var desc = ""
+        if minutes >= 60 {
+            let hours = minutes / 60
+            minutes %= 60
+            
+            desc += "\(hours) hour\(hours != 1 ? "s" : "")"
+        }
+        if minutes > 0 {
+            if !desc.isEmpty {
+                desc += ", "
+            }
+            desc += "\(minutes) minute\(minutes != 1 ? "s" : "")"
+        }
+        return desc
+    }
 }
 
 extension Episode {
@@ -68,8 +96,8 @@ extension Episode {
         case seasonNumber = "SeasonNumber"
         case episodeInSeason = "EpisodeInSeason"
         case episodeInShow = "EpisodeInSeries"
-        case writer = "Writer"
-        case director = "Director"
+        case writers = "Writer"
+        case directors = "Director"
         case airdate = "Airdate"
         case keywords = "Keywords"
         case runtime = "Runtime"
@@ -95,11 +123,11 @@ extension Episode: CustomStringConvertible {
         SeasonNumber: \(seasonNumber)
         Episode in Season: \(episodeInSeason)
         Episode in Show: \(episodeInShow)
-        Writer: \(writer)
-        Director: \(director)
+        Writer: \(String(describing: writers))
+        Director: \(String(describing: directors))
         Airdate: \(airdate.written())
         Keywords: \(keywords != nil ? String(describing: keywords!) : "no keywords")
-        Runtime: \(runtime)
+        Runtime: \(String(describing: runtime))
         """
     }
 }
