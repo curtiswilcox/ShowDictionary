@@ -11,7 +11,7 @@ import SwiftUI
 struct LoaderView<T: Observable, InnerView: View>: View {
     @ObservedObject var observer: Observer<T>
     
-    @State private var loading = true
+    @Binding var loading: Bool
     
     @State private var loadFailure = false
     @State private var loadFailureMessage: String?

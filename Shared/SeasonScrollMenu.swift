@@ -12,6 +12,7 @@ struct SeasonScrollMenu: View {
     let availableSeasons: [Int]
     @Binding var scrollToSection: Int?
     let includeOuterMenu: Bool
+    let episodeCount: (Int) -> Int
     
     var body: some View {
         if includeOuterMenu {
@@ -38,7 +39,11 @@ struct SeasonScrollMenu: View {
                     }
                     return header
                 }()
-                Text(seasonHeader)
+                HStack {
+                    Text(seasonHeader)
+//                    Spacer()
+//                    CircledNumber(number: episodeCount(season)) // circle and number are in different places...?
+                }
             }
             .disabled(!availableSeasons.contains(season))
         }

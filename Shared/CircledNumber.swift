@@ -9,11 +9,18 @@ import SwiftUI
 
 struct CircledNumber: View {
     let number: Int
+    let force: Bool
     
     var body: some View {
-        Text("\(number)")
-            .font(.footnote)
-            .overlay(Image(systemName: "circle"))
-            .foregroundColor(.primary)
+        if number <= 50 {
+            Image(systemName: "\(number).circle")
+        } else if force {
+            Text("\(number)")
+                .font(.footnote)
+                .overlay(Image(systemName: "circle"))
+                .foregroundColor(.primary)
+        } else {
+            Image(systemName: "questionmark.circle")
+        }
     }
 }

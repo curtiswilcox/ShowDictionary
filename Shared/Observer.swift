@@ -36,7 +36,7 @@ class Observer<T: Observable>: ObservableObject {
     
     @MainActor
     func summon() async throws {
-        async let (data, _) = try URLSession.shared.data(from: formURL())
+        async let (data, _) = URLSession.shared.data(from: formURL())
         let favorites = try await getFavorites()
         
         self.favorites = favorites?.reduce(into: [:]) { (result, entry) in
@@ -60,7 +60,6 @@ class Observer<T: Observable>: ObservableObject {
     }
     
     private func getFavorites() async throws -> [Record]? {
-        // FIXME: these aren't working properly. not syncing to database?
         guard signedIn, file != nil else { return nil }
         
         let query: CKQuery = {

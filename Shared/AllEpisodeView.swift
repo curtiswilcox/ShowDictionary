@@ -15,6 +15,8 @@ struct AllEpisodeView: View {
     let filename: String
     let language: String
     
+    @State private var loading = true
+    
     @State private var searchText = ""
     @State private var showFavorites = false
     @State private var scrollToSection: Int?
@@ -26,12 +28,10 @@ struct AllEpisodeView: View {
         let availableSeasons = Set(availableEpisodes.map(\.wrappedValue.seasonNumber)).sorted()
         let hasFavorites = availableEpisodes.map(\.wrappedValue.isFavorite).contains(true)
         
-        return LoaderView(observer: observer) {
+        return LoaderView(observer: observer, loading: $loading) {
             ScrollViewReader { proxy in
                 List(availableSeasons, id: \.self) { seasonNumber in
-                    let seasonType = show.seasonType.rawValue.capitalized
-                    let seasonTitle = show.seasonTitles?[seasonNumber]
-                    Section(header: header(seasonType, seasonNumber, seasonTitle)) {
+                    Section(header: header(seasonNumber)) {
                         ForEach(availableEpisodes.filter { $episode in
                             episode.seasonNumber == seasonNumber
                         }) { $episode in
@@ -41,7 +41,8 @@ struct AllEpisodeView: View {
                                 Label {
                                     Text(episode.name)
                                 } icon: {
-                                    CircledNumber(number: episode.episodeInSeason)
+                                    CircledNumber(number: episode.episodeInSeason, force: true)
+                                        .foregroundColor(.primary)
                                 }
                             }
                         }
@@ -52,13 +53,9 @@ struct AllEpisodeView: View {
                     view.searchable(text: $searchText)
                 }
                 .onChange(of: scrollToSection) { section in
-                    guard scrollToSection != nil else { return }
-                    if let ep = availableEpisodes.first(where: { $ep in
-                        ep.seasonNumber == section
-                    }) {
-                        withAnimation(.easeInOut(duration: 2)) {
-                            proxy.scrollTo(ep.id, anchor: .top)
-                        }
+                    guard let section = section else { return }
+                    withAnimation(.easeInOut(duration: 2)) {
+                        proxy.scrollTo(section, anchor: .top)
                     }
                     scrollToSection = nil
                 }
@@ -71,6 +68,7 @@ struct AllEpisodeView: View {
                     Text("Favorites").tag(true)
                 }
                 .pickerStyle(.segmented)
+                .padding(.horizontal)
                 .disabled(!hasFavorites)
             }
             
@@ -93,7 +91,13 @@ struct AllEpisodeView: View {
                 
                 Menu {
                     Section {
-                        SeasonScrollMenu(show: $show, availableSeasons: availableSeasons, scrollToSection: $scrollToSection, includeOuterMenu: !(characters == nil && writers.isEmpty && directors.isEmpty))
+                        let episodeCount: (Int) -> Int = { (season) in
+                            observer.items.filter { episode in
+                                episode.seasonNumber == season
+                            }
+                            .count
+                        }
+                        SeasonScrollMenu(show: $show, availableSeasons: availableSeasons, scrollToSection: $scrollToSection, includeOuterMenu: !(characters == nil && writers.isEmpty && directors.isEmpty), episodeCount: episodeCount)
                     }
                     
                     if characters != nil || !writers.isEmpty || !directors.isEmpty {
@@ -126,6 +130,7 @@ struct AllEpisodeView: View {
                     Image(systemName: "ellipsis")
                         .symbolVariant(.circle)
                 }
+                .disabled(loading)
             }
         }
         .navigationTitle("\(show.name) Episodes")
@@ -158,13 +163,15 @@ struct AllEpisodeView: View {
         }
     }
     
-    private func header(
-        _ seasonType: String, _ seasonNumber: Int, _ seasonTitle: String?
-    ) -> some View {
-        Text("    \(seasonType) \(seasonNumber)\(seasonTitle != nil ? ": \(seasonTitle!)" : "")")
+    private func header(_ seasonNumber: Int) -> some View {
+        let seasonType = show.seasonType.rawValue.capitalized
+        let seasonTitle = show.seasonTitles?[seasonNumber]
+        
+        return Text("    \(seasonType) \(seasonNumber)\(seasonTitle != nil ? ": \(seasonTitle!)" : "")")
             .textCase(.uppercase)
             .font(.caption)
             .foregroundColor(.gray)
+            .padding(.top)
             .padding(.bottom, 5)
     }
         
@@ -195,18 +202,20 @@ struct AllEpisodeView: View {
                     } label: {
                         Text(person.description)
                         Spacer()
-//                        Text("\(people[person]!)")
-//                            .font(.footnote)
-//                            .overlay(Image(systemName: "circle")) // not showing up?
-                        if let count = people[person], count <= 50 {
-                            Image(systemName: "\(count).circle")
+                        if let count = people[person] {
+                            CircledNumber(number: count, force: false)
                                 .foregroundColor(.primary)
                         }
                     }
                     .disabled(current == person)
                 }
             } label: {
-                Text("Filter by \(type)")
+                Label("Filter by \(type)", systemImage: "checkmark")
+                    .if(current == nil) {
+                        $0.labelStyle(.titleOnly)
+                    } else: {
+                        $0.labelStyle(.titleAndIcon)
+                    }
             }
         }
     }

@@ -62,6 +62,22 @@ struct Show: Observable {
         guard !searchText.isEmpty else { return true }
         return name.lowercased().contains(searchText.lowercased())
     }
+    
+    func getImage() throws -> Data {
+        let lang = Locale.current.identifier
+        let filename = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("\(filename)_\(lang)-title-card.txt")
+        
+        return try Data(contentsOf: filename)
+    }
+    
+    func saveImage() async {
+        guard let (data, _) = try? await URLSession.shared.data(from: titleCardURL) else { return }
+        guard let savedData = try? getImage(), savedData != data else { return } // no point in saving old photo repeatedly
+        let lang = Locale.current.identifier
+        let filename = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("\(filename)_\(lang)-title-card.txt")
+        
+        try? data.write(to: filename)
+    }
 }
 
 extension Show {

@@ -36,17 +36,23 @@ struct Episode: Observable {
         self.seasonNumber = Int(try values.decode(String.self, forKey: .seasonNumber))!
         self.episodeInSeason = Int(try values.decode(String.self, forKey: .episodeInSeason))!
         self.episodeInShow = Int(try values.decode(String.self, forKey: .episodeInShow))!
-        self.writers = try? values.decode(String.self, forKey: .writers).components(separatedBy: " and ").map {
-            do {
-                return try Person(fullName: $0)
-            } catch let e{
-                print("writer error: \($0)")
-                throw e
-            }
+        self.writers = try? values.decode(String.self, forKey: .writers).components(separatedBy: " and ").compactMap {
+//            do {
+                /*return */try? Person(fullName: $0)
+//            } catch let e {
+//                print("writer error: \($0)")
+//                throw e
+//            }
             
         }
         self.directors = try? values.decode(String.self, forKey: .directors).components(separatedBy: " and ").compactMap {
-            do { return try Person(fullName: $0) } catch let e{ print("director error: \($0)"); throw e}}
+//            do {
+                /*return */try? Person(fullName: $0)
+//            } catch let e {
+//                print("director error: \($0)")
+//                throw e
+//            }
+        }
         self.airdate = Date(hyphenated: try values.decode(String.self, forKey: .airdate))
         self.keywords = {
             guard let keywords = try? values.decode(String.self, forKey: .keywords), keywords.lowercased() != "none", !keywords.isEmpty else { return nil }
