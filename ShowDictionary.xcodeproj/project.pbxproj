@@ -29,8 +29,8 @@
 		D4093C862728919300F41BBF /* Int+toWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6A2728919300F41BBF /* Int+toWord.swift */; };
 		D4093C872728919300F41BBF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6B2728919300F41BBF /* ContentView.swift */; };
 		D4093C882728919300F41BBF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6B2728919300F41BBF /* ContentView.swift */; };
-		D4093C892728919300F41BBF /* Subtext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6C2728919300F41BBF /* Subtext.swift */; };
-		D4093C8A2728919300F41BBF /* Subtext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6C2728919300F41BBF /* Subtext.swift */; };
+		D4093C892728919300F41BBF /* SubText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6C2728919300F41BBF /* SubText.swift */; };
+		D4093C8A2728919300F41BBF /* SubText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6C2728919300F41BBF /* SubText.swift */; };
 		D4093C8B2728919300F41BBF /* SeasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6D2728919300F41BBF /* SeasonType.swift */; };
 		D4093C8C2728919300F41BBF /* SeasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6D2728919300F41BBF /* SeasonType.swift */; };
 		D4093C8D2728919300F41BBF /* Array+before+after.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6E2728919300F41BBF /* Array+before+after.swift */; };
@@ -84,7 +84,7 @@
 		D4093C692728919300F41BBF /* TitleCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCardView.swift; sourceTree = "<group>"; };
 		D4093C6A2728919300F41BBF /* Int+toWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+toWord.swift"; sourceTree = "<group>"; };
 		D4093C6B2728919300F41BBF /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		D4093C6C2728919300F41BBF /* Subtext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subtext.swift; sourceTree = "<group>"; };
+		D4093C6C2728919300F41BBF /* SubText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubText.swift; sourceTree = "<group>"; };
 		D4093C6D2728919300F41BBF /* SeasonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonType.swift; sourceTree = "<group>"; };
 		D4093C6E2728919300F41BBF /* Array+before+after.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+before+after.swift"; sourceTree = "<group>"; };
 		D4093C6F2728919300F41BBF /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 		D4093C5F2728914900F41BBF /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
-				D4093C6C2728919300F41BBF /* Subtext.swift */,
+				D4093C6C2728919300F41BBF /* SubText.swift */,
 			);
 			name = ViewModifiers;
 			sourceTree = "<group>";
@@ -420,7 +420,7 @@
 				D4093C8B2728919300F41BBF /* SeasonType.swift in Sources */,
 				D4093C98272891C000F41BBF /* ShowDictionaryApp.swift in Sources */,
 				D4093CEB272B82C000F41BBF /* CircledNumber.swift in Sources */,
-				D4093C892728919300F41BBF /* Subtext.swift in Sources */,
+				D4093C892728919300F41BBF /* SubText.swift in Sources */,
 				D4093C792728919300F41BBF /* CollectionType+toJSONString.swift in Sources */,
 				D4093C852728919300F41BBF /* Int+toWord.swift in Sources */,
 				D4093C832728919300F41BBF /* TitleCardView.swift in Sources */,
@@ -455,7 +455,7 @@
 				D4093C8C2728919300F41BBF /* SeasonType.swift in Sources */,
 				D4093C99272891C000F41BBF /* ShowDictionaryApp.swift in Sources */,
 				D4093CEC272B82C000F41BBF /* CircledNumber.swift in Sources */,
-				D4093C8A2728919300F41BBF /* Subtext.swift in Sources */,
+				D4093C8A2728919300F41BBF /* SubText.swift in Sources */,
 				D4093C7A2728919300F41BBF /* CollectionType+toJSONString.swift in Sources */,
 				D4093C862728919300F41BBF /* Int+toWord.swift in Sources */,
 				D4093C842728919300F41BBF /* TitleCardView.swift in Sources */,
