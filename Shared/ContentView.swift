@@ -77,6 +77,7 @@ struct ContentView: View {
             }
             .navigationTitle("Home")
             .searchable(text: $searchText)
+            #if os(iOS)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     let showCount: (String) -> Int = { (section) in
@@ -87,6 +88,7 @@ struct ContentView: View {
                     SectionScrollMenu(showCount: showCount, sections: sections, scrollToSection: $scrollToSection)
                 }
             }
+            #endif
         }
     }
     

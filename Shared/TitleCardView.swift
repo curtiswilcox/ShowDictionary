@@ -24,13 +24,21 @@ struct TitleCardView: View {
                         await show.saveImage()
                     }
             } else { // placeholder or error
+                #if os(iOS)
                 if let savedImage = try? UIImage(data: show.getImage()) {
                     Image(uiImage: savedImage)
+                        .resizable()
+                        .background(.white)
                 } else {
                     ProgressView()
                         .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
                         .background(.clear)
                 }
+                #elseif os(macOS)
+                ProgressView()
+                    .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
+                    .background(.clear)
+                #endif
             }
         }
         .frame(width: width / (columns + 0.5), height: width / (columns + 0.5))

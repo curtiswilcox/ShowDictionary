@@ -19,6 +19,8 @@ struct Show: Observable {
     let sortName: String
     let seasonTitles: [Int: String]?
     let characters: [Portrayal]?
+//    let doctors: [Person]?
+//    let companions: [Person]?
     
     
     init(from decoder: Decoder) throws {
@@ -43,19 +45,70 @@ struct Show: Observable {
         } else {
             self.seasonTitles = nil
         }
-        
+                        
         if let characters = try? values.decode(String.self, forKey: .characters), let data = characters.data(using: .utf8), let initialCharacters = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: [String: Any]] {
-            self.characters = try? initialCharacters.reduce(into: []) { result, entry in
+            do {
+            self.characters = try initialCharacters.reduce(into: [Portrayal]()) { result, entry in
                 let character = try Person(fullName: entry.key.trimmingCharacters(in: .whitespacesAndNewlines))
                 let actor = try Person(fullName: (entry.value["actor"] as! String).trimmingCharacters(in: .whitespacesAndNewlines))
                 let appearances = (entry.value["appearances"] as! NSArray).compactMap {
                     ($0 as AnyObject).integerValue
                 }
-                result?.append(Portrayal(character: character, actor: actor, appearances: appearances))
+                result.append(Portrayal(character: character, actor: actor, appearances: appearances))
+            }
+            } catch let e {
+                print(name, e)
+                self.characters = nil
             }
         } else {
             self.characters = nil
         }
+        
+        /*
+        if let doctor = try? values.decode(String.self, forKey: .doctor) {
+            if let secondaryDoctors = try? values.decode(String.self, forKey: .secondaryDoctors).components(separatedBy: ", ") {
+                var doctors = [doctor]
+                doctors.append(contentsOf: secondaryDoctors)
+                self.doctors = doctors.map { doctor in
+                    if doctor.lowercased() != "war" {
+                        let formatter = NumberFormatter()
+                        formatter.numberStyle = .spellOut
+                        let doctorNum = formatter.number(from: doctor)!
+                        formatter.numberStyle = .ordinal
+                        let ordinal = formatter.string(from: doctorNum)!.capitalized
+                        
+                        return Person(firstName: "The \(ordinal)", middleName: nil, lastName: "Doctor")
+                    } else {
+                        return Person(firstName: "The War", middleName: nil, lastName: "Doctor")
+                    }
+                }
+            } else {
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .spellOut
+                let doctorNum = formatter.number(from: doctor)!
+                formatter.numberStyle = .ordinal
+                let ordinal = formatter.string(from: doctorNum)!.capitalized
+                
+                self.doctors = [Person(firstName: "The \(ordinal)", middleName: nil, lastName: "Doctor")]
+            }
+        } else {
+            self.doctors = nil
+        }
+        
+        if let companion = try? values.decode(String.self, forKey: .companion) {
+            if let secondaryCompanions = try? values.decode(String.self, forKey: .secondaryCompanions).components(separatedBy: ", ") {
+                var companions = [companion]
+                companions.append(contentsOf: secondaryCompanions)
+                self.companions = companions.compactMap { companion in
+                    try? Person(fullName: companion)
+                }
+            } else {
+                self.companions = try? [Person(fullName: companion)]
+            }
+        } else {
+            self.companions = nil
+        }
+         */
     }
     
     func matchesSearchText(_ searchText: String) -> Bool {
@@ -92,6 +145,10 @@ extension Show {
         case sortName = "SortName"
         case seasonTitles = "SeasonTitles"
         case characters = "Characters"
+//        case doctor = "Doctor"
+//        case companion = "Companion"
+//        case secondaryDoctors = "SecondaryDoctors"
+//        case secondaryCompanions = "SecondaryCompanions"
     }
 }
 

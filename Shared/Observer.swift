@@ -36,16 +36,19 @@ class Observer<T: Observable>: ObservableObject {
     
     @MainActor
     func summon() async throws {
-        async let (data, _) = URLSession.shared.data(from: formURL())
-        let favorites = try await getFavorites()
+        let (data, _) = try await URLSession.shared.data(from: formURL())
         
-        self.favorites = favorites?.reduce(into: [:]) { (result, entry) in
-            result[entry.code] = entry.recordID
+        if let favorites = try? await getFavorites() {
+            self.favorites = favorites.reduce(into: [:]) { (result, entry) in
+                result[entry.code] = entry.recordID
+            }
+        } else {
+            self.favorites = nil
         }
         
-        self.items = try JSONDecoder().decode([T].self, from: await data).sorted().map {
+        self.items = try JSONDecoder().decode([T].self, from: data).sorted().map {
             guard var episode = $0 as? Episode else { return $0 }
-            if favorites?.map(\.code).contains(episode.code) ?? false {
+            if self.favorites?.keys.contains(episode.code) ?? false {
                 episode.isFavorite = true
             }
             return episode as! T

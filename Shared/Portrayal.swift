@@ -21,6 +21,14 @@ struct Portrayal: CustomStringConvertible, Comparable, Hashable, Identifiable {
         try! AttributedString(markdown: "\(actor) *as* \(character)")
     }
     
+    func isIn(episode code: Int) -> Bool {
+        appearances.contains(code)
+    }
+    
+    func isIn(episode: Episode) -> Bool {
+        isIn(episode: episode.code)
+    }
+    
     static func <(lhs: Portrayal, rhs: Portrayal) -> Bool {
         lhs.character < rhs.character
     }

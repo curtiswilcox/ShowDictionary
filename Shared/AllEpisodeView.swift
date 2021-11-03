@@ -30,21 +30,39 @@ struct AllEpisodeView: View {
         
         return LoaderView(observer: observer, loading: $loading) {
             ScrollViewReader { proxy in
-                List(availableSeasons, id: \.self) { seasonNumber in
-                    Section(header: header(seasonNumber)) {
-                        ForEach(availableEpisodes.filter { $episode in
-                            episode.seasonNumber == seasonNumber
-                        }) { $episode in
-                            DisclosureGroup {
-                                EpisodeView(observer: observer, show: $show, episode: $episode)
-                            } label: {
-                                Label {
-                                    Text(episode.name)
-                                } icon: {
-                                    CircledNumber(number: episode.episodeInSeason, force: true)
-                                        .foregroundColor(.primary)
+                List {
+                    Section {
+                        Text(show.summary)
+                            .lineSpacing(1.5)
+                    } header: {
+                        Text("Description")
+                    }
+                    
+                    ForEach(availableSeasons, id: \.self) { seasonNumber in
+                        Section {
+                            ForEach(availableEpisodes.filter { $episode in
+                                episode.seasonNumber == seasonNumber
+                            }) { $episode in
+                                NavigationLink {
+                                    EpisodeView(observer: observer, show: $show, episode: $episode)
+                                } label: {
+                                    Label {
+                                        HStack(alignment: .center) {
+                                            Text(episode.name)
+                                            Spacer()
+                                            CircledNumber(number: episode.episodeInSeason, force: true)
+                                                .imageScale(.large)
+                                        }
+                                    } icon: {
+                                        FavoriteButton(observer: observer, episode: $episode)
+                                    }
                                 }
                             }
+                        } header: {
+                            let seasonType = show.seasonType.rawValue.capitalized
+                            let seasonTitle = show.seasonTitles?[seasonNumber]
+                            
+                            Text("\(seasonType) \(seasonNumber)\(seasonTitle != nil ? ": \(seasonTitle!)" : "")")
                         }
                     }
                 }
@@ -71,17 +89,19 @@ struct AllEpisodeView: View {
                 .padding(.horizontal)
                 .disabled(!hasFavorites)
             }
-            
+            #if os(iOS)
             ToolbarItem(placement: .navigationBarTrailing) {
                 let characters = show.characters
-                let writers = observer.items.compactMap(\.writers).flatMap({$0}).reduce(into: [Person: Int]()) { result, entry in
+                
+                let directors = observer.items.compactMap(\.directors).flatMap({$0}).reduce(into: [Person: Int]()) { result, entry in
                     if result[entry] != nil {
                         result[entry]! += 1
                     } else {
                         result[entry] = 1
                     }
                 }
-                let directors = observer.items.compactMap(\.directors).flatMap({$0}).reduce(into: [Person: Int]()) { result, entry in
+
+                let writers = observer.items.compactMap(\.writers).flatMap({$0}).reduce(into: [Person: Int]()) { result, entry in
                     if result[entry] != nil {
                         result[entry]! += 1
                     } else {
@@ -132,6 +152,7 @@ struct AllEpisodeView: View {
                 }
                 .disabled(loading)
             }
+            #endif
         }
         .navigationTitle("\(show.name) Episodes")
         .onAppear {
@@ -163,17 +184,19 @@ struct AllEpisodeView: View {
         }
     }
     
-    private func header(_ seasonNumber: Int) -> some View {
+    /*private func header(_ seasonNumber: Int) -> some View {
         let seasonType = show.seasonType.rawValue.capitalized
         let seasonTitle = show.seasonTitles?[seasonNumber]
         
-        return Text("    \(seasonType) \(seasonNumber)\(seasonTitle != nil ? ": \(seasonTitle!)" : "")")
-            .textCase(.uppercase)
-            .font(.caption)
-            .foregroundColor(.gray)
-            .padding(.top)
-            .padding(.bottom, 5)
-    }
+        return Text("\(seasonType) \(seasonNumber)\(seasonTitle != nil ? ": \(seasonTitle!)" : "")")
+        
+//        return Text("    \(seasonType) \(seasonNumber)\(seasonTitle != nil ? ": \(seasonTitle!)" : "")")
+//            .textCase(.uppercase)
+//            .font(.caption)
+//            .foregroundColor(.gray)
+//            .padding(.top)
+//            .padding(.bottom, 5)
+    }*/
         
     private struct CrewMemberMenu: View {
         let people: [Person: Int]
@@ -243,7 +266,7 @@ struct AllEpisodeView: View {
                             current = character
                         }
                     } label: {
-                        Text(character.attributed)
+                        Text(character.character.fullName)
                     }
                     .disabled(current == character)
                 }

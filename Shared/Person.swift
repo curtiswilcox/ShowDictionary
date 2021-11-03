@@ -12,14 +12,14 @@ struct Person: Comparable, CustomStringConvertible, Hashable, Identifiable {
     
     let firstName: String
     let middleName: String?
-    let lastName: String
+    let lastName: String?
     
     var description: String {
         fullName
     }
     
     var fullName: String {
-        "\(firstName)\(middleName != nil ? " \(middleName!)" : "") \(lastName)"
+        "\(firstName)\(middleName != nil ? " \(middleName!)" : "")\(lastName != nil ? " \(lastName!)" : "")"
     }
     
     init(firstName: String, middleName: String? = nil, lastName: String) {
@@ -28,10 +28,13 @@ struct Person: Comparable, CustomStringConvertible, Hashable, Identifiable {
         self.lastName = lastName
     }
     
-    init(fullName: String) throws {
-        let parts = fullName.split(separator: " ").map { String($0) }
+    init(fullName name: String) throws {
+        let parts = name.split(separator: " ").map { String($0) }
         if parts.count == 1 {
-            throw NameError.onlyOneName("The name \(fullName) is not enough to create a person -- a first and last name are both required (a middle name is optional)")
+            self.firstName = name
+            self.middleName = nil
+            self.lastName = nil
+//            throw NameError.onlyOneName("The name \(name) is not enough to create a person -- a first and last name are both required (a middle name is optional)")
         } else if parts.count == 2 {
             self.firstName = parts[0]
             self.lastName = parts[1]
@@ -44,8 +47,14 @@ struct Person: Comparable, CustomStringConvertible, Hashable, Identifiable {
     }
     
     static func <(lhs: Person, rhs: Person) -> Bool {
-        if lhs.lastName != rhs.lastName {
-            return lhs.lastName < rhs.lastName
+        if let lhsLast = lhs.lastName, let rhsLast = rhs.lastName {
+            if lhsLast != rhsLast {
+                return lhsLast < rhsLast
+            }
+        } else if rhs.lastName == nil, let lhsLast = lhs.lastName {
+            return lhsLast < rhs.firstName
+        } else if lhs.lastName == nil, let rhsLast = rhs.lastName {
+            return rhsLast < lhs.firstName
         }
         
         if lhs.firstName != rhs.firstName || (lhs.middleName == nil && rhs.middleName == nil) {

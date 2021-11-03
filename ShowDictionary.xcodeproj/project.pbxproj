@@ -67,6 +67,10 @@
 		D4093CE9272B52AE00F41BBF /* NameError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CE7272B52AE00F41BBF /* NameError.swift */; };
 		D4093CEB272B82C000F41BBF /* CircledNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CEA272B82C000F41BBF /* CircledNumber.swift */; };
 		D4093CEC272B82C000F41BBF /* CircledNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093CEA272B82C000F41BBF /* CircledNumber.swift */; };
+		D43DD5D727323E5E00B94266 /* BiderectionalCollection+sentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DD5D627323E5E00B94266 /* BiderectionalCollection+sentence.swift */; };
+		D43DD5D827323E5F00B94266 /* BiderectionalCollection+sentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DD5D627323E5E00B94266 /* BiderectionalCollection+sentence.swift */; };
+		D43DD5DA2732D80100B94266 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DD5D92732D80100B94266 /* FavoriteButton.swift */; };
+		D43DD5DB2732D80100B94266 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DD5D92732D80100B94266 /* FavoriteButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -105,6 +109,8 @@
 		D4093CE4272B518C00F41BBF /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		D4093CE7272B52AE00F41BBF /* NameError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameError.swift; sourceTree = "<group>"; };
 		D4093CEA272B82C000F41BBF /* CircledNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledNumber.swift; sourceTree = "<group>"; };
+		D43DD5D627323E5E00B94266 /* BiderectionalCollection+sentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BiderectionalCollection+sentence.swift"; sourceTree = "<group>"; };
+		D43DD5D92732D80100B94266 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				D4093C6E2728919300F41BBF /* Array+before+after.swift */,
+				D43DD5D627323E5E00B94266 /* BiderectionalCollection+sentence.swift */,
 				D4093CD5272AF57900F41BBF /* CKRecord+getString+getInt.swift */,
 				D4093C632728919200F41BBF /* Collection+safeSubscript.swift */,
 				D4093C642728919200F41BBF /* CollectionType+toJSONString.swift */,
@@ -228,6 +235,7 @@
 			children = (
 				D4093C672728919300F41BBF /* AllEpisodeView.swift */,
 				D4093C6B2728919300F41BBF /* ContentView.swift */,
+				D43DD5DC2732D80700B94266 /* Buttons */,
 				D4093C602728915200F41BBF /* Helper Views */,
 				D4093C5E2728914300F41BBF /* ViewBuilders */,
 				D4093C5F2728914900F41BBF /* ViewModifiers */,
@@ -294,6 +302,14 @@
 				D4093CD2272A43F700F41BBF /* URLError.swift */,
 			);
 			name = Errors;
+			sourceTree = "<group>";
+		};
+		D43DD5DC2732D80700B94266 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				D43DD5D92732D80100B94266 /* FavoriteButton.swift */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,6 +417,7 @@
 				D4093C7B2728919300F41BBF /* Date+new+written+toString.swift in Sources */,
 				D4093C812728919300F41BBF /* Observer.swift in Sources */,
 				D4093CDC272B2FB800F41BBF /* View+if.swift in Sources */,
+				D43DD5DA2732D80100B94266 /* FavoriteButton.swift in Sources */,
 				D4093CD3272A43F700F41BBF /* URLError.swift in Sources */,
 				D4093C872728919300F41BBF /* ContentView.swift in Sources */,
 				D4093C8D2728919300F41BBF /* Array+before+after.swift in Sources */,
@@ -420,6 +437,7 @@
 				D4093C8B2728919300F41BBF /* SeasonType.swift in Sources */,
 				D4093C98272891C000F41BBF /* ShowDictionaryApp.swift in Sources */,
 				D4093CEB272B82C000F41BBF /* CircledNumber.swift in Sources */,
+				D43DD5D727323E5E00B94266 /* BiderectionalCollection+sentence.swift in Sources */,
 				D4093C892728919300F41BBF /* Subtext.swift in Sources */,
 				D4093C792728919300F41BBF /* CollectionType+toJSONString.swift in Sources */,
 				D4093C852728919300F41BBF /* Int+toWord.swift in Sources */,
@@ -436,6 +454,7 @@
 				D4093C7C2728919300F41BBF /* Date+new+written+toString.swift in Sources */,
 				D4093C822728919300F41BBF /* Observer.swift in Sources */,
 				D4093CDD272B2FB800F41BBF /* View+if.swift in Sources */,
+				D43DD5DB2732D80100B94266 /* FavoriteButton.swift in Sources */,
 				D4093CD4272A43F700F41BBF /* URLError.swift in Sources */,
 				D4093C882728919300F41BBF /* ContentView.swift in Sources */,
 				D4093C8E2728919300F41BBF /* Array+before+after.swift in Sources */,
@@ -455,6 +474,7 @@
 				D4093C8C2728919300F41BBF /* SeasonType.swift in Sources */,
 				D4093C99272891C000F41BBF /* ShowDictionaryApp.swift in Sources */,
 				D4093CEC272B82C000F41BBF /* CircledNumber.swift in Sources */,
+				D43DD5D827323E5F00B94266 /* BiderectionalCollection+sentence.swift in Sources */,
 				D4093C8A2728919300F41BBF /* Subtext.swift in Sources */,
 				D4093C7A2728919300F41BBF /* CollectionType+toJSONString.swift in Sources */,
 				D4093C862728919300F41BBF /* Int+toWord.swift in Sources */,
@@ -659,7 +679,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wilcoxcurtis.ShowDictionary;
 				PRODUCT_NAME = ShowDictionary;
@@ -687,7 +707,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.6;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wilcoxcurtis.ShowDictionary;
 				PRODUCT_NAME = ShowDictionary;
