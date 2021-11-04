@@ -10,16 +10,16 @@ import Foundation
 struct Person: Comparable, CustomStringConvertible, Hashable, Identifiable {
     let id = UUID()
     
-    let firstName: String
+    let firstName: String?
     let middleName: String?
-    let lastName: String?
+    let lastName: String
     
     var description: String {
         fullName
     }
     
     var fullName: String {
-        "\(firstName)\(middleName != nil ? " \(middleName!)" : "")\(lastName != nil ? " \(lastName!)" : "")"
+        "\(firstName != nil ? "\(firstName!) " : "")\(middleName != nil ? "\(middleName!) " : "")\(lastName)".trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
     init(firstName: String, middleName: String? = nil, lastName: String) {
@@ -31,9 +31,9 @@ struct Person: Comparable, CustomStringConvertible, Hashable, Identifiable {
     init(fullName name: String) throws {
         let parts = name.split(separator: " ").map { String($0) }
         if parts.count == 1 {
-            self.firstName = name
+            self.firstName = nil
             self.middleName = nil
-            self.lastName = nil
+            self.lastName = name
 //            throw NameError.onlyOneName("The name \(name) is not enough to create a person -- a first and last name are both required (a middle name is optional)")
         } else if parts.count == 2 {
             self.firstName = parts[0]
@@ -47,18 +47,18 @@ struct Person: Comparable, CustomStringConvertible, Hashable, Identifiable {
     }
     
     static func <(lhs: Person, rhs: Person) -> Bool {
-        if let lhsLast = lhs.lastName, let rhsLast = rhs.lastName {
-            if lhsLast != rhsLast {
-                return lhsLast < rhsLast
-            }
-        } else if rhs.lastName == nil, let lhsLast = lhs.lastName {
-            return lhsLast < rhs.firstName
-        } else if lhs.lastName == nil, let rhsLast = rhs.lastName {
-            return rhsLast < lhs.firstName
+        if lhs.lastName.alphanumeric() != rhs.lastName.alphanumeric() {
+            return String(lhs.lastName.split(separator: " ").last!).alphanumeric() < String(rhs.lastName.split(separator: " ").last!).alphanumeric()
         }
         
-        if lhs.firstName != rhs.firstName || (lhs.middleName == nil && rhs.middleName == nil) {
-            return lhs.firstName < rhs.firstName
+        if lhs.firstName != rhs.firstName {
+            if let lhsFirst = lhs.firstName?.alphanumeric(), let rhsFirst = rhs.firstName?.alphanumeric() {
+                return lhsFirst < rhsFirst
+            }
+            if lhs.firstName?.alphanumeric() != nil, rhs.firstName == nil {
+                return true
+            }
+            return false
         }
         
         if lhs.middleName == nil && rhs.middleName != nil {
@@ -69,7 +69,7 @@ struct Person: Comparable, CustomStringConvertible, Hashable, Identifiable {
             return false
         }
         
-        return lhs.middleName! < rhs.middleName!
+        return lhs.middleName!.alphanumeric() < rhs.middleName!.alphanumeric()
     }
     
     static func ==(lhs: Person, rhs: Person) -> Bool {

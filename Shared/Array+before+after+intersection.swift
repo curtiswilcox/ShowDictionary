@@ -29,3 +29,11 @@ extension Array where Element: Comparable {
 		return element
 	}
 }
+
+//extension Array where Element: Equatable {
+//    func intersecton(other rhs: [Element]) -> [Element] {
+//        filter {
+//            rhs.contains($0)
+//        }
+//    }
+//}

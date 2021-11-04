@@ -11,8 +11,10 @@ struct CircledNumber: View {
     let number: Int
     let force: Bool
     
+    private let maxNum = 50
+    
     var body: some View {
-        if number <= 50 {
+        if number <= maxNum {
             Image(systemName: "\(number).circle")
         } else if force {
             Text("\(number)")

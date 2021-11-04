@@ -86,6 +86,7 @@ struct ContentView: View {
                         }).count
                     }
                     SectionScrollMenu(showCount: showCount, sections: sections, scrollToSection: $scrollToSection)
+                        .disabled(loading)
                 }
             }
             #endif

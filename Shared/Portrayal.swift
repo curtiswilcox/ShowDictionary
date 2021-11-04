@@ -14,7 +14,7 @@ struct Portrayal: CustomStringConvertible, Comparable, Hashable, Identifiable {
     let appearances: [Int]
     
     var description: String {
-        "\(actor) as \(character)"
+        character.description
     }
     
     var attributed: AttributedString {

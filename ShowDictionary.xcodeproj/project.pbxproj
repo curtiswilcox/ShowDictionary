@@ -33,8 +33,8 @@
 		D4093C8A2728919300F41BBF /* Subtext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6C2728919300F41BBF /* Subtext.swift */; };
 		D4093C8B2728919300F41BBF /* SeasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6D2728919300F41BBF /* SeasonType.swift */; };
 		D4093C8C2728919300F41BBF /* SeasonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6D2728919300F41BBF /* SeasonType.swift */; };
-		D4093C8D2728919300F41BBF /* Array+before+after.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6E2728919300F41BBF /* Array+before+after.swift */; };
-		D4093C8E2728919300F41BBF /* Array+before+after.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6E2728919300F41BBF /* Array+before+after.swift */; };
+		D4093C8D2728919300F41BBF /* Array+before+after+intersection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6E2728919300F41BBF /* Array+before+after+intersection.swift */; };
+		D4093C8E2728919300F41BBF /* Array+before+after+intersection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6E2728919300F41BBF /* Array+before+after+intersection.swift */; };
 		D4093C8F2728919300F41BBF /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6F2728919300F41BBF /* Show.swift */; };
 		D4093C902728919300F41BBF /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C6F2728919300F41BBF /* Show.swift */; };
 		D4093C912728919300F41BBF /* URL+ExpressibleByStringLiteral.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4093C702728919300F41BBF /* URL+ExpressibleByStringLiteral.swift */; };
@@ -71,6 +71,8 @@
 		D43DD5D827323E5F00B94266 /* BiderectionalCollection+sentence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DD5D627323E5E00B94266 /* BiderectionalCollection+sentence.swift */; };
 		D43DD5DA2732D80100B94266 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DD5D92732D80100B94266 /* FavoriteButton.swift */; };
 		D43DD5DB2732D80100B94266 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DD5D92732D80100B94266 /* FavoriteButton.swift */; };
+		D43DD5DE273311E700B94266 /* FilterMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DD5DD273311E700B94266 /* FilterMenu.swift */; };
+		D43DD5DF273311E700B94266 /* FilterMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43DD5DD273311E700B94266 /* FilterMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,7 +92,7 @@
 		D4093C6B2728919300F41BBF /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D4093C6C2728919300F41BBF /* Subtext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subtext.swift; sourceTree = "<group>"; };
 		D4093C6D2728919300F41BBF /* SeasonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeasonType.swift; sourceTree = "<group>"; };
-		D4093C6E2728919300F41BBF /* Array+before+after.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+before+after.swift"; sourceTree = "<group>"; };
+		D4093C6E2728919300F41BBF /* Array+before+after+intersection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+before+after+intersection.swift"; sourceTree = "<group>"; };
 		D4093C6F2728919300F41BBF /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		D4093C702728919300F41BBF /* URL+ExpressibleByStringLiteral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+ExpressibleByStringLiteral.swift"; sourceTree = "<group>"; };
 		D4093C712728919300F41BBF /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		D4093CEA272B82C000F41BBF /* CircledNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledNumber.swift; sourceTree = "<group>"; };
 		D43DD5D627323E5E00B94266 /* BiderectionalCollection+sentence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BiderectionalCollection+sentence.swift"; sourceTree = "<group>"; };
 		D43DD5D92732D80100B94266 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
+		D43DD5DD273311E700B94266 /* FilterMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +184,7 @@
 		D4093C572728912000F41BBF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D4093C6E2728919300F41BBF /* Array+before+after.swift */,
+				D4093C6E2728919300F41BBF /* Array+before+after+intersection.swift */,
 				D43DD5D627323E5E00B94266 /* BiderectionalCollection+sentence.swift */,
 				D4093CD5272AF57900F41BBF /* CKRecord+getString+getInt.swift */,
 				D4093C632728919200F41BBF /* Collection+safeSubscript.swift */,
@@ -233,8 +236,9 @@
 		D4093C5C2728913800F41BBF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D4093C672728919300F41BBF /* AllEpisodeView.swift */,
 				D4093C6B2728919300F41BBF /* ContentView.swift */,
+				D4093C672728919300F41BBF /* AllEpisodeView.swift */,
+				D4093CD8272B213400F41BBF /* EpisodeView.swift */,
 				D43DD5DC2732D80700B94266 /* Buttons */,
 				D4093C602728915200F41BBF /* Helper Views */,
 				D4093C5E2728914300F41BBF /* ViewBuilders */,
@@ -254,6 +258,7 @@
 		D4093C5E2728914300F41BBF /* ViewBuilders */ = {
 			isa = PBXGroup;
 			children = (
+				D43DD5DD273311E700B94266 /* FilterMenu.swift */,
 				D4093C722728919300F41BBF /* LoaderView.swift */,
 			);
 			name = ViewBuilders;
@@ -271,7 +276,6 @@
 			isa = PBXGroup;
 			children = (
 				D4093CEA272B82C000F41BBF /* CircledNumber.swift */,
-				D4093CD8272B213400F41BBF /* EpisodeView.swift */,
 				D4093CDE272B3F3200F41BBF /* SeasonScrollMenu.swift */,
 				D4093C692728919300F41BBF /* TitleCardView.swift */,
 			);
@@ -420,7 +424,7 @@
 				D43DD5DA2732D80100B94266 /* FavoriteButton.swift in Sources */,
 				D4093CD3272A43F700F41BBF /* URLError.swift in Sources */,
 				D4093C872728919300F41BBF /* ContentView.swift in Sources */,
-				D4093C8D2728919300F41BBF /* Array+before+after.swift in Sources */,
+				D4093C8D2728919300F41BBF /* Array+before+after+intersection.swift in Sources */,
 				D4093CDF272B3F3200F41BBF /* SeasonScrollMenu.swift in Sources */,
 				D4093CE8272B52AE00F41BBF /* NameError.swift in Sources */,
 				D4093C932728919300F41BBF /* Observable.swift in Sources */,
@@ -432,6 +436,7 @@
 				D4093C772728919300F41BBF /* Collection+safeSubscript.swift in Sources */,
 				D4093C912728919300F41BBF /* URL+ExpressibleByStringLiteral.swift in Sources */,
 				D4093CCF27299E9E00F41BBF /* Record.swift in Sources */,
+				D43DD5DE273311E700B94266 /* FilterMenu.swift in Sources */,
 				D4093C7F2728919300F41BBF /* AllEpisodeView.swift in Sources */,
 				D4093CD9272B213400F41BBF /* EpisodeView.swift in Sources */,
 				D4093C8B2728919300F41BBF /* SeasonType.swift in Sources */,
@@ -457,7 +462,7 @@
 				D43DD5DB2732D80100B94266 /* FavoriteButton.swift in Sources */,
 				D4093CD4272A43F700F41BBF /* URLError.swift in Sources */,
 				D4093C882728919300F41BBF /* ContentView.swift in Sources */,
-				D4093C8E2728919300F41BBF /* Array+before+after.swift in Sources */,
+				D4093C8E2728919300F41BBF /* Array+before+after+intersection.swift in Sources */,
 				D4093CE0272B3F3300F41BBF /* SeasonScrollMenu.swift in Sources */,
 				D4093CE9272B52AE00F41BBF /* NameError.swift in Sources */,
 				D4093C942728919300F41BBF /* Observable.swift in Sources */,
@@ -469,6 +474,7 @@
 				D4093C782728919300F41BBF /* Collection+safeSubscript.swift in Sources */,
 				D4093C922728919300F41BBF /* URL+ExpressibleByStringLiteral.swift in Sources */,
 				D4093CD027299E9E00F41BBF /* Record.swift in Sources */,
+				D43DD5DF273311E700B94266 /* FilterMenu.swift in Sources */,
 				D4093C802728919300F41BBF /* AllEpisodeView.swift in Sources */,
 				D4093CDA272B213400F41BBF /* EpisodeView.swift in Sources */,
 				D4093C8C2728919300F41BBF /* SeasonType.swift in Sources */,

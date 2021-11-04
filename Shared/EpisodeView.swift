@@ -18,8 +18,6 @@ struct EpisodeView: View {
         List {
             Section {
                 Text(episode.summary)
-            } header: {
-                Text("Summary")
             }
             
             let seasonType = show.seasonType.rawValue.capitalized
@@ -56,17 +54,21 @@ struct EpisodeView: View {
                 }
             }
             
-            if let writers = episode.writers?.map(\.description) {
+            if let writers = episode.writers {
                 Section {
-                    Text(writers.sentence)
+                    ForEach(writers) { writer in
+                        Text(writer.fullName)
+                    }
                 } header: {
                     Text("Written by")
                 }
             }
             
-            if let directors = episode.directors?.map(\.description) {
+            if let directors = episode.directors {
                 Section {
-                    Text(directors.sentence)
+                    ForEach(directors) { director in
+                        Text(director.fullName)
+                    }
                 } header: {
                     Text("Directed by")
                 }
@@ -90,23 +92,6 @@ struct EpisodeView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 FavoriteButton(observer: observer, episode: $episode)
-//                Button {
-//                    episode.isFavorite.toggle()
-//                    do {
-//                        try observer.toggleFavorite(to: episode.isFavorite, code: episode.code)
-//                    } catch let e {
-//                        episode.isFavorite.toggle()
-//                        print(e)
-//                    }
-//                } label: {
-//                    if episode.isFavorite {
-//                        Label("Unfavorite", systemImage: "star.fill")
-//                            .labelStyle(.iconOnly)
-//                    } else {
-//                        Label("Favorite", systemImage: "star")
-//                            .labelStyle(.iconOnly)
-//                    }
-//                }
             }
         }
     }

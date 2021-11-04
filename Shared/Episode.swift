@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Episode: Observable {
     let code: Int
@@ -141,5 +142,17 @@ extension Episode: CustomStringConvertible {
 extension Episode: Identifiable {
     var id: String {
         "\(code)\(name)"
+    }
+}
+
+extension Array where Element == Episode {
+    func validityReduction(for path: KeyPath<Episode, [Person]?>, episodes availables: Binding<[Binding<Episode>]>) -> [Person: (count: Int, valid: Bool)]? {
+        let availablePeople = availables.wrappedValue.compactMap({$episode in episode[keyPath: path]}).flatMap({$0})
+        
+        return Set(compactMap { $0[keyPath: path] }.flatMap { $0 })
+            .reduce(into: [Person: (count: Int, valid: Bool)]()) { result, entry in
+                let personCount = availablePeople.filter({$0 == entry}).count
+                result[entry] = (count: personCount, valid: personCount != 0)
+            }
     }
 }
