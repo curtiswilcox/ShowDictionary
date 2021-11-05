@@ -10,4 +10,15 @@ import Foundation
 
 enum SeasonType: String, Decodable {
     case book, season, series
+    
+    var rawValue: String {
+        switch self {
+        case .book:
+            return String(localized: "book")
+        case .season:
+            return String(localized: "season")
+        case .series:
+            return String(localized: "series")
+        }
+    }
 }

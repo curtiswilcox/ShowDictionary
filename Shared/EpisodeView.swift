@@ -90,7 +90,7 @@ struct EpisodeView: View {
         }
         .navigationTitle(episode.name)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem {
                 FavoriteButton(observer: observer, episode: $episode)
             }
         }

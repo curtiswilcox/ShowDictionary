@@ -19,8 +19,6 @@ struct Show: Observable {
     let sortName: String
     let seasonTitles: [Int: String]?
     let characters: [Portrayal]?
-//    let doctors: [Person]?
-//    let companions: [Person]?
     
     
     init(from decoder: Decoder) throws {
@@ -63,52 +61,6 @@ struct Show: Observable {
         } else {
             self.characters = nil
         }
-        
-        /*
-        if let doctor = try? values.decode(String.self, forKey: .doctor) {
-            if let secondaryDoctors = try? values.decode(String.self, forKey: .secondaryDoctors).components(separatedBy: ", ") {
-                var doctors = [doctor]
-                doctors.append(contentsOf: secondaryDoctors)
-                self.doctors = doctors.map { doctor in
-                    if doctor.lowercased() != "war" {
-                        let formatter = NumberFormatter()
-                        formatter.numberStyle = .spellOut
-                        let doctorNum = formatter.number(from: doctor)!
-                        formatter.numberStyle = .ordinal
-                        let ordinal = formatter.string(from: doctorNum)!.capitalized
-                        
-                        return Person(firstName: "The \(ordinal)", middleName: nil, lastName: "Doctor")
-                    } else {
-                        return Person(firstName: "The War", middleName: nil, lastName: "Doctor")
-                    }
-                }
-            } else {
-                let formatter = NumberFormatter()
-                formatter.numberStyle = .spellOut
-                let doctorNum = formatter.number(from: doctor)!
-                formatter.numberStyle = .ordinal
-                let ordinal = formatter.string(from: doctorNum)!.capitalized
-                
-                self.doctors = [Person(firstName: "The \(ordinal)", middleName: nil, lastName: "Doctor")]
-            }
-        } else {
-            self.doctors = nil
-        }
-        
-        if let companion = try? values.decode(String.self, forKey: .companion) {
-            if let secondaryCompanions = try? values.decode(String.self, forKey: .secondaryCompanions).components(separatedBy: ", ") {
-                var companions = [companion]
-                companions.append(contentsOf: secondaryCompanions)
-                self.companions = companions.compactMap { companion in
-                    try? Person(fullName: companion)
-                }
-            } else {
-                self.companions = try? [Person(fullName: companion)]
-            }
-        } else {
-            self.companions = nil
-        }
-         */
     }
     
     func matchesSearchText(_ searchText: String) -> Bool {
@@ -145,10 +97,6 @@ extension Show {
         case sortName = "SortName"
         case seasonTitles = "SeasonTitles"
         case characters = "Characters"
-//        case doctor = "Doctor"
-//        case companion = "Companion"
-//        case secondaryDoctors = "SecondaryDoctors"
-//        case secondaryCompanions = "SecondaryCompanions"
     }
 }
 

@@ -29,6 +29,8 @@ struct Episode: Observable {
     var isFavorite = false
     
     init(from decoder: Decoder) throws {
+        let and = String(localized: "and")
+        
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         self.code = Int(try values.decode(String.self, forKey: .code))!
@@ -37,22 +39,11 @@ struct Episode: Observable {
         self.seasonNumber = Int(try values.decode(String.self, forKey: .seasonNumber))!
         self.episodeInSeason = Int(try values.decode(String.self, forKey: .episodeInSeason))!
         self.episodeInShow = Int(try values.decode(String.self, forKey: .episodeInShow))!
-        self.writers = try? values.decode(String.self, forKey: .writers).components(separatedBy: " and ").compactMap {
-//            do {
-                /*return */try? Person(fullName: $0)
-//            } catch let e {
-//                print("writer error: \($0)")
-//                throw e
-//            }
-            
+        self.writers = try? values.decode(String.self, forKey: .writers).components(separatedBy: " \(and) ").compactMap {
+            try? Person(fullName: $0)
         }
-        self.directors = try? values.decode(String.self, forKey: .directors).components(separatedBy: " and ").compactMap {
-//            do {
-                /*return */try? Person(fullName: $0)
-//            } catch let e {
-//                print("director error: \($0)")
-//                throw e
-//            }
+        self.directors = try? values.decode(String.self, forKey: .directors).components(separatedBy: " \(and) ").compactMap {
+            try? Person(fullName: $0)
         }
         self.airdate = Date(hyphenated: try values.decode(String.self, forKey: .airdate))
         self.keywords = {
@@ -82,14 +73,14 @@ struct Episode: Observable {
         if minutes >= 60 {
             let hours = minutes / 60
             minutes %= 60
-            
-            desc += "\(hours) hour\(hours != 1 ? "s" : "")"
+
+            desc += "\(hours) \("hour".localizeWithFormat(quantity: hours))"
         }
         if minutes > 0 {
             if !desc.isEmpty {
                 desc += ", "
             }
-            desc += "\(minutes) minute\(minutes != 1 ? "s" : "")"
+            desc += "\(minutes) \("minute".localizeWithFormat(quantity: minutes))"
         }
         return desc
     }

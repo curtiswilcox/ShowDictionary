@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="pt-PT">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
+    </header>
+    <body>
+      <trans-unit id="%@ %d%@" xml:space="preserve">
+        <source>%@ %d%@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ (portrayed by %@)" xml:space="preserve">
+        <source>%@ (portrayed by %@)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ Episodes" xml:space="preserve">
+        <source>%@ Episodes</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@ and Episode" xml:space="preserve">
+        <source>%@ and Episode</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%@avorite" xml:space="preserve">
+        <source>%@avorite</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%lld" xml:space="preserve">
+        <source>%lld</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="All" xml:space="preserve">
+        <source>All</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Characters in episode" xml:space="preserve">
+        <source>Characters in episode</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Clear active filters" xml:space="preserve">
+        <source>Clear active filters</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Could not form URL with arguments (file: `%@`, language: `%@`)." xml:space="preserve">
+        <source>Could not form URL with arguments (file: `%@`, language: `%@`).</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Description" xml:space="preserve">
+        <source>Description</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Directed by" xml:space="preserve">
+        <source>Directed by</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Episode %lld of %lld" xml:space="preserve">
+        <source>Episode %lld of %lld</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Episode Length" xml:space="preserve">
+        <source>Episode Length</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Favorites" xml:space="preserve">
+        <source>Favorites</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Filter by %@" xml:space="preserve">
+        <source>Filter by %@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No active filters" xml:space="preserve">
+        <source>No active filters</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Number in show" xml:space="preserve">
+        <source>Number in show</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Original Airdate" xml:space="preserve">
+        <source>Original Airdate</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Scroll to..." xml:space="preserve">
+        <source>Scroll to...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Try again" xml:space="preserve">
+        <source>Try again</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Written by" xml:space="preserve">
+        <source>Written by</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="and" xml:space="preserve">
+        <source>and</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="character" xml:space="preserve">
+        <source>character</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="director" xml:space="preserve">
+        <source>director</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="writer" xml:space="preserve">
+        <source>writer</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="en.lproj/ShowDictionary (iOS)-InfoPlist.strings" datatype="plaintext" source-language="en" target-language="pt-PT">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="13.1" build-num="13A1030d"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>ShowDictionary</source>
+        <note>Bundle name</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

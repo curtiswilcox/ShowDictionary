@@ -17,9 +17,9 @@ struct Portrayal: CustomStringConvertible, Comparable, Hashable, Identifiable {
         character.description
     }
     
-    var attributed: AttributedString {
-        try! AttributedString(markdown: "\(actor) *as* \(character)")
-    }
+//    var attributed: AttributedString {
+//        try! AttributedString(markdown: "\(actor) *as* \(character)")
+//    }
     
     func isIn(episode code: Int) -> Bool {
         appearances.contains(code)

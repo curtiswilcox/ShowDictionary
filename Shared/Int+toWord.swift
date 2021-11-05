@@ -9,9 +9,10 @@
 import Foundation
 
 extension Int {
-  func toWord() -> String {
-    let formatter = NumberFormatter()
-    formatter.numberStyle = .spellOut
-    return formatter.string(from: NSNumber(value: self))!
-  }
+    func toWord() -> String {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.numberStyle = .spellOut
+        return formatter.string(from: NSNumber(value: self))!
+    }
 }

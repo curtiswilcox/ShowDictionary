@@ -42,7 +42,7 @@ struct SeasonScrollMenu: View {
                 HStack {
                     Text(seasonHeader)
 //                    Spacer()
-//                    CircledNumber(number: episodeCount(season)) // circle and number are in different places...?
+                    CircledNumber(number: episodeCount(season), force: false) // circle and number are in different places...?
                 }
             }
             .disabled(!availableSeasons.contains(season))

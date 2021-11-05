@@ -13,25 +13,22 @@ class Observer<T: Observable>: ObservableObject {
     @Published var items = [T]()
     
     private(set) var file: String?
-    private(set) var language: String?
+    private let language = Locale.current.languageCode
     
     private let container = CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase
-
+    
     private var favorites: [Int: CKRecord.ID]?
     
     init() {
         file = nil
-        language = nil
     }
     
-    init(file: String, language: String) {
+    init(file: String) {
         self.file = file
-        self.language = language
     }
     
-    func update(file: String, language: String) {
+    func update(file: String) {
         self.file = file
-        self.language = language
     }
     
     @MainActor
@@ -57,7 +54,7 @@ class Observer<T: Observable>: ObservableObject {
     
     private func formURL() throws -> URL {
         guard let file = file, let language = language else {
-            throw URLError.malformedURL("Could not form URL with arguments (file: `\(file ?? "nil")`, language: `\(language ?? "nil")`).")
+            throw URLError.malformedURL(String(localized: "Could not form URL with arguments (file: `\(file ?? "nil")`, language: `\(language ?? "nil")`)."))
         }
         return URL(string: "http://3.13.104.19/show-dictionary/files/\(file)_\(language).json")!
     }

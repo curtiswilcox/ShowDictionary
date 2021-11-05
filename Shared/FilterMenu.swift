@@ -23,8 +23,8 @@ struct FilterMenu<P: Filterable>: View {
                         current = nil
                     }
                 } label: {
-                    if current != nil {
-                        Text("Clear active \(type) filter\(current!.count > 1 ? "s" : "")")
+                    if current != nil, let count = current?.count {
+                        Text("Clear active \(type) filter\(count > 1 ? "s" : "")")
                     } else {
                         Text("No active filters")
                     }

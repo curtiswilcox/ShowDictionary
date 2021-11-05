@@ -1,0 +1,81 @@
+/* No comment provided by engineer. */
+"" = "";
+
+/* No comment provided by engineer. */
+"%@ (portrayed by %@)" = "%@ (portrayed by %@)";
+
+/* No comment provided by engineer. */
+"%@ %d%@" = "%@ %d%@";
+
+/* No comment provided by engineer. */
+"%@ and Episode" = "%@ and Episode";
+
+/* No comment provided by engineer. */
+"%@ Episodes" = "%@ Episodes";
+
+/* No comment provided by engineer. */
+"%@avorite" = "%@avorite";
+
+/* No comment provided by engineer. */
+"%lld" = "%lld";
+
+/* No comment provided by engineer. */
+"All" = "All";
+
+/* No comment provided by engineer. */
+"and" = "and";
+
+/* No comment provided by engineer. */
+"character" = "character";
+
+/* No comment provided by engineer. */
+"Characters in episode" = "Characters in episode";
+
+/* No comment provided by engineer. */
+"Clear active filters" = "Clear active filters";
+
+/* No comment provided by engineer. */
+"Could not form URL with arguments (file: `%@`, language: `%@`)." = "Could not form URL with arguments (file: `%@`, language: `%@`).";
+
+/* No comment provided by engineer. */
+"Description" = "Description";
+
+/* No comment provided by engineer. */
+"Directed by" = "Directed by";
+
+/* No comment provided by engineer. */
+"director" = "director";
+
+/* No comment provided by engineer. */
+"Episode %lld of %lld" = "Episode %lld of %lld";
+
+/* No comment provided by engineer. */
+"Episode Length" = "Episode Length";
+
+/* No comment provided by engineer. */
+"Favorites" = "Favorites";
+
+/* No comment provided by engineer. */
+"Filter by %@" = "Filter by %@";
+
+/* No comment provided by engineer. */
+"No active filters" = "No active filters";
+
+/* No comment provided by engineer. */
+"Number in show" = "Number in show";
+
+/* No comment provided by engineer. */
+"Original Airdate" = "Original Airdate";
+
+/* No comment provided by engineer. */
+"Scroll to..." = "Scroll to...";
+
+/* No comment provided by engineer. */
+"Try again" = "Try again";
+
+/* No comment provided by engineer. */
+"writer" = "writer";
+
+/* No comment provided by engineer. */
+"Written by" = "Written by";
+

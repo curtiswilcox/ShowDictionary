@@ -83,14 +83,12 @@ struct AllEpisodeView: View {
                             let seasonType = show.seasonType.rawValue.capitalized
                             let seasonTitle = show.seasonTitles?[seasonNumber]
                             
-                            Text("\(seasonType) \(seasonNumber)\(seasonTitle != nil ? ": \(seasonTitle!)" : "")")
+                            Text("\(seasonType) \(seasonNumber, specifier: "%d")\(seasonTitle != nil ? ": \(seasonTitle!)" : "")")
                         }
                     }
                 }
                 .listStyle(.sidebar)
-                .if(!availableEpisodes.isEmpty) { view in
-                    view.searchable(text: $searchText)
-                }
+                .searchable(text: $searchText.animation())
                 .onChange(of: scrollToSection) { section in
                     guard let section = section else { return }
                     withAnimation(.easeInOut(duration: 2)) {
@@ -110,8 +108,8 @@ struct AllEpisodeView: View {
                 .padding(.horizontal)
                 .disabled(!hasFavorites)
             }
-            #if os(iOS)
-            ToolbarItem(placement: .navigationBarTrailing) {
+            
+            ToolbarItem(placement: .automatic) {
                 Menu {
                     Section {
                         let episodeCount: (Int) -> Int = { (season) in
@@ -127,15 +125,15 @@ struct AllEpisodeView: View {
                         Section {
                             
                             if characters.wrappedValue != nil {
-                                FilterMenu(people: characters, type: "character", current: $filters.characters)
+                                FilterMenu(people: characters, type: String(localized: "character"), current: $filters.characters)
                             }
                                                         
                             if !(directors.wrappedValue?.isEmpty ?? true) {
-                                FilterMenu(people: directors, type: "director", current: $filters.directors)
+                                FilterMenu(people: directors, type: String(localized: "director"), current: $filters.directors)
                             }
 
                             if !(writers.wrappedValue?.isEmpty ?? true) {
-                                FilterMenu(people: writers, type: "writer", current: $filters.writers)
+                                FilterMenu(people: writers, type: String(localized: "writer"), current: $filters.writers)
                             }
                         }
                         
@@ -156,12 +154,11 @@ struct AllEpisodeView: View {
                 }
                 .disabled(loading)
             }
-            #endif
         }
         .navigationTitle("\(show.name) Episodes")
         .onAppear {
-            if observer.file == nil || observer.language == nil {
-                observer.update(file: filename, language: language)
+            if observer.file == nil {
+                observer.update(file: filename)
             }
         }
     }

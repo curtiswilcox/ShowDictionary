@@ -11,8 +11,9 @@ import Foundation
 
 extension BidirectionalCollection where Element: StringProtocol {
     var sentence: String {
-        count <= 2 ?
-        joined(separator: " and ") :
-        dropLast().joined(separator: ", ") + ", and " + last!
+        let and = String(localized: "and")
+        return count <= 2 ?
+        joined(separator: " \(and) ") :
+        dropLast().joined(separator: ", ") + ", \(and) " + last!
     }
 }

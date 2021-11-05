@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var observer = Observer<Show>(file: "shows", language: "en")
+    @StateObject var observer = Observer<Show>(file: "shows")
     
     @State private var loading = false
     
@@ -19,11 +19,11 @@ struct ContentView: View {
     private let columns = 3
     
     var body: some View {
-        let sections = Set(observer.items.map { $0.sortName.firstLetter() }).sorted()
-        let enumeratedSections = Array(zip(sections.indices, sections))
         let availableShows = $observer.items.filter { $show in
             show.matchesSearchText(searchText)
         }
+        let sections = Set(availableShows.map { $0.wrappedValue.sortName.firstLetter() }).sorted()
+        let enumeratedSections = Array(zip(sections.indices, sections))
         
         return NavigationView {
             LoaderView(observer: observer, loading: $loading) {
@@ -76,10 +76,12 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Home")
-            .searchable(text: $searchText)
-            #if os(iOS)
+            #if os(macOS)
+            .navigationViewStyle(.columns)
+            #endif
+            .searchable(text: $searchText.animation())
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem {
                     let showCount: (String) -> Int = { (section) in
                         availableShows.filter({ $show in
                             show.sortName.alphanumeric().firstLetter().lowercased() == section.lowercased()
@@ -89,7 +91,6 @@ struct ContentView: View {
                         .disabled(loading)
                 }
             }
-            #endif
         }
     }
     
@@ -104,7 +105,11 @@ struct ContentView: View {
                     Button {
                         scrollToSection = section
                     } label: {
-                        Label("Scroll to shows that start with \(section.uppercased())", systemImage: "\(showCount(section)).circle")
+                        Label {
+                            Text("Scroll to shows that start with \(section.uppercased())")
+                        } icon: {
+                            Image(systemName: "\(showCount(section)).circle")
+                        }
                     }
                 }
             } label: {
