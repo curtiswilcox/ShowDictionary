@@ -1,0 +1,93 @@
+/* No comment provided by engineer. */
+"%@ (portrayed by %@)" = "%@ (retratado por %@)";
+
+/* No comment provided by engineer. */
+"%@ %d%@" = "%@ %d%@";
+
+/* No comment provided by engineer. */
+"%@ and Episode" = "%@ e episódio";
+
+/* No comment provided by engineer. */
+"%@ Episodes" = "Episódios de %@";
+
+/* No comment provided by engineer. */
+"%@avorite" = "%@avorito";
+
+/* No comment provided by engineer. */
+"%lld" = "%lld";
+
+/* No comment provided by engineer. */
+"All" = "Todos";
+
+/* No comment provided by engineer. */
+"and" = "e";
+
+/* No comment provided by engineer. */
+"book" = "livro";
+
+/* No comment provided by engineer. */
+"character" = "personagem";
+
+/* No comment provided by engineer. */
+"Characters in episode" = "Personagens do episódio";
+
+/* No comment provided by engineer. */
+"Clear active filters" = "Limpar filtros ativos";
+
+/* No comment provided by engineer. */
+"Clear %@ %@ %@" = "Limpar filtro de %2$@ %1$@";
+
+/* No comment provided by engineer. */
+"Description" = "Resumo";
+
+/* No comment provided by engineer. */
+"Directed by" = "Dirigido por";
+
+/* No comment provided by engineer. */
+"director" = "diretor";
+
+/* No comment provided by engineer. */
+"Episode %lld of %lld" = "Número %lld de %lld";
+
+/* No comment provided by engineer. */
+"Episode Length" = "Tempo de execução";
+
+/* No comment provided by engineer. */
+"Favorites" = "Favoritos";
+
+/* No comment provided by engineer. */
+"Filter by %@" = "Filtrar por %@";
+
+/* No comment provided by engineer. */
+"Home" = "Início";
+
+/* No comment provided by engineer. */
+"No active filters" = "Sem filtros ativos";
+
+/* No comment provided by engineer. */
+"Number in show" = "Número do programa";
+
+/* No comment provided by engineer. */
+"Original Airdate" = "Data de lançamento original";
+
+/* No comment provided by engineer. */
+"Scroll to..." = "Rolar para...";
+
+/* No comment provided by engineer. */
+"Scroll to shows that start with %@" = "Rolar para os programas que começam com %@";
+
+/* No comment provided by engineer. */
+"season" = "temporada";
+
+/* No comment provided by engineer. */
+"series" = "série";
+
+/* No comment provided by engineer. */
+"Try again" = "Tentar de novo";
+
+/* No comment provided by engineer. */
+"writer" = "escritor";
+
+/* No comment provided by engineer. */
+"Written by" = "Escrito por";
+

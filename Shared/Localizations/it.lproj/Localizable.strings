@@ -1,0 +1,93 @@
+/* No comment provided by engineer. */
+"%@ (portrayed by %@)" = "%@ (interpretato da %@)";
+
+/* No comment provided by engineer. */
+"%@ %d%@" = "%@ %d%@";
+
+/* No comment provided by engineer. */
+"%@ and Episode" = "%@ ed episodio";
+
+/* No comment provided by engineer. */
+"%@ Episodes" = "Episodi di %@";
+
+/* No comment provided by engineer. */
+"%@avorite" = "%@referito";
+
+/* No comment provided by engineer. */
+"%lld" = "%lld";
+
+/* No comment provided by engineer. */
+"All" = "Tutti";
+
+/* No comment provided by engineer. */
+"and" = "e";
+
+/* No comment provided by engineer. */
+"book" = "libro";
+
+/* No comment provided by engineer. */
+"character" = "personaggio";
+
+/* No comment provided by engineer. */
+"Characters in episode" = "Personaggi nell'episodio";
+
+/* No comment provided by engineer. */
+"Clear active filters" = "Cancellare filtri attivit";
+
+/* No comment provided by engineer. */
+"Clear %@ %@ %@" = "Cancellare filtro de %2$@ %1$@";
+
+/* No comment provided by engineer. */
+"Description" = "Riepilogo";
+
+/* No comment provided by engineer. */
+"Directed by" = "Diretto da";
+
+/* No comment provided by engineer. */
+"director" = "direttore";
+
+/* No comment provided by engineer. */
+"Episode %lld of %lld" = "Numero %lld di %lld";
+
+/* No comment provided by engineer. */
+"Episode Length" = "Tempo di esecuzione";
+
+/* No comment provided by engineer. */
+"Favorites" = "Favoriti";
+
+/* No comment provided by engineer. */
+"Filter by %@" = "Filtrare per %@";
+
+/* No comment provided by engineer. */
+"Home" = "Inizio";
+
+/* No comment provided by engineer. */
+"No active filters" = "Nessun filtro activo";
+
+/* No comment provided by engineer. */
+"Number in show" = "Numero di programma";
+
+/* No comment provided by engineer. */
+"Original Airdate" = "Data di uscita originale";
+
+/* No comment provided by engineer. */
+"Scroll to..." = "Scorrere fino a...";
+
+/* No comment provided by engineer. */
+"Scroll to shows that start with %@" = "Scorrere fino ai programmi che iniziano con %@";
+
+/* No comment provided by engineer. */
+"season" = "stagione";
+
+/* No comment provided by engineer. */
+"series" = "serie";
+
+/* No comment provided by engineer. */
+"Try again" = "Riprova";
+
+/* No comment provided by engineer. */
+"writer" = "scrittore";
+
+/* No comment provided by engineer. */
+"Written by" = "Scritto da";
+
