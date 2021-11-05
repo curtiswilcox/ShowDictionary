@@ -35,7 +35,7 @@
 "Clear active filters" = "Borrar filtros activos";
 
 /* No comment provided by engineer. */
-"Could not form URL with arguments (file: `%@`, language: `%@`)." = "BAD";
+"Clear %@ %@ %@" = "Borrar filtro de %2$@ %1$@";
 
 /* No comment provided by engineer. */
 "Description" = "Resumen";
@@ -72,6 +72,9 @@
 
 /* No comment provided by engineer. */
 "Scroll to..." = "Ir a...";
+
+/* No comment provided by engineer. */
+"Scroll to shows that start with %@" = "Ir a los programas que comienzan con %@";
 
 /* No comment provided by engineer. */
 "season" = "temporada";

@@ -24,7 +24,9 @@ struct FilterMenu<P: Filterable>: View {
                     }
                 } label: {
                     if current != nil, let count = current?.count {
-                        Text("Clear active \(type) filter\(count > 1 ? "s" : "")")
+                        let active = "active".localizeWithFormat(quantity: count)
+                        let filter = "filter".localizeWithFormat(quantity: count)
+                        Text("Clear \(active) \(type) \(filter)")
                     } else {
                         Text("No active filters")
                     }

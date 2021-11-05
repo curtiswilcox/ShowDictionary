@@ -2,6 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>active</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@active@</string>
+		<key>active</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>one</key>
+			<string>activo</string>
+			<key>other</key>
+			<string>activos</string>
+		</dict>
+	</dict>
+	<key>filter</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filter@</string>
+		<key>filter</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>one</key>
+			<string>filtro</string>
+			<key>other</key>
+			<string>filtros</string>
+		</dict>
+	</dict>
 	<key>hour</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
