@@ -19,6 +19,7 @@ struct Show: Observable {
     let sortName: String
     let seasonTitles: [Int: String]?
     let characters: [Portrayal]?
+    var hasFavoriteEpisodes = false
     
     
     init(from decoder: Decoder) throws {

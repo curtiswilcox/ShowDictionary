@@ -36,8 +36,15 @@ struct ContentView: View {
                                     NavigationLink(destination: AllEpisodeView(show: $show, filename: show.filename)) {
                                         TitleCardView(show: $show)
                                         VStack(alignment: .leading) {
-                                            Text(show.name)
-                                                .font(.headline)
+                                            HStack(alignment: .top) {
+                                                Text(show.name)
+                                                    .font(.headline)
+                                                if show.hasFavoriteEpisodes {
+                                                    Spacer()
+                                                    Image(systemName: "star.fill")
+                                                        .foregroundColor(.secondary)
+                                                }
+                                            }
                                             Spacer()
                                             Text("number of \(show.seasonType.rawValue)".localizeWithFormat(quantity: show.numberOfSeasons)).subtext()
                                             Text("episodes".localizeWithFormat(quantity: show.numberOfEpisodes)).subtext()
