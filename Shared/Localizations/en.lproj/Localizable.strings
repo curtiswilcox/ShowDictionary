@@ -1,107 +1,107 @@
 /* No comment provided by engineer. */
-"%@ (portrayed by %@)" = "%@ (interprété.e par %@)";
+"%@ (portrayed by %@)" = "%@ (portrayed by %@)";
 
 /* No comment provided by engineer. */
-"%@ and Episode" = "%@ et épisode";
+"%@ and Episode" = "%@ and Episode";
 
 /* No comment provided by engineer. */
-"%@ Episodes" = "Épisodes de %@";
+"%@ Episodes" = "%@ Episodes";
 
 /* No comment provided by engineer. */
-"%@avorite" = "%@avori";
+"%@avorite" = "%@avorite";
 
 /* No comment provided by engineer. */
 "%lld" = "%lld";
 
 /* No comment provided by engineer. */
-"All" = "Tous";
+"All" = "All";
 
 /* No comment provided by engineer. */
-"and" = "et";
+"and" = "and";
+
+// No comment provided by engineer.
+"book" = "book";
 
 /* No comment provided by engineer. */
-"book" = "livre";
+"character" = "character";
 
 /* No comment provided by engineer. */
-"character" = "personnage";
+"Characters in episode" = "Characters in episode";
 
 /* No comment provided by engineer. */
-"Characters in episode" = "Personnages dans l'épisode";
+"Clear active filters" = "Clear active filters";
 
 /* No comment provided by engineer. */
-"Clear active filters" = "Effacer les filtres actifs";
+"Clear %@ %@ %@" = "Clear %@ %@ %@";
 
 /* No comment provided by engineer. */
-"Clear %@ %@ %@" = "Effacer le filtre de %2$@ %1$@";
-
-/* No comment provided by engineer. */
-"Could not form URL with arguments (file: `%@`, language: `%@`)." = "Il n'a pas été possible de créer l'URL en utilisant (fichier: `%@`, langue: `%@`).";
+"Could not form URL with arguments (file: `%@`, language: `%@`)." = "Could not form URL with arguments (file: `%@`, language: `%@`).";
 
 /* No comment provided by engineer. */
 "Description" = "Description";
 
 /* No comment provided by engineer. */
-"Directed by" = "Dirigé par";
+"Directed by" = "Directed by";
 
 /* No comment provided by engineer. */
-"director" = "réalisateur";
+"director" = "director";
 
 /* No comment provided by engineer. */
-"Episode" = "épisode";
+"Episode" = "Episode";
 
 /* No comment provided by engineer. */
-"Episode %lld of %lld" = "Numéro %lld de %lld";
+"Episode %lld of %lld" = "Episode %lld of %lld";
 
 /* No comment provided by engineer. */
-"Episode Length" = "Temps d'exécution";
+"Episode Length" = "Episode Length";
 
 /* No comment provided by engineer. */
-"Error" = "Erreur";
+"Error" = "Error";
 
 /* No comment provided by engineer. */
-"Favorite" = "Favori";
+"Favorite" = "Favorite";
 
 /* No comment provided by engineer. */
-"Favorites" = "Favoris";
+"Favorites" = "Favorites";
 
 /* No comment provided by engineer. */
-"Filter by %@" = "Filtrer par %@";
+"Filter by %@" = "Filter by %@";
 
 /* No comment provided by engineer. */
-"Home" = "Accueil";
+"Home" = "Home";
 
 /* No comment provided by engineer. */
-"No active filters" = "Pas de filtres actifs";
+"No active filters" = "No active filters";
 
 /* No comment provided by engineer. */
-"Number in show" = "Numéro dans le programme";
+"Number in show" = "Number in show";
 
 /* No comment provided by engineer. */
-"Original Airdate" = "Date de sortie originale";
+"Original Airdate" = "Original Airdate";
 
 /* No comment provided by engineer. */
-"Scroll to..." = "Faire défiler jusqu'à...";
+"Scroll to..." = "Scroll to...";
 
 /* No comment provided by engineer. */
-"Scroll to shows that start with %@" = "Faire défiler jusqu'àux programmes commençant par %@";
+"Scroll to shows that start with %@" = "Scroll to shows that start with %@";
 
 /* No comment provided by engineer. */
-"season" = "saison";
+"season" = "season";
 
 /* No comment provided by engineer. */
-"series" = "série";
+"series" = "series";
 
 /* No comment provided by engineer. */
-"Summary" = "Sommaire";
+"Summary" = "Summary";
 
 /* No comment provided by engineer. */
-"Try again" = "Essayer à nouveau";
+"Try again" = "Try again";
 
 /* No comment provided by engineer. */
-"Unfavorite" = "Défavorisé";
+"Unfavorite" = "Unfavorite";
 
 /* No comment provided by engineer. */
-"writer" = "écrivain";
+"writer" = "writer";
 
 /* No comment provided by engineer. */
-"Written by" = "Écrit par";
+"Written by" = "Written by";

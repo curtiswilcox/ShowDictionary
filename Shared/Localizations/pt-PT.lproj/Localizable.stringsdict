@@ -18,6 +18,22 @@
 			<string>ativos</string>
 		</dict>
 	</dict>
+	<key>episodes</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@episodes@</string>
+		<key>episodes</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>one</key>
+			<string>1 episódio</string>
+			<key>other</key>
+			<string>%u episódios</string>
+		</dict>
+	</dict>
 	<key>filter</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -64,6 +80,54 @@
 			<string>minuto</string>
 			<key>other</key>
 			<string>minutos</string>
+		</dict>
+	</dict>
+	<key>number of book</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@book@</string>
+		<key>book</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>one</key>
+			<string>1 livro</string>
+			<key>other</key>
+			<string>%u livros</string>
+		</dict>
+	</dict>
+	<key>number of season</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@season@</string>
+		<key>season</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>one</key>
+			<string>1 temporada</string>
+			<key>other</key>
+			<string>%u temporadas</string>
+		</dict>
+	</dict>
+	<key>number of series</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@series@</string>
+		<key>series</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>u</string>
+			<key>one</key>
+			<string>1 série</string>
+			<key>other</key>
+			<string>%u séries</string>
 		</dict>
 	</dict>
 </dict>

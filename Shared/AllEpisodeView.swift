@@ -13,7 +13,6 @@ struct AllEpisodeView: View {
     @Binding var show: Show
             
     let filename: String
-    let language: String
     
     @State private var loading = true
     
@@ -68,22 +67,30 @@ struct AllEpisodeView: View {
                                     EpisodeView(observer: observer, show: $show, episode: $episode)
                                 } label: {
                                     Label {
-                                        HStack(alignment: .center) {
+                                        HStack(alignment: .top) {
                                             Text(episode.name)
                                             Spacer()
-                                            CircledNumber(number: episode.episodeInSeason, force: true)
-                                                .imageScale(.large)
+                                            if episode.isFavorite {
+                                                Image(systemName: "star")
+                                                    .symbolVariant(.fill)
+                                                    .foregroundColor(.secondary)
+                                            }
                                         }
                                     } icon: {
-                                        FavoriteButton(observer: observer, episode: $episode)
+                                        CircledNumber(number: episode.episodeInSeason, force: true)
+                                            .imageScale(.large)
+                                            .foregroundColor(.primary)
                                     }
+                                }
+                                .swipeActions(edge: .trailing) {
+                                    FavoriteButton(observer: observer, episode: $episode, toFavorite: "star", toUnfavorite: "star.slash", tint: .blue)
                                 }
                             }
                         } header: {
-                            let seasonType = show.seasonType.rawValue.capitalized
+                            let seasonType = show.seasonType.localizedCapitalized
                             let seasonTitle = show.seasonTitles?[seasonNumber]
                             
-                            Text("\(seasonType) \(seasonNumber, specifier: "%d")\(seasonTitle != nil ? ": \(seasonTitle!)" : "")")
+                            Text("\(seasonType) \(seasonNumber)\(seasonTitle != nil ? ": \(seasonTitle!)" : "")")
                         }
                     }
                 }

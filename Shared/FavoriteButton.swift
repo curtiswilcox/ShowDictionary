@@ -11,19 +11,28 @@ struct FavoriteButton: View {
     @ObservedObject var observer: Observer<Episode>
     @Binding var episode: Episode
     
+    let toFavorite: String
+    let toUnfavorite: String
+    var tint: Color? = nil
+    
     var body: some View {
         Button {
             episode.isFavorite.toggle()
-            do {
-                try observer.toggleFavorite(to: episode.isFavorite, code: episode.code)
-            } catch let e {
-                episode.isFavorite.toggle()
-                print(e)
+            Task {
+                do {
+                    try await observer.toggleFavorite(isFavorite: episode.isFavorite, code: episode.code)
+                } catch let e {
+                    episode.isFavorite.toggle()
+                    print(e)
+                }
             }
         } label: {
-            Label("\(episode.isFavorite ? "Unf" : "F")avorite", systemImage: episode.isFavorite ? "star.fill" : "star")
-                .labelStyle(.iconOnly)
+            if episode.isFavorite {
+                Label("Unfavorite", systemImage: toUnfavorite)
+            } else {
+                Label("Favorite", systemImage: toFavorite)
+            }
         }
-        .buttonStyle(.borderless)
+        .tint(tint)
     }
 }

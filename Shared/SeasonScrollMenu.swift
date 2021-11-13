@@ -32,7 +32,7 @@ struct SeasonScrollMenu: View {
                 scrollToSection = season
             } label: {
                 let seasonHeader: String = {
-                    let seasonType = show.seasonType.rawValue.capitalized
+                    let seasonType = show.seasonType.rawValue.localizedCapitalized
                     var header = "\(seasonType) \(season)"
                     if let title = show.seasonTitles?[season] {
                         header += ": \(title)"

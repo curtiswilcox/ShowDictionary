@@ -55,12 +55,12 @@ struct Episode: Observable {
     
     func matchesSearchText(_ searchText: String) -> Bool {
         guard !searchText.isEmpty else { return true }
-        let searchText = searchText.lowercased()
+        let searchText = searchText.localizedLowercase
         
-        let nameContains = name.lowercased().contains(searchText)
-        let summaryContains = summary.lowercased().contains(searchText)
+        let nameContains = name.localizedLowercase.contains(searchText)
+        let summaryContains = summary.localizedLowercase.contains(searchText)
         let keywordsContains = keywords?
-            .map({ $0.lowercased().contains(searchText) })
+            .map({ $0.localizedLowercase.contains(searchText) })
             .reduce(false, { $0 || $1 })
         ?? false
         

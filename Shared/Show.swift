@@ -65,7 +65,7 @@ struct Show: Observable {
     
     func matchesSearchText(_ searchText: String) -> Bool {
         guard !searchText.isEmpty else { return true }
-        return name.lowercased().contains(searchText.lowercased())
+        return name.localizedLowercase.contains(searchText.localizedLowercase)
     }
     
     func getImage() throws -> Data {
@@ -102,7 +102,10 @@ extension Show {
 
 extension Show: Comparable {
     static func <(lhs: Show, rhs: Show) -> Bool {
-        lhs.sortName.alphanumeric().lowercased() < rhs.sortName.alphanumeric().lowercased()
+        let lhsName = lhs.sortName.alphanumeric().localizedLowercase
+        let rhsName = rhs.sortName.alphanumeric().localizedLowercase
+        return lhsName.compare(rhsName, options: .diacriticInsensitive) == .orderedAscending
+//        lhs.sortName.alphanumeric().localizedLowercase < rhs.sortName.alphanumeric().localizedLowercase
     }
     
     static func ==(lhs: Show, rhs: Show) -> Bool {

@@ -2,9 +2,6 @@
 "%@ (portrayed by %@)" = "%@ (interpretato da %@)";
 
 /* No comment provided by engineer. */
-"%@ %d%@" = "%@ %d%@";
-
-/* No comment provided by engineer. */
 "%@ and Episode" = "%@ ed episodio";
 
 /* No comment provided by engineer. */
@@ -38,6 +35,9 @@
 "Clear %@ %@ %@" = "Cancellare filtro de %2$@ %1$@";
 
 /* No comment provided by engineer. */
+"Could not form URL with arguments (file: `%@`, language: `%@`)." = "Non è stato possibile creare l'URL utilizzando (file: `%@`, linguaggio: `%@`).";
+
+/* No comment provided by engineer. */
 "Description" = "Riepilogo";
 
 /* No comment provided by engineer. */
@@ -47,10 +47,19 @@
 "director" = "direttore";
 
 /* No comment provided by engineer. */
+"Episode" = "episodio";
+
+/* No comment provided by engineer. */
 "Episode %lld of %lld" = "Numero %lld di %lld";
 
 /* No comment provided by engineer. */
 "Episode Length" = "Tempo di esecuzione";
+
+/* No comment provided by engineer. */
+"Error" = "Errore";
+
+/* No comment provided by engineer. */
+"Favorite" = "Preferito";
 
 /* No comment provided by engineer. */
 "Favorites" = "Favoriti";
@@ -83,11 +92,16 @@
 "series" = "serie";
 
 /* No comment provided by engineer. */
+"Summary" = "Riepilogo";
+
+/* No comment provided by engineer. */
 "Try again" = "Riprova";
+
+/* No comment provided by engineer. */
+"Unfavorite" = "Non preferito";
 
 /* No comment provided by engineer. */
 "writer" = "scrittore";
 
 /* No comment provided by engineer. */
 "Written by" = "Scritto da";
-

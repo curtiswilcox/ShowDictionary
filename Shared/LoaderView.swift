@@ -42,7 +42,7 @@ struct LoaderView<T: Observable, InnerView: View>: View {
                 loading = false
             } catch let e {
                 loadFailure = true
-                loadFailureMessage = "Error: \(e.localizedDescription)"
+                loadFailureMessage = "\(String(localized: "Error")): \(e.localizedDescription)"
             }
         }
     }

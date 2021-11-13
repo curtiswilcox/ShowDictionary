@@ -18,15 +18,18 @@ struct EpisodeView: View {
         List {
             Section {
                 Text(episode.summary)
+            } header: {
+                Text("Summary")
             }
             
-            let seasonType = show.seasonType.rawValue.capitalized
+            let seasonType = show.seasonType.localizedCapitalized
+            let e = String(localized: "Episode")
             Section {
                 let seasonEpisodeText: String = {
                     if let seasonTitle = show.seasonTitles?[episode.seasonNumber] {
-                        return "\(seasonType) \(episode.seasonNumber): \(seasonTitle), Episode \(episode.episodeInSeason)"
+                        return "\(seasonType) \(episode.seasonNumber): \(seasonTitle), \(e) \(episode.episodeInSeason)"
                     } else {
-                        return "\(seasonType) \(episode.seasonNumber), Episode \(episode.episodeInSeason)"
+                        return "\(seasonType) \(episode.seasonNumber), \(e) \(episode.episodeInSeason)"
                     }
                 }()
                 Text(seasonEpisodeText)
@@ -88,10 +91,11 @@ struct EpisodeView: View {
                 }
             }
         }
+        .listStyle(.sidebar)
         .navigationTitle(episode.name)
         .toolbar {
             ToolbarItem {
-                FavoriteButton(observer: observer, episode: $episode)
+                FavoriteButton(observer: observer, episode: $episode, toFavorite: "star", toUnfavorite: "star.fill")
             }
         }
     }

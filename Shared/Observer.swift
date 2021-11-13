@@ -94,15 +94,13 @@ class Observer<T: Observable>: ObservableObject {
         return favorites.isEmpty ? nil : favorites
     }
     
-    func toggleFavorite(to favorite: Bool, code episode: Int) throws {
+    func toggleFavorite(isFavorite: Bool, code episode: Int) async throws {
         guard signedIn, file != nil && file != "shows" else { return }
         
-        Task {
-            if favorite {
-                try await addFavorite(for: episode)
-            } else {
-                try await removeFavorite(for: episode)
-            }
+        if isFavorite {
+            try await addFavorite(for: episode)
+        } else {
+            try await removeFavorite(for: episode)
         }
     }
     

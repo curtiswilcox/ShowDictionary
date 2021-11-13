@@ -11,9 +11,6 @@ import SwiftUI
 struct TitleCardView: View {
     @Binding var show: Show
     
-    let width: CGFloat
-    let columns: CGFloat
-    
     var body: some View {
         AsyncImage(url: show.titleCardURL) { phase in
             if let image = phase.image {
@@ -30,21 +27,22 @@ struct TitleCardView: View {
                         .resizable()
                         .background(.white)
                 } else {
-                    ProgressView()
-                        .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
-                        .background(.clear)
+                    spinner
                 }
                 #elseif os(macOS)
-                ProgressView()
-                    .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
-                    .background(.clear)
+                spinner
                 #endif
             }
         }
-        .frame(width: width / (columns + 0.5), height: width / (columns + 0.5))
-        .overlay(RoundedRectangle(cornerRadius: 20).stroke(.primary, lineWidth: 2))
-        .cornerRadius(20)
-        .shadow(radius: 40)
-        .padding(.bottom)
+        .frame(width: 100, height: 100)
+        .overlay(RoundedRectangle(cornerRadius: 15).stroke(.primary, lineWidth: 2))
+        .cornerRadius(15)
+        .padding(.vertical, 5)
+    }
+    
+    var spinner: some View {
+        ProgressView()
+            .scaleEffect(x: 1.5, y: 1.5, anchor: .center)
+            .background(.clear)
     }
 }

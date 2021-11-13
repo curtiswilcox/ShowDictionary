@@ -17,17 +17,7 @@ struct ShowDictionaryApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .task {
-                    await connectToCloudKit()
-                }
-        }
-    }
-        
-    private func getiCloudLoginStatus() async -> Bool {
-        do {
-            return try await CKContainer.default().accountStatus() == .available
-        } catch {
-            return false
+                .task { await connectToCloudKit() }
         }
     }
     
@@ -39,5 +29,13 @@ struct ShowDictionaryApp: App {
         }
         
         signedIn = await getiCloudLoginStatus()
+    }
+        
+    private func getiCloudLoginStatus() async -> Bool {
+        do {
+            return try await CKContainer.default().accountStatus() == .available
+        } catch {
+            return false
+        }
     }
 }

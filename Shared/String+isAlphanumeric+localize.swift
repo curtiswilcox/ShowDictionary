@@ -22,12 +22,35 @@ extension String {
     }
     
     func firstLetter() -> String {
-        let articles = ["the", "el", "los", "la", "las"] // TODO: this is bad
+        let articles = articles() // TODO: this is bad
         let string = self.lowercased().filter { String($0).isAlphanumeric || $0.isWhitespace }
-        for article in articles where string.hasPrefix("\(article) ") {
-            return String(string.dropFirst(article.count + 1)).first!.uppercased()
+        for article in articles {
+            if string.hasPrefix("\(article) ") || (article.hasSuffix("'") && string.hasPrefix(article)) {
+                return String(string.dropFirst(article.count + (article.hasSuffix("'") ? 0 : 1))).first!.uppercased()
+            }
         }
         return string.first!.uppercased()
+    }
+    
+    private func articles() -> [String] {
+        switch Locale.current.description {
+        case "en":
+            return ["the"]
+        case "es":
+            return ["el", "la", "los", "las"]
+        case "fr":
+            return ["il, la, les, l'"]
+        case "it":
+            return ["il, la, lo, l', i, gli, le"]
+        case "pt":
+            return ["o", "a", "os", "as"]
+        default:
+            return []
+        }
+    }
+    
+    func withoutDiacritics(locale: Locale = .current) -> String {
+        folding(options: .diacriticInsensitive, locale: locale)
     }
     
     /**

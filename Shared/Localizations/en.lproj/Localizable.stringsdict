@@ -12,10 +12,8 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
-			<key>one</key>
-			<string>activo</string>
 			<key>other</key>
-			<string>activos</string>
+			<string>active</string>
 		</dict>
 	</dict>
 	<key>episodes</key>
@@ -29,9 +27,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>1 episodio</string>
+			<string>1 episode</string>
 			<key>other</key>
-			<string>%u episodios</string>
+			<string>%u episodes</string>
 		</dict>
 	</dict>
 	<key>filter</key>
@@ -45,9 +43,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>filtro</string>
+			<string>filter</string>
 			<key>other</key>
-			<string>filtros</string>
+			<string>filters</string>
 		</dict>
 	</dict>
 	<key>hour</key>
@@ -61,9 +59,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>hora</string>
+			<string>hour</string>
 			<key>other</key>
-			<string>horas</string>
+			<string>hours</string>
 		</dict>
 	</dict>
 	<key>minute</key>
@@ -77,9 +75,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>minuto</string>
+			<string>minute</string>
 			<key>other</key>
-			<string>minutos</string>
+			<string>minutes</string>
 		</dict>
 	</dict>
 	<key>number of book</key>
@@ -93,9 +91,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>1 libro</string>
+			<string>1 book</string>
 			<key>other</key>
-			<string>%u libros</string>
+			<string>%u books</string>
 		</dict>
 	</dict>
 	<key>number of season</key>
@@ -109,9 +107,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
 			<key>one</key>
-			<string>1 temporada</string>
+			<string>1 season</string>
 			<key>other</key>
-			<string>%u temporadas</string>
+			<string>%u seasons</string>
 		</dict>
 	</dict>
 	<key>number of series</key>
@@ -124,8 +122,6 @@
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>u</string>
-			<key>one</key>
-			<string>1 serie</string>
 			<key>other</key>
 			<string>%u series</string>
 		</dict>

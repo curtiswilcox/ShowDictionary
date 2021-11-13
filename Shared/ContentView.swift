@@ -22,49 +22,35 @@ struct ContentView: View {
         let availableShows = $observer.items.filter { $show in
             show.matchesSearchText(searchText)
         }
-        let sections = Set(availableShows.map { $0.wrappedValue.sortName.firstLetter() }).sorted()
-        let enumeratedSections = Array(zip(sections.indices, sections))
+        let sections = Set(availableShows.map { $0.wrappedValue.sortName.firstLetter().withoutDiacritics() }).sorted()
         
         return NavigationView {
-            LoaderView(observer: observer, loading: $loading) {
-                GeometryReader { geometry in
-                    let width = geometry.size.width
-                    ScrollViewReader { proxy in
-                    ScrollView {
-                        LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns)) {
-                            ForEach(enumeratedSections, id: \.1) { idx, section in
-                                Section {
-                                    ForEach(availableShows.filter({ $show in
-                                        show.sortName.firstLetter() == section
-                                    })) { $show in
-                                        NavigationLink(destination: AllEpisodeView(show: $show, filename: show.filename, language: "en")) {
-                                            TitleCardView(show: $show, width: width, columns: CGFloat(columns))
+            ScrollViewReader { proxy in
+                LoaderView(observer: observer, loading: $loading) {
+                    List {
+                        ForEach(sections, id: \.self) { section in
+                            Section {
+                                ForEach(availableShows.filter({ $show in
+                                    show.sortName.firstLetter().withoutDiacritics() == section
+                                })) { $show in
+                                    NavigationLink(destination: AllEpisodeView(show: $show, filename: show.filename)) {
+                                        TitleCardView(show: $show)
+                                        VStack(alignment: .leading) {
+                                            Text(show.name)
+                                                .font(.headline)
+                                            Spacer()
+                                            Text("number of \(show.seasonType.rawValue)".localizeWithFormat(quantity: show.numberOfSeasons)).subtext()
+                                            Text("episodes".localizeWithFormat(quantity: show.numberOfEpisodes)).subtext()
                                         }
-                                        .buttonStyle(.plain)
-                                    }
-                                } header: {
-                                    HStack {
-                                        Text(section)
-                                            .font(.title)
-                                            .bold()
-                                            .if(idx != 0) { view in
-                                                view.padding(.top)
-                                            }
-                                        Spacer()
-                                    }
-                                    .padding(.leading)
-                                } footer: {
-                                    let last = enumeratedSections[enumeratedSections.count - 1].0
-                                    if idx != last {
-                                        AnyView(Divider())
-                                    } else {
-                                        AnyView(EmptyView())
+                                        .padding([.leading, .vertical])
                                     }
                                 }
+                            } header: {
+                                Text(section)
                             }
                         }
-                        .padding([.top, .horizontal])
                     }
+//                    .padding(.trailing)
                     .onChange(of: scrollToSection) { section in
                         guard let section = section else { return }
                         withAnimation(.easeInOut(duration: 2)) {
@@ -72,19 +58,19 @@ struct ContentView: View {
                         }
                         scrollToSection = nil
                     }
-                    }
                 }
+//                .overlay(sectionIndices(scrollProxy: proxy, sections: sections))
             }
-            .navigationTitle("Home")
-            #if os(macOS)
-            .navigationViewStyle(.columns)
-            #endif
             .searchable(text: $searchText.animation())
+            .navigationTitle("Home")
+#if os(macOS)
+            .navigationViewStyle(.columns)
+#endif
             .toolbar {
                 ToolbarItem {
                     let showCount: (String) -> Int = { (section) in
                         availableShows.filter({ $show in
-                            show.sortName.alphanumeric().firstLetter().lowercased() == section.lowercased()
+                            show.sortName.alphanumeric().firstLetter().localizedLowercase == section.localizedLowercase
                         }).count
                     }
                     SectionScrollMenu(showCount: showCount, sections: sections, scrollToSection: $scrollToSection)
@@ -93,23 +79,25 @@ struct ContentView: View {
             }
         }
     }
-    
+    /*
+    func sectionIndices(scrollProxy: ScrollViewProxy, sections: [String]) -> some View {
+        SectionIndexView(scrollProxy: scrollProxy, titles: sections)
+            .frame(maxWidth: .infinity, alignment: .trailing)
+            .padding()
+    }
+    */
     private struct SectionScrollMenu: View {
         let showCount: (String) -> Int
         let sections: [String]
         @Binding var scrollToSection: String?
-        
+
         var body: some View {
             Menu {
                 ForEach(sections, id: \.self) { section in
                     Button {
                         scrollToSection = section
                     } label: {
-                        Label {
-                            Text("Scroll to shows that start with \(section.uppercased())")
-                        } icon: {
-                            Image(systemName: "\(showCount(section)).circle")
-                        }
+                        Label("Scroll to shows that start with \(section.localizedUppercase)", systemImage: "\(section.lowercased())").symbolVariant(.circle)
                     }
                 }
             } label: {
