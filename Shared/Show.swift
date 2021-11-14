@@ -69,20 +69,49 @@ struct Show: Observable {
         return name.localizedLowercase.contains(searchText.localizedLowercase)
     }
     
-    func getImage() throws -> Data {
-        let lang = Locale.current.identifier
-        let filename = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("\(filename)_\(lang)-title-card.txt")
-        
-        return try Data(contentsOf: filename)
+    func getSavedImage() throws -> Data {
+        return try Data(contentsOf: getURL())
     }
     
     func saveImage() async {
         guard let (data, _) = try? await URLSession.shared.data(from: titleCardURL) else { return }
-        guard let savedData = try? getImage(), savedData != data else { return } // no point in saving old photo repeatedly
-        let lang = Locale.current.identifier
-        let filename = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("\(filename)_\(lang)-title-card.txt")
         
-        try? data.write(to: filename)
+        do {
+            // no point in saving old photo repeatedly
+            guard try getSavedImage() != data else { return }
+        } catch {
+            if !FileManager.default.fileExists(atPath: getURL().path) {
+                do {
+                    try createURLFile()
+                } catch let e {
+                    print(e)
+                }
+            }
+            FileManager.default.createFile(atPath: getURL().path, contents: nil, attributes: nil)
+        }
+        do {
+            try data.write(to: getURL())
+        } catch let e {
+            print("Writing error: \(e)")
+        }
+    }
+    
+    private func createURLFile() throws {
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let localeDirectory = documentDirectory
+            .appendingPathComponent("title-cards", isDirectory: true)
+            .appendingPathComponent(Locale.current.identifier, isDirectory: true)
+        if !FileManager.default.fileExists(atPath: localeDirectory.path) {
+            try FileManager.default.createDirectory(at: localeDirectory, withIntermediateDirectories: true)
+        }
+    }
+    
+    private func getURL() -> URL {
+        FileManager.default
+            .urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("title-cards", isDirectory: true)
+            .appendingPathComponent(Locale.current.identifier, isDirectory: true)
+            .appendingPathComponent(filename, isDirectory: false)
     }
 }
 

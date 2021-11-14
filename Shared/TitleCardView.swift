@@ -22,7 +22,7 @@ struct TitleCardView: View {
                     }
             } else { // placeholder or error
                 #if os(iOS)
-                if let savedImage = try? UIImage(data: show.getImage()) {
+                if let savedImage = try? UIImage(data: show.getSavedImage()) {
                     Image(uiImage: savedImage)
                         .resizable()
                         .background(.white)
