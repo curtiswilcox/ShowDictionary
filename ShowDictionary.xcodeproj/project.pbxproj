@@ -53,6 +53,8 @@
 		D43DD6282735BB3B00B94266 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D43DD6242735BB3B00B94266 /* Localizable.strings */; };
 		D43DD6292735BB3B00B94266 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D43DD6262735BB3B00B94266 /* Localizable.stringsdict */; };
 		D43DD62D2735C25600B94266 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D43DD62B2735C25600B94266 /* Localizable.stringsdict */; };
+		D4B1C31B2745679A004AF5F4 /* EpisodeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1C31A2745679A004AF5F4 /* EpisodeObserver.swift */; };
+		D4B1C31D274567A0004AF5F4 /* ShowObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B1C31C274567A0004AF5F4 /* ShowObserver.swift */; };
 		D4B8983B273D812E00E9BE3C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4B8983D273D812E00E9BE3C /* Localizable.strings */; };
 		D4B89840273D82F400E9BE3C /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D4B89842273D82F400E9BE3C /* Localizable.stringsdict */; };
 		D4B89844273DC62300E9BE3C /* SectionIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B89843273DC62300E9BE3C /* SectionIndexView.swift */; };
@@ -109,6 +111,8 @@
 		D43DD6272735BB3B00B94266 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "pt-PT"; path = "pt-PT.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		D43DD62A2735C16D00B94266 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = es; path = es.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		D43DD62C2735C25600B94266 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		D4B1C31A2745679A004AF5F4 /* EpisodeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeObserver.swift; sourceTree = "<group>"; };
+		D4B1C31C274567A0004AF5F4 /* ShowObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowObserver.swift; sourceTree = "<group>"; };
 		D4B8983C273D812E00E9BE3C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4B89841273D82F400E9BE3C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		D4B89843273DC62300E9BE3C /* SectionIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionIndexView.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				D4093C712728919300F41BBF /* Observable.swift */,
+				D4093C682728919300F41BBF /* Observer.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -209,7 +214,8 @@
 		D4093C5B2728913400F41BBF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D4093C682728919300F41BBF /* Observer.swift */,
+				D4B1C31A2745679A004AF5F4 /* EpisodeObserver.swift */,
+				D4B1C31C274567A0004AF5F4 /* ShowObserver.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -468,6 +474,7 @@
 				D4093CCF27299E9E00F41BBF /* Record.swift in Sources */,
 				D43DD5DE273311E700B94266 /* FilterMenu.swift in Sources */,
 				D4093C7F2728919300F41BBF /* AllEpisodeView.swift in Sources */,
+				D4B1C31B2745679A004AF5F4 /* EpisodeObserver.swift in Sources */,
 				D4093CD9272B213400F41BBF /* EpisodeView.swift in Sources */,
 				D4093C8B2728919300F41BBF /* SeasonType.swift in Sources */,
 				D4093C98272891C000F41BBF /* ShowDictionaryApp.swift in Sources */,
@@ -475,6 +482,7 @@
 				D43DD5D727323E5E00B94266 /* BiderectionalCollection+sentence.swift in Sources */,
 				D4B89844273DC62300E9BE3C /* SectionIndexView.swift in Sources */,
 				D4093C892728919300F41BBF /* Subtext.swift in Sources */,
+				D4B1C31D274567A0004AF5F4 /* ShowObserver.swift in Sources */,
 				D4093C792728919300F41BBF /* CollectionType+toJSONString.swift in Sources */,
 				D4093C852728919300F41BBF /* Int+toWord.swift in Sources */,
 				D4093C832728919300F41BBF /* TitleCardView.swift in Sources */,

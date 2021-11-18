@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct AllEpisodeView: View {
-    @StateObject var observer = Observer<Episode>()
+    @StateObject var observer = EpisodeObserver()
     @Binding var show: Show
             
     let filename: String
@@ -83,7 +83,7 @@ struct AllEpisodeView: View {
                                     }
                                 }
                                 .swipeActions(edge: .trailing) {
-                                    FavoriteButton(observer: observer, episode: $episode, toFavorite: "star", toUnfavorite: "star.slash", tint: .blue)
+                                    FavoriteButton(observer: observer, show: $show, episode: $episode, toFavorite: "star", toUnfavorite: "star.slash", tint: .blue)
                                 }
                             }
                         } header: {

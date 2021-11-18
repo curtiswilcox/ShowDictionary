@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var observer = Observer<Show>(file: "shows")
+    @StateObject var observer = ShowObserver()/*Observer<Show>(file: "shows")*/
     
     @State private var loading = false
     
@@ -27,34 +27,32 @@ struct ContentView: View {
         return NavigationView {
             ScrollViewReader { proxy in
                 LoaderView(observer: observer, loading: $loading) {
-                    List {
-                        ForEach(sections, id: \.self) { section in
-                            Section {
-                                ForEach(availableShows.filter({ $show in
-                                    show.sortName.firstLetter().withoutDiacritics() == section
-                                })) { $show in
-                                    NavigationLink(destination: AllEpisodeView(show: $show, filename: show.filename)) {
-                                        TitleCardView(show: $show)
-                                        VStack(alignment: .leading) {
-                                            HStack(alignment: .top) {
-                                                Text(show.name)
-                                                    .font(.headline)
-                                                if show.hasFavoriteEpisodes {
-                                                    Spacer()
-                                                    Image(systemName: "star.fill")
-                                                        .foregroundColor(.secondary)
-                                                }
+                    List(sections, id: \.self) { section in
+                        Section {
+                            ForEach(availableShows.filter({ $show in
+                                show.sortName.firstLetter().withoutDiacritics() == section
+                            })) { $show in
+                                NavigationLink(destination: AllEpisodeView(show: $show, filename: show.filename)) {
+                                    TitleCardView(show: $show)
+                                    VStack(alignment: .leading) {
+                                        HStack(alignment: .top) {
+                                            Text(show.name)
+                                                .font(.headline)
+                                            if show.hasFavoriteEpisodes {
+                                                Spacer()
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(.secondary)
                                             }
-                                            Spacer()
-                                            Text("number of \(show.seasonType.rawValue)".localizeWithFormat(quantity: show.numberOfSeasons)).subtext()
-                                            Text("episodes".localizeWithFormat(quantity: show.numberOfEpisodes)).subtext()
                                         }
-                                        .padding([.leading, .vertical])
+                                        Spacer()
+                                        Text("number of \(show.seasonType.rawValue)".localizeWithFormat(quantity: show.numberOfSeasons)).subtext()
+                                        Text("episodes".localizeWithFormat(quantity: show.numberOfEpisodes)).subtext()
                                     }
+                                    .padding([.leading, .vertical])
                                 }
-                            } header: {
-                                Text(section)
                             }
+                        } header: {
+                            Text(section)
                         }
                     }
 //                    .padding(.trailing)
@@ -68,6 +66,9 @@ struct ContentView: View {
                 }
 //                .overlay(sectionIndices(scrollProxy: proxy, sections: sections))
             }
+//            .refreshable {
+//                try? await observer.summon()
+//            }
             .searchable(text: $searchText.animation())
             .navigationTitle("Home")
 #if os(macOS)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EpisodeView: View {
-    @ObservedObject var observer: Observer<Episode>
+    @ObservedObject var observer: EpisodeObserver
     @Binding var show: Show
     @Binding var episode: Episode
     
@@ -95,7 +95,7 @@ struct EpisodeView: View {
         .navigationTitle(episode.name)
         .toolbar {
             ToolbarItem {
-                FavoriteButton(observer: observer, episode: $episode, toFavorite: "star", toUnfavorite: "star.fill")
+                FavoriteButton(observer: observer, show: $show, episode: $episode, toFavorite: "star", toUnfavorite: "star.fill")
             }
         }
     }

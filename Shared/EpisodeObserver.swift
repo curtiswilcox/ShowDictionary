@@ -1,52 +1,25 @@
 //
-//  Observer.swift
-//  ShowDictionary
+//  EpisodeObserver.swift
+//  ShowDictionary (iOS)
 //
-//  Created by Curtis Wilcox on 10/25/21.
-//  Copyright © 2021 wilcoxcurtis. All rights reserved.
+//  Created by Curtis Wilcox on 11/17/21.
 //
 
 import CloudKit
 import Foundation
 
-protocol Observer: ObservableObject {
-    associatedtype T: Observable
-    associatedtype RecordType
+final class EpisodeObserver: Observer {
+    typealias T = Episode
+    typealias RecordType = Record
     
-    var items: [T] { get }
-    var file: String? { get }
-    var language: String? { get }
-    var container: CKDatabase { get }
-    
-    init()
-        
-    func summon() async throws
-    
-    func formURL() throws -> URL
-    
-    func formQuery(predicate: NSPredicate, sortKey: String?) -> CKQuery
-    
-    func getRecords(query: CKQuery, desiredKeys: [String]) async throws -> [(CKRecord.ID, Result<CKRecord, Error>)]?
-    
-    func getFavorites() async throws -> [RecordType]?
-}
-
-/*class Observer<T: Observable>: ObservableObject {
-    @Published var items = [T]()
-    
+    @Published var items = [Episode]()
     private(set) var file: String?
-    private let language = Locale.current.languageCode
-    
-    private let container = CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase
-    
+    let language = Locale.current.languageCode
+    var container: CKDatabase = CKContainer(identifier: "iCloud.wilcoxcurtis.ShowDictionary").privateCloudDatabase
     private var favorites: [Int: CKRecord.ID]?
     
     init() {
-        file = nil
-    }
-    
-    init(file: String) {
-        self.file = file
+        self.file = nil
     }
     
     func update(file: String) {
@@ -57,7 +30,6 @@ protocol Observer: ObservableObject {
     func summon() async throws {
         let (data, _) = try await URLSession.shared.data(from: formURL())
         
-        let favoriteShows = try? await hasFavorites()
         let favoriteEpisodes = try? await getFavorites()
         
         if let favorites = favoriteEpisodes {
@@ -69,30 +41,22 @@ protocol Observer: ObservableObject {
         }
 
         self.items = try JSONDecoder().decode([T].self, from: data).sorted().map {
-            if var show = $0 as? Show {
-                if let favoriteShows = favoriteShows, favoriteShows.contains(show.filename) {
-                    show.hasFavoriteEpisodes = true
-                }
-                return show as! T
-            } else if var episode = $0 as? Episode {
-                if self.favorites?.keys.contains(episode.code) ?? false {
-                    episode.isFavorite = true
-                }
-                return episode as! T
-            } else {
-                return $0
+            var episode = $0
+            if self.favorites?.keys.contains(episode.code) ?? false {
+                episode.isFavorite = true
             }
+            return episode
         }
     }
     
-    private func formURL() throws -> URL {
+    func formURL() throws -> URL {
         guard let file = file, let language = language else {
             throw URLError.malformedURL(String(localized: "Could not form URL with arguments (file: `\(file ?? "nil")`, language: `\(language ?? "nil")`)."))
         }
         return URL(string: "http://3.13.104.19/show-dictionary/files/\(file)_\(language).json")!
     }
     
-    private func formQuery(predicate: NSPredicate, sortKey: String?) -> CKQuery {
+    func formQuery(predicate: NSPredicate, sortKey: String?) -> CKQuery {
         let query = CKQuery(recordType: "episodes", predicate: predicate)
         if let sortKey = sortKey {
             query.sortDescriptors = [NSSortDescriptor(key: sortKey, ascending: true)]
@@ -100,7 +64,7 @@ protocol Observer: ObservableObject {
         return query
     }
     
-    private func getRecords(query: CKQuery, desiredKeys: [String]) async throws -> [(CKRecord.ID, Result<CKRecord, Error>)]? {
+    func getRecords(query: CKQuery, desiredKeys: [String]) async throws -> [(CKRecord.ID, Result<CKRecord, Error>)]? {
         var (records, cursor) = try await container.records(matching: query, desiredKeys: desiredKeys)
         
         while cursor != nil {
@@ -112,37 +76,13 @@ protocol Observer: ObservableObject {
         return records
     }
     
-    private func hasFavorites() async throws -> [String]? {
-        guard signedIn, file == "shows" else { return nil }
-        
-        let query = formQuery(predicate: NSPredicate(value: true), sortKey: "filename")
-        
-        let keys = ["filename"]
-        
-        guard let records = try await getRecords(query: query, desiredKeys: keys) else {
-            return nil
-        }
-        
-        let favoriteShows: [String] = try records.compactMap { (id, result) in
-            let record = try result.get()
-            
-            if let filename = record.getString(field: "filename") {
-               return filename
-            } else {
-                return nil
-            }
-        }
-
-        return favoriteShows.isEmpty ? nil : favoriteShows
-    }
-    
-    private func getFavorites() async throws -> [Record]? {
-        guard signedIn, let file = file, file != "shows" else { return nil }
+    func getFavorites() async throws -> [Record]? {
+        guard signedIn, let file = file else { return nil }
         
         let query = formQuery(predicate: NSPredicate(format: "filename == %@", file), sortKey: "code")
         
         let keys = ["filename", "code"]
-                    
+                
         guard let records = try await getRecords(query: query, desiredKeys: keys) else { return nil }
         
         let favorites: [Record] = try records.compactMap { (id, result) in
@@ -188,4 +128,3 @@ protocol Observer: ObservableObject {
         try await container.deleteRecord(withID: id)
     }
 }
-*/

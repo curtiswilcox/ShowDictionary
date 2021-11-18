@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct LoaderView<T: Observable, InnerView: View>: View {
-    @ObservedObject var observer: Observer<T>
+struct LoaderView<O: Observer, InnerView: View>: View {
+    @ObservedObject var observer: O
     
     @Binding var loading: Bool
     
